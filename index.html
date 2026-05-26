@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>onlinehatdropshop - Complete AI Powered Dropshipping Platform</title>
+    <title>onlinehatdropshop - Complete Dropshipping Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Segoe UI', Roboto, sans-serif; transition: background 0.3s ease; }
@@ -21,21 +21,33 @@
 </head>
 <body class="bg-slate-50 min-h-screen text-gray-800" id="siteBackground">
 
+    <!-- NAVIGATION BAR -->
     <nav class="bg-indigo-700 text-white p-4 shadow-lg sticky top-0 z-40">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-xl font-bold tracking-wider cursor-pointer" onclick="showSection('homepage')">onlinehatdropshop</h1>
             <div class="space-x-4 text-sm font-semibold flex items-center">
                 <button onclick="showSection('homepage')" class="hover:text-amber-300">Homepage</button>
-                <button onclick="showSection('loginPage')" id="navLoginBtn" class="bg-amber-500 text-slate-900 px-3 py-1.5 rounded-lg hover:bg-amber-400">Login / Sign-Up</button>
-                <button onclick="showSection('customerDashboard')" id="navCustomerBtn" class="hidden hover:text-amber-300">Customer Dashboard</button>
-                <button onclick="showSection('adminPanel')" id="navAdminBtn" class="hidden bg-red-600 px-3 py-1.5 rounded-lg hover:bg-red-500">Admin Panel</button>
-                <button onclick="logout()" id="navLogoutBtn" class="hidden text-red-300 hover:text-red-100">Logout</button>
+                <button onclick="showSection('adminPanel')" id="navAdminBtn" class="bg-red-600 px-3 py-1.5 rounded-lg hover:bg-red-500">Admin Panel</button>
             </div>
         </div>
     </nav>
 
+    <!-- GLOBAL TOP SEARCH BAR SECTION -->
+    <div class="bg-indigo-50 border-b border-indigo-100 py-4 shadow-inner">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="relative">
+                <input type="text" id="globalSearch" oninput="handleGlobalSearch()" placeholder="Search from live active products catalog (e.g. T-shirt, Shirt, Pant)..." class="w-full p-3 pl-10 border border-indigo-200 rounded-xl text-sm focus:outline-none focus:border-indigo-600 shadow-sm bg-white">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                    🔍
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN VIEW CONTAINER -->
     <div id="mainContentContainer">
 
+        <!-- HOMEPAGE SECTION -->
         <section id="homepage" class="space-y-16 pb-16">
             
             <div class="bg-white border-b py-8 shadow-sm">
@@ -55,6 +67,7 @@
                 </div>
             </div>
 
+            <!-- FEATURES GRID -->
             <div class="container mx-auto px-4 text-center space-y-4">
                 <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest">কেন আমাদের বেছে নেবেন</p>
                 <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">ব্যবসা বড় করার সব সুবিধা এখানেই</h2>
@@ -94,6 +107,7 @@
                 </div>
             </div>
 
+            <!-- TIMELINE SYSTEM STEPS -->
             <div class="bg-white py-16 border-y border-gray-100 dotted-bg">
                 <div class="container mx-auto px-4 text-center space-y-12">
                     <div class="space-y-2">
@@ -105,140 +119,53 @@
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto text-center">
                         <div class="space-y-3 relative">
                             <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full mx-auto flex items-center justify-center text-xl font-bold shadow-sm">১</div>
-                            <h4 class="font-bold text-sm text-gray-800">সাইন আপ</h4>
-                            <p class="text-[11px] text-gray-500">২ মিনিটের মধ্যে অ্যাকাউন্ট খুলুন।</p>
+                            <h4 class="font-bold text-sm text-gray-800">প্রোডাক্ট সিলেক্ট করুন</h4>
+                            <p class="text-[11px] text-gray-500">আমাদের ক্যাটালগ থেকে কাস্টমারের পছন্দের পণ্য বেছে নিন।</p>
                         </div>
                         <div class="space-y-3 relative">
                             <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-full mx-auto flex items-center justify-center text-xl font-bold shadow-sm">২</div>
-                            <h4 class="font-bold text-sm text-gray-800">প্রোডাক্ট বাছাই</h4>
-                            <p class="text-[11px] text-gray-500">আমাদের ক্যাটালগ থেকে পছন্দমত পণ্য বেছে নিন এবং আপনার ফেইসবুক/ওয়েবসাইটে শেয়ার করুন।</p>
+                            <h4 class="font-bold text-sm text-gray-800">মার্কেটিং করুন</h4>
+                            <p class="text-[11px] text-gray-500">আপনার ফেইসবুক পেইজ বা গ্রুপে পণ্যের বিবরণ শেয়ার করুন।</p>
                         </div>
                         <div class="space-y-3 relative">
                             <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-full mx-auto flex items-center justify-center text-xl font-bold shadow-sm">৩</div>
                             <h4 class="font-bold text-sm text-gray-800">অর্ডার প্লেস করুন</h4>
-                            <p class="text-[11px] text-gray-500">কাস্টমার অর্ডার করলে প্যানেলে অর্ডার প্লেস করুন। আমরা ডেলিভারি করে দেব।</p>
+                            <p class="text-[11px] text-gray-500">কাস্টমার অর্ডার করলে সরাসরি ক্যাটালগ থেকে প্লেস করুন।</p>
                         </div>
                         <div class="space-y-3 relative">
                             <div class="w-16 h-16 bg-amber-50 text-amber-600 rounded-full mx-auto flex items-center justify-center text-xl font-bold shadow-sm">৪</div>
                             <h4 class="font-bold text-sm text-gray-800">প্রফিট বুঝে নিন</h4>
-                            <p class="text-[11px] text-gray-500">ডেলিভারি শেষে আমরা পেমেন্ট কালেক্ট করে আপনার লাভের টাকা আপনাকে পাঠিয়ে দেব।</p>
+                            <p class="text-[11px] text-gray-500">ডেলিভারি শেষে আপনার লভ্যাংশ আপনার কাছে পৌঁছে যাবে।</p>
                         </div>
                     </div>
-
-                    <div class="pt-4">
-                        <button onclick="showSection('loginPage')" class="bg-slate-950 text-white px-6 py-3 rounded-xl font-bold text-xs hover:bg-slate-900 transition tracking-wider uppercase inline-flex items-center gap-2">ব্যবসা শুরু করুন ➔</button>
-                    </div>
                 </div>
             </div>
 
-            <div class="container mx-auto px-4 space-y-6">
-                <div>
-                    <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider">ক্যাটাগরি</p>
-                    <h2 class="text-2xl font-extrabold text-slate-800 mt-1">আমাদের প্রোডাক্ট ক্যাটাগরি</h2>
-                </div>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9 gap-4" id="categoryTabs">
-                    <div onclick="filterCategory('All')" class="bg-indigo-600 text-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer cat-tab">
-                        <div class="text-xl">📦</div>
-                        <p class="text-[11px] font-bold leading-tight">All Products</p>
-                    </div>
-                    <div onclick="filterCategory('T-shirt')" class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer cat-tab">
-                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
-                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Drop Shoulder T-shirt</p>
-                    </div>
-                    <div onclick="filterCategory('Shirt')" class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer cat-tab">
-                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
-                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Solid Formal Shirt</p>
-                    </div>
-                    <div onclick="filterCategory('Pant')" class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer cat-tab">
-                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
-                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Boot Cut Pant</p>
-                    </div>
-                </div>
-            </div>
-
+            <!-- SYSTEM SHOPS REGISTRY CONTAINER -->
             <div class="container mx-auto px-4 mt-8">
                 <h2 class="text-sm font-bold text-gray-600 mb-4 flex items-center gap-2">🏪 একটিভ রিসেলার শপসমূহ</h2>
                 <div id="featuredShopsContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-4"></div>
             </div>
 
+            <!-- LIVE CATALOG DISPLAY COMPONENT -->
             <div class="container mx-auto px-4">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 border-b pb-3">
                     <h2 class="text-2xl font-black text-slate-800">🛍️ অল লাইভ প্রোডাক্টস ক্যাটালগ</h2>
-                    <input type="text" id="catalogSearch" oninput="handleSearch()" placeholder="Search active catalog..." class="p-2 border rounded-xl text-xs w-full sm:w-64 focus:outline-none focus:border-indigo-600">
                 </div>
                 <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
             </div>
 
+            <!-- HERO CTAs BUTTON FRAME -->
             <div class="container mx-auto px-4 pt-8">
                 <div class="blue-dotted-bg text-white rounded-3xl p-12 text-center space-y-4 shadow-xl max-w-5xl mx-auto">
                     <h2 class="text-3xl md:text-4xl font-black tracking-wide">ব্যবসা শুরু করতে প্রস্তুত?</h2>
                     <p class="text-sm md:text-base text-blue-100 font-medium">আজই যোগ দিন +২হাজার রিসেলারদের সাথে। আনলিমিটেড ইনকাম।</p>
-                    <div class="pt-4">
-                        <button onclick="showSection('loginPage')" class="bg-white text-indigo-700 px-8 py-3.5 rounded-full font-black text-sm hover:bg-gray-100 transition shadow-md">অ্যাকাউন্ট খুলুন</button>
-                    </div>
-                    <p class="text-[11px] text-blue-200 pt-2">কোনো ক্রেডিট কার্ড লাগবে না • সহজ রেজিস্ট্রেশন</p>
+                    <p class="text-[11px] text-blue-200 pt-2">কোনো ইনভেন্টরি রিস্ক নেই • সহজ অর্ডার প্রসেসিং সিস্টেম</p>
                 </div>
             </div>
         </section>
 
-        <section id="loginPage" class="hidden-section container mx-auto px-4 max-w-4xl my-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-md flex flex-col justify-between border border-gray-100">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Account Login</h2>
-                    <p class="text-xs text-gray-500 mb-6">Access your active dropshipping account</p>
-                    <form onsubmit="handleLogin(event)" class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-600">Email Address</label>
-                            <input type="email" id="loginEmail" class="w-full p-2.5 border rounded-lg mt-1 text-sm" placeholder="username@example.com" required>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-600">Password</label>
-                            <input type="password" id="loginPassword" class="w-full p-2.5 border rounded-lg mt-1 text-sm" placeholder="••••••••" required>
-                        </div>
-                        <button type="submit" class="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-bold text-sm hover:bg-indigo-700 transition">Log In to System</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-indigo-600 border border-gray-100">
-                <h2 class="text-2xl font-bold text-gray-800 mb-1">Create Dropshipper Account</h2>
-                <p class="text-xs text-gray-500 mb-6">Submit onboarding request info details for admin evaluation approval</p>
-                
-                <form onsubmit="handleSignUp(event)" class="space-y-3 text-xs">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block font-bold text-gray-700">Full Structural Name *</label>
-                            <input type="text" id="regFullName" class="w-full p-2 border rounded mt-1" placeholder="John Doe" required>
-                        </div>
-                        <div>
-                            <label class="block font-bold text-gray-700">Desired Shop Brand Name *</label>
-                            <input type="text" id="regShopBrandName" class="w-full p-2 border rounded mt-1" placeholder="Doe Dropship Hub" required>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block font-bold text-gray-700">Active Phone Number *</label>
-                            <input type="tel" id="regPhone" class="w-full p-2 border rounded mt-1" placeholder="+8801xxxxxxxxx" required>
-                        </div>
-                        <div>
-                            <label class="block font-bold text-gray-700">Email Destination Address *</label>
-                            <input type="email" id="regEmail" class="w-full p-2 border rounded mt-1" placeholder="merchant@email.com" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block font-bold text-gray-700">Complete Logistics Operation Address *</label>
-                        <textarea id="regAddress" rows="2" class="w-full p-2 border rounded mt-1" placeholder="District, Sub-District, Zip Code..." required></textarea>
-                    </div>
-                    <div>
-                        <label class="block font-bold text-gray-700">Secure Access Password *</label>
-                        <input type="password" id="regPassword" class="w-full p-2 border rounded mt-1" placeholder="Minimum 6+ secure characters" minlength="6" required>
-                    </div>
-                    <button type="submit" class="w-full bg-emerald-600 text-white py-2.5 rounded font-bold hover:bg-emerald-700 transition uppercase tracking-wider mt-2">Submit Profile For Review</button>
-                </form>
-            </div>
-        </section>
-
+        <!-- DISPATCH TRANSACTION MODAL DIALOGUE -->
         <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
             <div class="bg-white p-6 rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl">
                 <h2 class="text-sm font-bold text-center text-red-600 mb-4">Please fill up the information to place your order</h2>
@@ -299,63 +226,7 @@
             </div>
         </div>
 
-        <section id="customerDashboard" class="hidden-section container mx-auto px-4 my-8 space-y-6">
-            <div class="bg-white p-6 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border border-gray-100">
-                <div>
-                    <h2 class="text-xl font-bold text-gray-800">👤 Customer Profile: <span id="dashCustomerName" class="text-indigo-600"></span></h2>
-                    <p class="text-xs text-gray-500" id="dashCustomerEmail"></p>
-                </div>
-                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
-                    <p class="text-xs font-bold text-emerald-800 uppercase tracking-wider">My Wallet Balance</p>
-                    <p class="text-2xl font-black text-emerald-600 mt-1">৳<span id="dashWalletBalance">0</span></p>
-                </div>
-            </div>
-
-            <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-amber-500 border border-gray-100">
-                <h3 class="text-sm font-bold text-amber-700 mb-2 flex items-center gap-1">🔔 Notification Board</h3>
-                <div id="customerNotifications" class="space-y-2 text-xs text-gray-600"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-                    <h3 class="font-bold text-gray-800 border-b pb-2 mb-3">🏪 Your Shop Option</h3>
-                    <div id="shopSetupBox"></div>
-                </div>
-
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 md:col-span-2 space-y-4">
-                    <h3 class="font-bold text-gray-800 border-b pb-2">📊 Shop Stock Report & Gallery Upload</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-amber-50 p-3 rounded-lg">
-                            <p class="text-xs font-semibold text-amber-700">Total Valuation of Current Stock</p>
-                            <p class="text-xl font-bold text-slate-800 mt-1">৳<span id="vendorStockValue">0</span></p>
-                        </div>
-                        <div class="bg-indigo-50 p-3 rounded-lg">
-                            <p class="text-xs font-semibold text-indigo-700">Successful Sales Count From Your Shop</p>
-                            <p class="text-xl font-bold text-slate-800 mt-1"><span id="vendorSalesCount">0</span> Items</p>
-                        </div>
-                    </div>
-
-                    <div id="vendorAddProductArea" class="hidden border-t pt-4">
-                        <h4 class="text-xs font-bold uppercase text-indigo-600 mb-2">🖼️ Upload New Product from Gallery</h4>
-                        <form onsubmit="vendorAddProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                            <input type="text" id="vProdName" placeholder="Product Name" class="p-2.5 border rounded-lg" required>
-                            <input type="number" id="vProdPrice" placeholder="Price (BDT)" class="p-2.5 border rounded-lg" required>
-                            <input type="number" id="vProdStock" placeholder="Stock Quantity" class="p-2.5 border rounded-lg" required>
-                            <div>
-                                <label class="block text-[10px] text-gray-500 mb-1">Select Category *</label>
-                                <select id="vProdCat" class="w-full p-2 border rounded-lg bg-white">
-                                    <option value="T-shirt">T-shirt</option>
-                                    <option value="Shirt">Shirt</option>
-                                    <option value="Pant">Pant</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="sm:col-span-2 bg-indigo-600 text-white p-2.5 rounded-lg font-bold hover:bg-indigo-700">Upload Product</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- ADMIN PANEL CONTROL SYSTEM INTERFACE -->
         <section id="adminPanel" class="hidden-section container mx-auto px-4 my-8 bg-slate-900 text-white p-6 rounded-2xl shadow-xl space-y-6">
             <div class="border-b border-slate-700 pb-3 flex justify-between items-center">
                 <h2 class="text-xl font-bold text-amber-400">👑 Admin Dashboard Control Console</h2>
@@ -378,11 +249,7 @@
                 <div id="aiResponseBox" class="hidden text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-emerald-400 font-semibold"></div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-slate-900 font-semibold text-xs">
-                <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-600">
-                    <p class="text-gray-500 uppercase">Total Approved Resellers</p>
-                    <p id="admTotalUsers" class="text-xl font-black mt-1">0 Users</p>
-                </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-slate-900 font-semibold text-xs">
                 <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-600">
                     <p class="text-gray-500 uppercase">Incoming Live Orders</p>
                     <p id="admTotalOrders" class="text-xl font-black mt-1">0 Orders</p>
@@ -397,24 +264,7 @@
                 </div>
             </div>
 
-            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs">
-                <h3 class="font-bold text-amber-400 mb-3 uppercase tracking-wider">📋 Profile Review Pipeline Pending Approvals</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-slate-300">
-                        <thead>
-                            <tr class="border-b border-slate-700 text-slate-400">
-                                <th class="p-2">Name</th>
-                                <th class="p-2">Proposed Brand</th>
-                                <th class="p-2">Email</th>
-                                <th class="p-2">Phone</th>
-                                <th class="p-2 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminPipelineTable"></tbody>
-                    </table>
-                </div>
-            </div>
-
+            <!-- MASTER TRACKING ORDER REPOSITORY DATA COMPONENT -->
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs">
                 <h3 class="font-bold text-indigo-400 mb-3 uppercase tracking-wider">📦 Master Tracking Live Order Repository</h3>
                 <div class="overflow-x-auto">
@@ -437,12 +287,11 @@
         </section>
     </div>
 
+    <!-- CENTRAL ENGINES CORE JAVASCRIPT STATE ARTIFACT -->
     <script>
         // STATE IN-MEMORY DATA STORAGE ENGINE
         let state = {
             currentSection: 'homepage',
-            currentUser: null,
-            selectedCategory: 'All',
             searchQuery: '',
             selectedProductForOrder: null,
             products: [
@@ -451,12 +300,11 @@
                 { id: 3, name: 'Denim Boot Cut Comfort Pant', category: 'Pant', price: 1250, shop: 'Main Store Warehouse', stock: 40, img: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400' },
                 { id: 4, name: 'Casual Slim Fit Checked Polo', category: 'T-shirt', price: 490, shop: 'Main Store Warehouse', stock: 200, img: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400' }
             ],
-            users: [
-                { id: 101, name: 'Admin Account', email: 'admin@hatdrop.com', password: 'admin', role: 'admin', hasShop: false, shopName: '', balance: 0, notifications: [] },
-                { id: 102, name: 'Zayan Kabir', email: 'zayan@dropship.com', password: 'password', role: 'user', hasShop: true, shopName: 'Zayan Fashion Hub', balance: 1450, notifications: ['Your order #7001 has been delivered successfully!'] }
-            ],
-            onboardingPipeline: [
-                { id: 501, name: 'Anisur Rahman', email: 'anis@shop.com', password: 'anispassword', phone: '+8801711223344', shopName: 'Rahman Outfitters', address: 'Dhaka, Bangladesh' }
+            shops: [
+                { id: 1, name: 'Zayan Fashion Hub' },
+                { id: 2, name: 'Rahman Outfitters' },
+                { id: 3, name: 'Dhaka Dropship Line' },
+                { id: 4, name: 'Hat Style BD' }
             ],
             orders: [
                 { orderId: 7001, productId: 1, productName: 'Drop Shoulder Streetwear T-shirt', shopName: 'Zayan Fashion Hub', customerName: 'Tahmid Alvi', customerPhone: '01822334455', customerAddress: 'Mirpur 10, Dhaka', totalBill: 490, status: 'Delivered' }
@@ -468,7 +316,6 @@
             renderPlatformCatalog();
             renderPlatformShops();
             renderAdminDashboard();
-            updateUINavbars();
         });
 
         // SPA SCREEN CONTROLLER VIEW ENGINE
@@ -481,33 +328,10 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // NAVIGATION COMPONENT MANAGER
-        function updateUINavbars() {
-            const loginBtn = document.getElementById('navLoginBtn');
-            const custBtn = document.getElementById('navCustomerBtn');
-            const admBtn = document.getElementById('navAdminBtn');
-            const logoutBtn = document.getElementById('navLogoutBtn');
-
-            if (!state.currentUser) {
-                loginBtn.classList.remove('hidden');
-                custBtn.classList.add('hidden');
-                admBtn.classList.add('hidden');
-                logoutBtn.classList.add('hidden');
-            } else {
-                loginBtn.classList.add('hidden');
-                logoutBtn.classList.remove('hidden');
-                if (state.currentUser.role === 'admin') {
-                    admBtn.classList.remove('hidden');
-                    custBtn.classList.add('hidden');
-                } else {
-                    custBtn.classList.remove('hidden');
-                    admBtn.classList.add('hidden');
-                    document.getElementById('dashCustomerName').innerText = state.currentUser.name;
-                    document.getElementById('dashCustomerEmail').innerText = state.currentUser.email;
-                    document.getElementById('dashWalletBalance').innerText = state.currentUser.balance;
-                    renderCustomerDashboard();
-                }
-            }
+        // GLOBAL SEARCH IMPLEMENTATION
+        function handleGlobalSearch() {
+            state.searchQuery = document.getElementById('globalSearch').value;
+            renderPlatformCatalog();
         }
 
         // RENDERING PIPELINES: CORE LISTINGS ENGINE
@@ -516,13 +340,13 @@
             grid.innerHTML = '';
 
             const filtered = state.products.filter(p => {
-                const matchesCat = state.selectedCategory === 'All' || p.category === state.selectedCategory;
-                const matchesQuery = p.name.toLowerCase().includes(state.searchQuery.toLowerCase()) || p.shop.toLowerCase().includes(state.searchQuery.toLowerCase());
-                return matchesCat && matchesQuery;
+                return p.name.toLowerCase().includes(state.searchQuery.toLowerCase()) || 
+                       p.shop.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+                       p.category.toLowerCase().includes(state.searchQuery.toLowerCase());
             });
 
             if(filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full py-12 text-center text-sm text-gray-400 font-medium bg-white rounded-2xl border">No dynamic active products found matching conditions.</div>`;
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-sm text-gray-400 font-medium bg-white rounded-2xl border">No dynamic active products found matching search criteria.</div>`;
                 return;
             }
 
@@ -555,37 +379,19 @@
         function renderPlatformShops() {
             const container = document.getElementById('featuredShopsContainer');
             container.innerHTML = '';
-            const stores = state.users.filter(u => u.hasShop);
             
-            stores.forEach(s => {
+            state.shops.forEach(s => {
                 const el = document.createElement('div');
                 el.className = "bg-white border rounded-xl p-3 flex items-center gap-3 shadow-sm";
                 el.innerHTML = `
                     <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-xs shadow-inner">🏪</div>
                     <div>
-                        <h4 class="font-bold text-xs text-gray-800">${s.shopName}</h4>
+                        <h4 class="font-bold text-xs text-gray-800">${s.name}</h4>
                         <p class="text-[10px] text-gray-400">Reseller Storefront</p>
                     </div>
                 `;
                 container.appendChild(el);
             });
-        }
-
-        // SEARCH AND CATEGORY CONTROLS
-        function handleSearch() {
-            state.searchQuery = document.getElementById('catalogSearch').value;
-            renderPlatformCatalog();
-        }
-
-        function filterCategory(catName) {
-            state.selectedCategory = catName;
-            document.querySelectorAll('.cat-tab').forEach(tab => {
-                tab.classList.remove('bg-indigo-600', 'text-white');
-                tab.classList.add('bg-white', 'text-gray-700');
-            });
-            event.currentTarget.classList.remove('bg-white', 'text-gray-700');
-            event.currentTarget.classList.add('bg-indigo-600', 'text-white');
-            renderPlatformCatalog();
         }
 
         // TRANSACTION CONTROL SYSTEMS (MODAL ACTIONS)
@@ -640,170 +446,18 @@
             };
 
             state.orders.push(newOrder);
-            alert(`Success! Order #${id} has been registered securely into system pipeline under status 'Processing'.`);
+            alert(`Success! Order #${id} has been registered securely into system pipeline.`);
             
-            // Allocate commissions instantly to reseller shop wallets
-            const associatedVendor = state.users.find(u => u.shopName === state.selectedProductForOrder.shop);
-            if(associatedVendor) {
-                const profitCommissions = Math.floor(total * 0.12);
-                associatedVendor.balance += profitCommissions;
-                associatedVendor.notifications.unshift(`Received ৳${profitCommissions} allocation commissions tracking from order reference #${id}.`);
-            }
-
             closeOrderModal();
             renderAdminDashboard();
             showSection('homepage');
         }
 
-        // AUTHENTICATION LOGIC PIPELINES
-        function handleLogin(e) {
-            e.preventDefault();
-            const em = document.getElementById('loginEmail').value.trim();
-            const pass = document.getElementById('loginPassword').value;
-
-            const validated = state.users.find(u => u.email === em && u.password === pass);
-            if(validated) {
-                state.currentUser = validated;
-                updateUINavbars();
-                if(validated.role === 'admin') {
-                    showSection('adminPanel');
-                } else {
-                    showSection('customerDashboard');
-                }
-            } else {
-                alert('Authentication structural parameters verification mismatch runtime exception error. Please review input metrics.');
-            }
-        }
-
-        function logout() {
-            state.currentUser = null;
-            updateUINavbars();
-            showSection('homepage');
-        }
-
-        function handleSignUp(e) {
-            e.preventDefault();
-            const struct = {
-                id: Math.floor(100 + Math.random() * 900),
-                name: document.getElementById('regFullName').value,
-                email: document.getElementById('regEmail').value,
-                password: document.getElementById('regPassword').value,
-                phone: document.getElementById('regPhone').value,
-                shopName: document.getElementById('regShopBrandName').value,
-                address: document.getElementById('regAddress').value
-            };
-
-            state.onboardingPipeline.push(struct);
-            alert('Profile registration safely submitted into Review Pipeline awaiting operations approval.');
-            e.target.reset();
-            renderAdminDashboard();
-            showSection('homepage');
-        }
-
-        // RESELLER CUSTOMER PORTAL MANAGEMENT MODULE
-        function renderCustomerDashboard() {
-            const box = document.getElementById('shopSetupBox');
-            const alertBox = document.getElementById('customerNotifications');
-            const prodArea = document.getElementById('vendorAddProductArea');
-            
-            alertBox.innerHTML = '';
-            if(state.currentUser.notifications.length === 0) {
-                alertBox.innerHTML = `<p class="text-gray-400">No telemetry notification alerts dispatched to profile.</p>`;
-            } else {
-                state.currentUser.notifications.forEach(n => {
-                    alertBox.innerHTML += `<div class="p-2 bg-amber-50 rounded border border-amber-100 font-medium">✨ ${n}</div>`;
-                });
-            }
-
-            if(!state.currentUser.hasShop) {
-                prodArea.classList.add('hidden');
-                box.innerHTML = `
-                    <div class="space-y-2 text-xs">
-                        <p class="text-gray-500">You do not possess an active enterprise storefront network attached yet.</p>
-                        <input type="text" id="claimShopName" placeholder="Enter Brand Shop Name" class="w-full p-2 border rounded">
-                        <button onclick="claimResellerShopInstant()" class="w-full bg-indigo-600 text-white font-bold py-2 rounded">Register Shop Instance</button>
-                    </div>
-                `;
-                document.getElementById('vendorStockValue').innerText = '0';
-                document.getElementById('vendorSalesCount').innerText = '0';
-            } else {
-                prodArea.classList.remove('hidden');
-                box.innerHTML = `
-                    <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-center">
-                        <p class="text-[10px] uppercase text-emerald-800 font-bold tracking-wider">Store Status Active</p>
-                        <p class="text-sm font-extrabold text-slate-800 mt-1">🏪 ${state.currentUser.shopName}</p>
-                    </div>
-                `;
-                const myProds = state.products.filter(p => p.shop === state.currentUser.shopName);
-                const totalVal = myProds.reduce((sum, current) => sum + (current.price * current.stock), 0);
-                document.getElementById('vendorStockValue').innerText = totalVal;
-                
-                const mySales = state.orders.filter(o => o.shopName === state.currentUser.shopName && o.status === 'Delivered');
-                document.getElementById('vendorSalesCount').innerText = mySales.length;
-            }
-        }
-
-        function claimResellerShopInstant() {
-            const name = document.getElementById('claimShopName').value.trim();
-            if(!name) return;
-            state.currentUser.hasShop = true;
-            state.currentUser.shopName = name;
-            state.currentUser.notifications.unshift(`Storefront registered under allocation identifier: ${name}`);
-            renderCustomerDashboard();
-            renderPlatformShops();
-            renderAdminDashboard();
-        }
-
-        function vendorAddProduct(e) {
-            e.preventDefault();
-            const newId = state.products.length + 1;
-            const struct = {
-                id: newId,
-                name: document.getElementById('vProdName').value,
-                category: document.getElementById('vProdCat').value,
-                price: parseInt(document.getElementById('vProdPrice').value),
-                shop: state.currentUser.shopName,
-                stock: parseInt(document.getElementById('vProdStock').value),
-                img: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400'
-            };
-
-            state.products.push(struct);
-            alert('Dynamic vendor catalog allocation successful.');
-            e.target.reset();
-            renderCustomerDashboard();
-            renderPlatformCatalog();
-            renderAdminDashboard();
-        }
-
         // ADMINISTRATIVE CORE SYSTEM ROUTINES
         function renderAdminDashboard() {
-            document.getElementById('admTotalUsers').innerText = `${state.users.filter(u=>u.role!=='admin').length} Users`;
             document.getElementById('admTotalOrders').innerText = `${state.orders.length} Records`;
             document.getElementById('admTotalViewed').innerText = state.products.length;
-            document.getElementById('admTotalShops').innerText = `${state.users.filter(u=>u.hasShop).length} Live Shops`;
-
-            // Setup Onboarding Pipeline Queue
-            const pipelineTable = document.getElementById('adminPipelineTable');
-            pipelineTable.innerHTML = '';
-            if(state.onboardingPipeline.length === 0) {
-                pipelineTable.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500">No profile review pipeline data requests queued.</td></tr>`;
-            } else {
-                state.onboardingPipeline.forEach(p => {
-                    const row = document.createElement('tr');
-                    row.className = "border-b border-slate-800 hover:bg-slate-800/50";
-                    row.innerHTML = `
-                        <td class="p-2 font-bold text-white">${p.name}</td>
-                        <td class="p-2 text-amber-400">${p.shopName}</td>
-                        <td class="p-2">${p.email}</td>
-                        <td class="p-2">${p.phone}</td>
-                        <td class="p-2 text-right space-x-2">
-                            <button onclick="evaluateOnboarding(${p.id}, true)" class="bg-green-600 text-white px-2 py-1 rounded hover:bg-green-500">Approve</button>
-                            <button onclick="evaluateOnboarding(${p.id}, false)" class="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500">Deny</button>
-                        </td>
-                    `;
-                    pipelineTable.appendChild(row);
-                });
-            }
+            document.getElementById('admTotalShops').innerText = `${state.shops.length} Live Shops`;
 
             // Setup Master Tracking Live Order Repository Data Component
             const ordersTable = document.getElementById('adminOrdersTable');
@@ -836,30 +490,6 @@
             document.getElementById('statOrders').innerText = `${state.orders.length} টি`;
         }
 
-        function evaluateOnboarding(pipelineId, approveState) {
-            const idx = state.onboardingPipeline.findIndex(p => p.id === pipelineId);
-            if(idx === -1) return;
-            const targetedObj = state.onboardingPipeline[idx];
-            state.onboardingPipeline.splice(idx, 1);
-
-            if(approveState) {
-                const newUser = {
-                    id: Math.floor(100 + Math.random() * 900),
-                    name: targetedObj.name,
-                    email: targetedObj.email,
-                    password: targetedObj.password,
-                    role: 'user',
-                    hasShop: true,
-                    shopName: targetedObj.shopName,
-                    balance: 0,
-                    notifications: ['Welcome! Your profile onboarding evaluation request info details have been approved. Your enterprise storefront is operational.']
-                };
-                state.users.push(newUser);
-            }
-            renderAdminDashboard();
-            renderPlatformShops();
-        }
-
         function dispatchOrderDelivery(orderId) {
             const targeted = state.orders.find(o => o.orderId === orderId);
             if(!targeted) return;
@@ -876,24 +506,22 @@
 
             box.classList.remove('hidden');
             
-            // COMMAND COMPILER PARSING LAYER
             if (cmd.includes('add') || cmd.includes('তৈরি')) {
                 let name = "AI Sourced Luxury Merchandise";
                 let val = 1200;
                 
-                // Extraction heuristics regex
                 const matchedDigits = cmd.match(/\d+/);
-                if (matchedDigits) val = parseInt(matchedDigits);
+                if (matchedDigits) val = parseInt(matchedDigits[0]);
 
                 if (cmd.includes('watch') || cmd.includes('ঘড়ি')) name = "AI Luxury Vintage Quartz Watch";
                 if (cmd.includes('shoe') || cmd.includes('জুতো')) name = "AI Premium Airfit Sneaker Alpha";
-                if (cmd.includes('hat') || cmd.includes('টুপি')) name = "AI Classic Snapback Retro Hat";
+                if (cmd.includes('hat') || cmd.includes('টুпи')) name = "AI Classic Snapback Retro Hat";
 
                 const generatedId = state.products.length + 1;
                 state.products.push({
                     id: generatedId,
                     name: name,
-                    category: 'Shirt',
+                    category: 'Premium',
                     price: val,
                     shop: 'Main Store Warehouse',
                     stock: 50,
@@ -901,43 +529,43 @@
                 });
 
                 box.className = "text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-emerald-400 font-semibold";
-                box.innerText = `Success Protocol Exchanged: Dynamic target added securely. Allocated product context data configuration ID [${generatedId}] with valuation tracking asset allocation ৳${val}.`;
+                box.innerText = `Success Protocol Exchanged: Product allocated data configuration ID [${generatedId}] with valuation tracking asset allocation ৳${val}.`;
             } 
             else if (cmd.includes('cancel') || cmd.includes('বাতিল') || cmd.includes('delete')) {
                 const targetId = cmd.match(/\d+/);
                 if (!targetId) {
                     box.className = "text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-rose-400 font-semibold";
-                    box.innerText = "Error Compilation Stack Framework: Unable to safely resolve standard identification parameter values inside context statement.";
+                    box.innerText = "Error Framework: Unable to resolve identification parameter values.";
                     return;
                 }
                 
-                const parseId = parseInt(targetId);
+                const parseId = parseInt(targetId[0]);
                 
                 if (cmd.includes('order')) {
                     const orderIdx = state.orders.findIndex(o => o.orderId === parseId);
                     if (orderIdx !== -1) {
                         state.orders.splice(orderIdx, 1);
                         box.className = "text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-emerald-400 font-semibold";
-                        box.innerText = `Success Protocol Exchanged: Revoked tracking order matrix entry with ID [${parseId}] successfully.`;
+                        box.innerText = `Success: Revoked tracking order matrix entry with ID [${parseId}] successfully.`;
                     } else {
                         box.className = "text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-rose-400 font-semibold";
-                        box.innerText = `Search Failure Exception: Order item ID reference ${parseId} could not be resolved inside active runtime arrays.`;
+                        box.innerText = `Failure: Order item ID reference ${parseId} not found.`;
                     }
                 } else {
                     const prodIdx = state.products.findIndex(p => p.id === parseId);
                     if (prodIdx !== -1) {
                         state.products.splice(prodIdx, 1);
                         box.className = "text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-emerald-400 font-semibold";
-                        box.innerText = `Success Protocol Exchanged: Removed catalog item entry reference identifier ID [${parseId}] securely.`;
+                        box.innerText = `Success: Removed catalog item entry reference identifier ID [${parseId}] securely.`;
                     } else {
                         box.className = "text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-rose-400 font-semibold";
-                        box.innerText = `Search Failure Exception: Product collection locator key reference ${parseId} returned null matrix dimensions.`;
+                        box.innerText = `Failure: Product reference ${parseId} returned null matrix dimensions.`;
                     }
                 }
             } 
             else {
                 box.className = "text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-amber-400 font-semibold";
-                box.innerText = "Command Architecture Unresolved Statement: Dynamic telemetry engine understands structured statements containing standard keywords ('add' / 'cancel' / 'delete'). Please optimize parameters.";
+                box.innerText = "Command Architecture Unresolved Statement. Use 'add', 'cancel', or 'delete'.";
             }
 
             document.getElementById('aiInputField').value = '';
