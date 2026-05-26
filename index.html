@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Vendor Marketplace</title>
+    <title>E-HUB | Dropshipping Platform</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .line-clamp-2 {
             display: -webkit-box;
@@ -14,273 +15,318 @@
         }
     </style>
 </head>
-<body id="siteBackground" class="bg-gray-50 font-sans transition-colors duration-300">
+<body class="bg-slate-50 font-sans antialiased text-gray-800">
 
-    <nav class="bg-white shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="location.reload()">
-                <span class="text-2xl">🛍️</span>
-                <span class="font-black text-xl tracking-tight text-indigo-900">E-Market</span>
+    <nav class="bg-white shadow-sm sticky top-0 z-40 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="location.reload()">
+                    <span class="text-2xl font-black text-indigo-600 tracking-wider">E-HUB</span>
+                </div>
+                <div id="mobileAuthTag" class="md:hidden"></div>
             </div>
 
-            <div class="flex-1 max-w-2xl w-full flex gap-2">
+            <div class="w-full md:flex-1 md:max-w-xl flex flex-col sm:flex-row gap-2">
                 <div class="relative flex-1">
-                    <input type="text" id="globalSearchInput" oninput="renderAll()" placeholder="Search products or stores..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <span class="absolute left-3 top-2.5 text-gray-400 text-sm">🔍</span>
+                    <input type="text" id="globalSearchInput" oninput="renderAll()" placeholder="প্রোডাক্ট বা শপের নাম সার্চ করুন..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50">
+                    <span class="absolute left-3 top-2.5 text-gray-400 text-sm"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-                <select id="categoryFilter" onchange="renderAll()" class="bg-gray-100 border border-gray-300 text-gray-700 px-3 py-2 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <option value="all">All Categories</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Clothing">Clothing</option>
-                    <option value="Gadgets">Gadgets</option>
-                    <option value="Main Shop">Main Shop Official</option>
+                <select id="categoryFilter" onchange="renderAll()" class="bg-gray-50 border border-gray-300 text-gray-700 px-3 py-2 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer">
+                    <option value="all">সব ক্যাটাগরি</option>
+                    <option value="Drop Shoulder T-shirt">Drop Shoulder T-shirt</option>
+                    <option value="Solid Formal Shirt">Solid Formal Shirt</option>
+                    <option value="Boot Cut Pant">Boot Cut Pant</option>
+                    <option value="Gurkha Pants">Gurkha Pants</option>
+                    <option value="Polo T-shirt">Polo T-shirt</option>
+                    <option value="Solid Oxford Lacoste Shirt">Solid Oxford Lacoste Shirt</option>
+                    <option value="Baggy">Baggy</option>
+                    <option value="Band Collar Shirt">Band Collar Shirt</option>
+                    <option value="Solid Oxford Ralph Lauren Shirt">Solid Oxford Ralph Lauren Shirt</option>
                 </select>
             </div>
 
-            <div id="navAuthSection">
-                <button onclick="openAuthModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-5 py-2 rounded-xl shadow-sm transition">
-                    🔑 Login / Sign In
+            <div id="navAuthSection" class="w-full md:w-auto text-center md:text-right">
+                <button onclick="openAuthModal()" class="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-sm transition-all duration-200">
+                    <i class="fa-solid fa-key mr-1"></i> লগইন / রেজিস্ট্রেশন
                 </button>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <header class="bg-gradient-to-tr from-indigo-50/50 via-white to-indigo-50/30 py-12 px-4 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <span class="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 font-semibold px-3 py-1 rounded-full text-xs">
+                    <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span> বাংলাদেশের #১ Dropshipping প্ল্যাটফর্ম
+                </span>
+                <h1 class="text-4xl sm:text-5xl font-black text-slate-900 leading-tight">
+                    বিনা পুঁজিতে <br class="hidden sm:inline"><span class="text-indigo-600">ব্যবসা শুরু করুন</span>
+                </h1>
+                <p class="text-gray-600 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    হাজার হাজার উদ্যোক্তা আমাদের সাথে ঘরে বসে আয় করছেন। স্টকিং, প্যাকেজিং এবং ডেলিভারি আমরাই সামলাই। আপনি শুধু বিক্রয়ে মনোযোগ দিন।
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 pt-2">
+                    <button onclick="openAuthModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2"><i class="fa-solid fa-rocket"></i> জয়েন করুন</button>
+                    <button class="bg-white hover:bg-gray-50 text-gray-800 font-semibold px-6 py-3 rounded-xl border border-gray-200 shadow-sm transition flex items-center justify-center gap-2"><i class="fa-regular fa-circle-play text-indigo-600"></i> কীভাবে কাজ করে</button>
+                </div>
+            </div>
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative max-w-sm w-full bg-white p-4 rounded-3xl shadow-xl border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600" alt="E-hub Workspace" class="rounded-2xl w-full h-64 object-cover">
+                    <div class="absolute -bottom-4 -left-4 bg-white border shadow-lg rounded-2xl p-3 flex items-center gap-3">
+                        <span class="p-2.5 bg-emerald-100 text-emerald-600 rounded-xl text-lg">💰</span>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-medium">মোট আয়</p>
+                            <p class="text-base font-black text-gray-800">২৫,৪০০ টাকা</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
         
         <div class="lg:col-span-3 space-y-6">
-            <div class="flex items-center justify-between">
-                <h2 class="text-lg font-bold text-gray-800">Explore Marketplace Products</h2>
-                <span id="productCountTag" class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full font-semibold">0 Items</span>
+            <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+                <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">প্রোডাক্ট ক্যাটালগ</h2>
+                <span id="productCountTag" class="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-bold">0টি প্রোডাক্ট লিস্টিং</span>
             </div>
             
-            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 </div>
         </div>
 
-        <div id="userDashboardSidebar" class="space-y-4 hidden">
-            <div class="bg-white border p-4 rounded-2xl shadow-sm space-y-4">
-                <div class="flex items-center justify-between border-b pb-2">
-                    <h3 class="font-bold text-gray-800 text-sm">👋 User Account</h3>
-                    <button onclick="logout()" class="text-xs text-red-500 font-semibold hover:underline">Logout</button>
+        <div id="userDashboardSidebar" class="space-y-6 hidden">
+            <div class="bg-white border border-gray-200 p-5 rounded-2xl shadow-sm space-y-4">
+                <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                    <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5"><i class="fa-regular fa-circle-user text-indigo-600 text-base"></i> আমার অ্যাকাউন্ট</h3>
+                    <button onclick="logout()" class="text-xs text-red-500 font-bold hover:underline transition">লগআউট</button>
                 </div>
-                <div class="text-xs space-y-1">
-                    <p class="text-gray-500">Name: <span id="dashCustomerName" class="font-bold text-gray-800"></span></p>
-                    <p class="text-gray-500">Email: <span id="dashCustomerEmail" class="text-gray-700"></span></p>
-                    <p class="text-gray-500">Wallet: <span class="text-emerald-600 font-bold">৳<span id="dashWalletBalance">0</span></span></p>
+                <div class="text-xs space-y-2">
+                    <p class="text-gray-500">নাম: <span id="dashCustomerName" class="font-bold text-gray-800"></span></p>
+                    <p class="text-gray-500">ইমেইল: <span id="dashCustomerEmail" class="text-gray-700 font-medium"></span></p>
+                    <p class="text-gray-500">ওয়ালেট ব্যালেন্স: <span class="text-emerald-600 font-black text-sm">৳<span id="dashWalletBalance">0</span></span></p>
                 </div>
 
-                <div class="border-t pt-3 space-y-2">
-                    <h4 class="font-bold text-xs text-gray-700">🏪 Vendor Store Control</h4>
+                <div class="border-t border-gray-100 pt-4 space-y-2">
+                    <h4 class="font-bold text-xs text-gray-700">🏪 ভেন্ডর শপ কন্ট্রোল</h4>
                     <div id="shopSetupBox"></div>
                 </div>
 
-                <div class="border-t pt-3 space-y-1.5">
-                    <h4 class="font-bold text-xs text-gray-700">🔔 System Broadcasts</h4>
-                    <div id="customerNotifications" class="text-[11px] max-h-32 overflow-y-auto space-y-1"></div>
+                <div class="border-t border-gray-100 pt-4 space-y-2">
+                    <h4 class="font-bold text-xs text-gray-700">🔔 সিস্টেম নোটিফিকেশন</h4>
+                    <div id="customerNotifications" class="text-[11px] max-h-32 overflow-y-auto space-y-1.5"></div>
                 </div>
             </div>
 
-            <div id="vendorAddProductArea" class="bg-white border p-4 rounded-2xl shadow-sm space-y-3 hidden">
-                <h3 class="font-bold text-gray-800 text-xs flex items-center gap-1">📦 Upload New Inventory</h3>
-                <form onsubmit="vendorAddProduct(event)" class="space-y-2 text-xs">
-                    <input type="text" id="vProdName" placeholder="Product Name" class="w-full p-2 border rounded-lg" required>
+            <div id="vendorAddProductArea" class="bg-white border border-gray-200 p-5 rounded-2xl shadow-sm space-y-3 hidden">
+                <h3 class="font-bold text-gray-800 text-xs flex items-center gap-1.5"><i class="fa-solid fa-box-open text-indigo-600"></i> নতুন প্রোডাক্ট আপলোড করুন</h3>
+                <form onsubmit="vendorAddProduct(event)" class="space-y-2.5 text-xs">
+                    <input type="text" id="vProdName" placeholder="প্রোডাক্টের নাম" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="number" id="vProdPrice" placeholder="Price (৳)" class="w-full p-2 border rounded-lg" required>
-                        <input type="number" id="vProdStock" placeholder="Stock Qty" class="w-full p-2 border rounded-lg" required>
+                        <input type="number" id="vProdPrice" placeholder="মূল্য (৳)" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        <input type="number" id="vProdStock" placeholder="স্টক পরিমাণ" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                     </div>
-                    <select id="vProdCategory" class="w-full p-2 border rounded-lg" required>
-                        <option value="Electronics">Electronics</option>
-                        <option value="Clothing">Clothing</option>
-                        <option value="Gadgets">Gadgets</option>
+                    <select id="vProdCategory" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        <option value="Drop Shoulder T-shirt">Drop Shoulder T-shirt</option>
+                        <option value="Solid Formal Shirt">Solid Formal Shirt</option>
+                        <option value="Boot Cut Pant">Boot Cut Pant</option>
+                        <option value="Gurkha Pants">Gurkha Pants</option>
                     </select>
                     <div>
-                        <label class="block text-[10px] text-gray-400 mb-0.5">Product Image Cover</label>
+                        <label class="block text-[10px] text-gray-400 mb-1">প্রোডাক্ট ইমেজ কাভার</label>
                         <input type="file" id="vProdImg" accept="image/*" class="w-full text-[11px]" required>
                     </div>
-                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold p-2 rounded-lg hover:bg-indigo-700">Publish to Catalog</button>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold p-2.5 rounded-xl hover:bg-indigo-700 transition">ক্যাটালগে পাবলিশ করুন</button>
                 </form>
             </div>
         </div>
 
-        <div id="adminAccessSection" class="lg:col-span-4 bg-slate-900 text-slate-100 p-6 rounded-3xl space-y-6 mt-6 hidden">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div id="adminAccessSection" class="lg:col-span-4 bg-slate-900 text-slate-100 p-6 rounded-3xl space-y-6 hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 gap-2">
                 <div>
-                    <h2 class="text-xl font-black text-amber-400 tracking-tight">⚙️ Matrix System Kernel (Admin View)</h2>
-                    <p class="text-xs text-slate-400">Authorized personnel console overview.</p>
+                    <h2 class="text-xl font-black text-amber-400 tracking-tight">⚙️ অ্যাডমিন কন্ট্রোল প্যানেল</h2>
+                    <p class="text-xs text-slate-400">সিস্টেম কনসোল এবং শপ এডিটর ভিউ</p>
                 </div>
-                <button onclick="logout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Exit Admin Context</button>
+                <button onclick="logout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-2 rounded-xl transition">প্যানেল থেকে এক্সিট</button>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">Active Entities</p><p id="admTotalUsers" class="text-lg font-bold text-white">0</p></div>
-                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">Pipeline Orders</p><p id="admTotalOrders" class="text-lg font-bold text-white">0</p></div>
-                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">Market Stores</p><p id="admTotalShops" class="text-lg font-bold text-white">0</p></div>
-                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">Catalog Sessions</p><p id="admTotalViewed" class="text-lg font-bold text-white">0</p></div>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">অ্যাক্টিভ ইউজার</p><p id="admTotalUsers" class="text-base font-bold text-white">0</p></div>
+                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">টোটাল অর্ডার</p><p id="admTotalOrders" class="text-base font-bold text-white">0</p></div>
+                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">চলতি শপ</p><p id="admTotalShops" class="text-base font-bold text-white">0</p></div>
+                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">টোটাল ভিউ</p><p id="admTotalViewed" class="text-base font-bold text-white">0</p></div>
             </div>
 
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
-                <h3 class="font-bold text-xs text-amber-400 uppercase tracking-wider">🏪 Active Affiliate Marketplace Stores (Admin Overview)</h3>
-                <div id="featuredShopsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-slate-800">
+                <h3 class="font-bold text-xs text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-store mr-1"></i> একটিভ অ্যাফিলিয়েট স্টোরসমূহ (Admin Edit View)</h3>
+                <div id="featuredShopsContainer" class="grid grid-cols-1 gap-2.5 text-slate-800">
                     </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-slate-800 p-4 rounded-xl space-y-3 border border-slate-700">
-                    <h3 class="text-xs font-bold text-slate-300 uppercase">Credit Wallet / Mint Balance</h3>
-                    <form onsubmit="adminAddWalletMoney(event)" class="grid grid-cols-3 gap-2 text-xs">
-                        <select id="walletTargetUser" class="col-span-2 bg-slate-700 p-2 rounded text-white"></select>
-                        <input type="number" id="walletAmount" placeholder="Amount" class="bg-slate-700 p-2 rounded text-white" required>
-                        <button type="submit" class="col-span-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold p-2 rounded">Inject Balance Tokens</button>
-                    </form>
-                </div>
-
-                <div class="bg-slate-800 p-4 rounded-xl space-y-3 border border-slate-700">
-                    <h3 class="text-xs font-bold text-slate-300 uppercase">Dispatch Communications Protocol</h3>
-                    <form onsubmit="sendAdminNotification(event)" class="grid grid-cols-3 gap-2 text-xs">
-                        <select id="notifTargetUser" class="bg-slate-700 p-2 rounded text-white"></select>
-                        <input type="text" id="notifAdminMessage" placeholder="Type notification payload message..." class="col-span-2 bg-slate-700 p-2 rounded text-white" required>
-                        <button type="submit" class="col-span-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold p-2 rounded">Broadcast Notification</button>
-                    </form>
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
+                <h3 class="text-xs font-bold text-amber-400 uppercase">📥 অ্যাপ্রুভাল পেন্ডিং কিউ</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs"><tbody id="adminApprovalsTable"></tbody></table>
                 </div>
             </div>
 
-            <div class="space-y-4">
-                <div class="bg-slate-800 rounded-xl overflow-hidden p-4 border border-slate-700">
-                    <h3 class="text-xs font-bold text-amber-400 uppercase mb-2">📥 Dynamic Compliance Verification Queues</h3>
-                    <table class="w-full text-left"><tbody id="adminApprovalsTable"></tbody></table>
-                </div>
-
-                <div class="bg-slate-800 rounded-xl overflow-hidden p-4 border border-slate-700">
-                    <h3 class="text-xs font-bold text-indigo-400 uppercase mb-2">📦 Active Fulfillment Drop-Ship Routing Pipelines</h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs">
-                            <thead><tr class="text-slate-400 border-b border-slate-700"><th class="p-2">ID</th><th class="p-2">Client Details</th><th class="p-2">Store Node</th><th class="p-2">Cargo Item</th><th class="p-2">Bill</th><th class="p-2">State</th><th class="p-2 text-right">Routing</th></tr></thead>
-                            <tbody id="adminOrdersTable"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="bg-slate-800 rounded-xl overflow-hidden p-4 border border-slate-700">
-                    <h3 class="text-xs font-bold text-emerald-400 uppercase mb-2">👤 Master User Registry Access Control</h3>
-                    <table class="w-full text-left text-xs"><tbody id="adminUsersManagementTable"></tbody></table>
-                </div>
-
-                <div class="bg-slate-800 rounded-xl overflow-hidden p-4 border border-slate-700">
-                    <h3 class="text-xs font-bold text-rose-400 uppercase mb-2">🗂️ Global Marketplace Catalog Master Record</h3>
-                    <table class="w-full text-left text-xs"><tbody id="adminProductsManagementTable"></tbody></table>
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
+                <h3 class="text-xs font-bold text-indigo-400 uppercase">📦 অর্ডার ট্র্যাকিং ডাটা</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-[11px]">
+                        <thead><tr class="text-slate-400 border-b border-slate-700"><th class="p-1">ID</th><th class="p-1">কাস্টমার</th><th class="p-1">শপ নোড</th><th class="p-1">বিল</th><th class="p-1">স্টেট</th></tr></thead>
+                        <tbody id="adminOrdersTable"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </main>
 
-    <div id="authModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 hidden">
+    <section class="bg-white border-t border-gray-100 py-12 px-4 mt-12">
+        <div class="max-w-7xl mx-auto space-y-10">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">কেন আমাদের বেছে নেবেন</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">ব্যবসা বড় করার সব সুবিধা এখানে</h2>
+                <p class="text-xs sm:text-sm text-gray-500">আমরা দিচ্ছি সম্পূর্ণ ইকোসিস্টেম, আপনি শুধু সেল আনুন। কোনো গোপন চার্জ নেই, ইনভেন্টরির ঝামেলা নেই।</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-gray-100 space-y-3">
+                    <span class="p-3 bg-indigo-100 text-indigo-600 rounded-xl inline-block text-lg">📦</span>
+                    <h3 class="font-bold text-sm text-slate-800">ইউনিক প্রোডাক্ট কালেকশন</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">আমাদের কাছে রয়েছে বাছাইকৃত ও ট্রেন্ডি ইউনিক প্রোডাক্টের সমাহার, যা আপনি অন্য কোথাও সহজে পাবেন না। গুণগত মান, আধুনিক ডিজাইন ও সাশ্রয়ী দামের সমন্বয়ে প্রতিটি প্রোডাক্ট আপনার জন্য বিশেষভাবে নির্বাচিত।</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl border border-gray-100 space-y-3">
+                    <span class="p-3 bg-blue-100 text-blue-600 rounded-xl inline-block text-lg">🚚</span>
+                    <h3 class="font-bold text-sm text-slate-800">দ্রুত ও নির্ভরযোগ্য ডেলিভারি</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">আমরা ৬৪টি জেলায় ক্যাশ অন ডেলিভারিতে পণ্য পাঠাই। আপনার কাস্টমার, আমাদের দায়িত্ব।</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl border border-gray-100 space-y-3">
+                    <span class="p-3 bg-emerald-100 text-emerald-600 rounded-xl inline-block text-lg">💳</span>
+                    <h3 class="font-bold text-sm text-slate-800">২৪/৭ পেমেন্ট রিকোয়েস্ট</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">আপনি যেকোনো সময়, দিন বা রাত—২৪ ঘণ্টাই নিরাপদ ও সহজভাবে পেমেন্ট রিকোয়েস্ট পাঠাতে পারবেন। দ্রুত প্রসেসিং ও নির্ভরযোগ্য সাপোর্টের মাধ্যমে আপনার লেনদেন হবে ঝামেলামুক্ত।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="authModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 hidden animate-fade-in">
         <div class="bg-white max-w-sm w-full p-6 rounded-2xl shadow-xl space-y-4 relative">
             <button onclick="closeAuthModal()" class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 font-bold text-lg">✕</button>
-            <h3 class="text-lg font-black text-gray-800">🔐 Portal Authentication</h3>
+            <h3 class="text-lg font-black text-gray-800">🔐 পোর্টাল লগইন</h3>
             
-            <div class="flex gap-2 border-b pb-2 text-sm">
-                <button onclick="switchAuthTab('login')" id="tabBtnLogin" class="flex-1 font-bold text-indigo-600 border-b-2 border-indigo-600 pb-1">Login</button>
-                <button onclick="switchAuthTab('signup')" id="tabBtnSignup" class="flex-1 font-semibold text-gray-500 pb-1">Create Account</button>
+            <div class="flex gap-2 border-b border-gray-100 pb-2 text-sm">
+                <button onclick="switchAuthTab('login')" id="tabBtnLogin" class="flex-1 font-bold text-indigo-600 border-b-2 border-indigo-600 pb-1">লগইন</button>
+                <button onclick="switchAuthTab('signup')" id="tabBtnSignup" class="flex-1 font-semibold text-gray-500 pb-1">রেজিস্ট্রেশন</button>
             </div>
 
             <form id="loginForm" onsubmit="handleLoginSubmit(event)" class="space-y-3 text-xs">
                 <div>
-                    <label class="block text-gray-500 mb-1">Email Coordinates</label>
-                    <input type="email" id="loginEmail" placeholder="admin@gmail.com or user email" class="w-full p-2.5 border rounded-xl" required>
+                    <label class="block text-gray-500 mb-1">ইমেইল এড্রেস</label>
+                    <input type="email" id="loginEmail" placeholder="admin@gmail.com অথবা ইউজার ইমেইল" class="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" required>
                 </div>
                 <div>
-                    <label class="block text-gray-500 mb-1">Secure Passkey</label>
-                    <input type="password" id="loginPassword" placeholder="••••••••" class="w-full p-2.5 border rounded-xl" required>
+                    <label class="block text-gray-500 mb-1">পাসওয়ার্ড</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" class="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" required>
                 </div>
-                <button type="submit" class="w-full bg-indigo-600 text-white font-bold p-2.5 rounded-xl hover:bg-indigo-700 transition">Establish Session Protocol</button>
+                <button type="submit" class="w-full bg-indigo-600 text-white font-bold p-2.5 rounded-xl hover:bg-indigo-700 transition shadow-sm">সেশন শুরু করুন</button>
             </form>
 
             <form id="signupForm" onsubmit="handleSignupSubmit(event)" class="space-y-3 text-xs hidden">
-                <input type="text" id="signName" placeholder="Full Legal Name" class="w-full p-2.5 border rounded-xl" required>
-                <input type="email" id="signEmail" placeholder="Active Email Address" class="w-full p-2.5 border rounded-xl" required>
-                <input type="password" id="signPass" placeholder="Configure Secure Password" class="w-full p-2.5 border rounded-xl" required>
-                <input type="text" id="signPhone" placeholder="Mobile Phone Line" class="w-full p-2.5 border rounded-xl">
-                <input type="text" id="signAddress" placeholder="Physical Logistics Address" class="w-full p-2.5 border rounded-xl">
-                <button type="submit" class="w-full bg-emerald-600 text-white font-bold p-2.5 rounded-xl hover:bg-emerald-700 transition">Initialize Profile Deployment</button>
+                <input type="text" id="signName" placeholder="পূর্ণ নাম" class="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" required>
+                <input type="email" id="signEmail" placeholder="ইমেইল ঠিকানা" class="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" required>
+                <input type="password" id="signPass" placeholder="নিরাপদ পাসওয়ার্ড সেট করুন" class="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" required>
+                <button type="submit" class="w-full bg-emerald-600 text-white font-bold p-2.5 rounded-xl hover:bg-emerald-700 transition shadow-sm">প্রোফাইল তৈরি করুন</button>
             </form>
         </div>
     </div>
 
     <div id="orderModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 hidden">
-        <form onsubmit="submitOrder(event)" class="bg-white max-w-lg w-full p-6 rounded-2xl shadow-xl grid grid-cols-1 md:grid-cols-2 gap-4 relative">
+        <form onsubmit="submitOrder(event)" class="bg-white max-w-lg w-full p-6 rounded-2xl shadow-xl grid grid-cols-1 md:grid-cols-2 gap-4 relative max-h-[90vh] overflow-y-auto">
             <button type="button" onclick="closeOrderModal()" class="absolute right-4 top-4 text-gray-400 font-bold">✕</button>
             
             <div class="space-y-2">
-                <img id="modalProductImg" class="w-full h-40 object-cover rounded-xl border">
+                <img id="modalProductImg" class="w-full h-40 object-cover rounded-xl border border-gray-100">
                 <h3 id="modalProductName" class="font-bold text-gray-800 text-sm"></h3>
-                <p class="text-xs text-gray-400">Node Dispatch: <span id="modalProductShop" class="text-indigo-600 font-semibold"></span></p>
+                <p class="text-xs text-gray-400">ভেন্ডর স্টোর: <span id="modalProductShop" class="text-indigo-600 font-semibold"></span></p>
                 <p class="text-indigo-600 font-black text-lg">৳<span id="modalProductPrice"></span></p>
             </div>
 
             <div class="space-y-3 text-xs flex flex-col justify-between">
                 <div class="space-y-2">
-                    <h4 class="font-bold text-gray-700 border-b pb-1">Logistics Matrix Provisions</h4>
-                    <input type="text" id="custName" placeholder="Recipient Client Name" class="w-full p-2 border rounded-lg" required>
-                    <input type="text" id="custPhone" placeholder="Active Contact Phone Line" class="w-full p-2 border rounded-lg" required>
-                    <input type="text" id="custAddress" placeholder="Physical Delivery Destination Address" class="w-full p-2 border rounded-lg" required>
+                    <h4 class="font-bold text-gray-700 border-b pb-1">অর্ডার ডেলিভারি ইনফো</h4>
+                    <input type="text" id="custName" placeholder="কাস্টমারের নাম" class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    <input type="text" id="custPhone" placeholder="কাস্টমারের মোবাইল নম্বর" class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    <input type="text" id="custAddress" placeholder="পূর্ণ ডেলিভারি ঠিকানা" class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                     
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="text-[10px] text-gray-400">Quantity</label>
-                            <input type="number" id="orderQuantity" min="1" value="1" oninput="calculateTotalBill()" class="w-full p-1.5 border rounded-lg">
+                            <label class="text-[10px] text-gray-400">পরিমাণ</label>
+                            <input type="number" id="orderQuantity" min="1" value="1" oninput="calculateTotalBill()" class="w-full p-1.5 border border-gray-200 rounded-lg">
                         </div>
                         <div>
-                            <label class="text-[10px] text-gray-400">Color Variant</label>
-                            <select id="orderColor" class="w-full p-1.5 border rounded-lg">
-                                <option value="Standard Default">Standard</option>
-                                <option value="Matte Black Obsidian">Matte Black</option>
-                                <option value="Alabaster White">Alabaster White</option>
+                            <label class="text-[10px] text-gray-400">সাইজ/ভেরিয়েন্ট</label>
+                            <select id="orderColor" class="w-full p-1.5 border border-gray-200 rounded-lg cursor-pointer">
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
                             </select>
                         </div>
                     </div>
 
                     <div>
-                        <label class="text-[10px] text-gray-400">Shipping Network Destination</label>
-                        <select id="deliveryArea" onchange="calculateTotalBill()" class="w-full p-2 border rounded-lg">
-                            <option value="60">Dhaka Intra-City Logistics (৳60)</option>
-                            <option value="120">Inter-District Conditional Logistics (৳120)</option>
+                        <label class="text-[10px] text-gray-400">ডেলিভারি এরিয়া</label>
+                        <select id="deliveryArea" onchange="calculateTotalBill()" class="w-full p-2 border border-gray-200 rounded-lg cursor-pointer">
+                            <option value="60">ঢাকার ভিতরে (৳60)</option>
+                            <option value="120">ঢাকার বাইরে (৳120)</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="bg-gray-50 p-2 rounded-xl flex items-center justify-between border">
-                    <span class="font-bold text-gray-600">Aggregate Charge:</span>
+                <div class="bg-gray-50 p-2 rounded-xl flex items-center justify-between border border-gray-100">
+                    <span class="font-bold text-gray-600">সর্বমোট বিল:</span>
                     <span class="text-indigo-600 font-black text-base">৳<span id="totalBill">0</span></span>
                 </div>
                 
-                <button type="submit" class="w-full bg-emerald-600 text-white font-bold p-2.5 rounded-xl hover:bg-emerald-700 shadow transition">Dispatch Cargo Order</button>
+                <button type="submit" class="w-full bg-emerald-600 text-white font-bold p-2.5 rounded-xl hover:bg-emerald-700 shadow transition">অর্ডার সাবমিট করুন</button>
             </div>
         </form>
     </div>
 
-
     <script>
-        // MOCK MEMORY COMPLIANCE BUFFER STRINGS
-        let users = [
+        // MOCK DATABASE INITIAL SETS
+        let defaultUsers = [
             { id: 100, name: "System Admin", email: "admin@gmail.com", password: "123", role: "admin", status: "Active", balance: 9999, hasShop: false, shopName: "", shopApproved: false, notifications: [] },
-            { id: 1, name: "Rahat Khan", email: "rahat@gmail.com", password: "123", role: "customer", status: "Active", balance: 1500, hasShop: true, shopName: "Apex Tech Bd", shopApproved: true, notifications: ["Welcome back to the operational matrix node."], phone: "01700000000", address: "Dhaka, Bangladesh" },
-            { id: 2, name: "Sumaiya Akter", email: "sumaiya@gmail.com", password: "123", role: "customer", status: "Active", balance: 500, hasShop: true, shopName: "Elegance Closet", shopApproved: true, notifications: [], phone: "01899999999", address: "Chittagong" }
+            { id: 1, name: "Arif Khan", email: "arif@gmail.com", password: "123", role: "customer", status: "Active", balance: 1500, hasShop: true, shopName: "Apex Apparel", shopApproved: true, notifications: ["E-HUB নেটওয়ার্কে আপনাকে স্বাগতম।"], phone: "01700000000", address: "Dhaka" },
+            { id: 2, name: "Sadia Rahman", email: "sadia@gmail.com", password: "123", role: "customer", status: "Active", balance: 800, hasShop: true, shopName: "Trend Studio", shopApproved: true, notifications: [], phone: "01899999999", address: "Chittagong" }
         ];
 
-        let products = [
-            { id: 501, name: "Mechanical Gaming Keyboard RGB Pro Bluetooth Wireless Dual Mode", price: 3400, category: "Electronics", shop: "Apex Tech Bd", approved: true, stock: 12, views: 142, img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500", uploadedBy: "Rahat Khan (rahat@gmail.com)" },
-            { id: 502, name: "Premium Cotton Slim Fit Casual Shirt for Men", price: 1250, category: "Clothing", shop: "Elegance Closet", approved: true, stock: 45, views: 98, img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500", uploadedBy: "Sumaiya Akter (sumaiya@gmail.com)" },
-            { id: 503, name: "Wireless Noise Cancelling Bluetooth Earbuds ANC Edition", price: 2100, category: "Gadgets", shop: "Apex Tech Bd", approved: true, stock: 8, views: 320, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500", uploadedBy: "Rahat Khan (rahat@gmail.com)" }
+        let defaultProducts = [
+            { id: 501, name: "Premium Drop Shoulder T-shirt Heavyweight Cotton Blend", price: 450, category: "Drop Shoulder T-shirt", shop: "Apex Apparel", approved: true, stock: 25, views: 180, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" },
+            { id: 502, name: "Solid Formal Shirt Slim Fit Long Sleeve for Office", price: 850, category: "Solid Formal Shirt", shop: "Trend Studio", approved: true, stock: 40, views: 95, img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" },
+            { id: 503, name: "Relaxed Fit Cotton Gurkha Pants Traditional Side Buckles", price: 1200, category: "Gurkha Pants", shop: "Apex Apparel", approved: true, stock: 15, views: 240, img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500" }
         ];
 
-        let orders = [
-            { id: 1001, customerName: "Arif Ahmed", phone: "01911111111", address: "Mirpur 10, Dhaka", prodName: "Mechanical Gaming Keyboard RGB Pro", shop: "Apex Tech Bd", qty: 1, color: "Matte Black Obsidian", delivery: 60, totalBill: 3460, status: "Pending" }
+        let defaultOrders = [
+            { id: 1001, customerName: "Rakib Al Hasan", phone: "01911111111", address: "Mirpur, Dhaka", prodName: "Premium Drop Shoulder T-shirt", shop: "Apex Apparel", qty: 1, color: "M", delivery: 60, totalBill: 510, status: "Pending" }
         ];
 
-        let currentUser = null;
-        let activeProductForOrder = null;
+        // LOCAL STORAGE SYNCHRONIZER (ইউজার যেন ব্রাউজার রিফ্রেশ দিলেও লগইন অবস্থায় থাকে)
+        let users = JSON.parse(localStorage.getItem('ehub_users')) || defaultUsers;
+        let products = JSON.parse(localStorage.getItem('ehub_products')) || defaultProducts;
+        let orders = JSON.parse(localStorage.getItem('ehub_orders')) || defaultOrders;
+        let currentUser = JSON.parse(localStorage.getItem('ehub_session')) || null;
 
-        // AUTH MODAL FUNCTIONS
+        function syncDB() {
+            localStorage.setItem('ehub_users', JSON.stringify(users));
+            localStorage.setItem('ehub_products', JSON.stringify(products));
+            localStorage.setItem('ehub_orders', JSON.stringify(orders));
+            localStorage.setItem('ehub_session', JSON.stringify(currentUser));
+        }
+
+        // AUTH MODAL LOGICS
         function openAuthModal() { document.getElementById('authModal').classList.remove('hidden'); }
         function closeAuthModal() { document.getElementById('authModal').classList.add('hidden'); }
         
@@ -307,11 +353,12 @@
             const ps = document.getElementById('loginPassword').value;
 
             const foundUser = users.find(u => u.email === em && u.password === ps);
-            if(!foundUser) { alert("Authentication structural mismatch. Check parameters."); return; }
-            if(foundUser.status === 'Pending') { alert("Access tracking verification pending administrative protocol check."); return; }
+            if(!foundUser) { alert("ভুল ইমেইল অথবা পাসওয়ার্ড দিয়েছেন।"); return; }
+            if(foundUser.status === 'Pending') { alert("আপনার অ্যাকাউন্টটি অ্যাডমিন অ্যাপ্রুভালের জন্য অপেক্ষমাণ।"); return; }
 
             currentUser = foundUser;
-            alert(`Session protocol online: Verified ${currentUser.name}`);
+            syncDB();
+            alert(`স্বাগতম, ${currentUser.name}! সেশন চালু হয়েছে।`);
             closeAuthModal();
             updateUIForSession();
             renderAll();
@@ -325,31 +372,40 @@
                 name: document.getElementById('signName').value,
                 email: document.getElementById('signEmail').value,
                 password: document.getElementById('signPass').value,
-                phone: document.getElementById('signPhone').value,
-                address: document.getElementById('signAddress').value,
-                role: 'customer', status: 'Pending', balance: 0, hasShop: false, shopName: "", shopApproved: false, notifications: []
+                role: 'customer', status: 'Active', balance: 0, hasShop: false, shopName: "", shopApproved: false, notifications: []
             });
-            alert("Registration payload initialized. Awaiting administration structural access authorization.");
+            syncDB();
+            alert("রেজিস্ট্রেশন সম্পন্ন হয়েছে। এখন লগইন করুন।");
             e.target.reset();
             switchAuthTab('login');
         }
 
         function logout() {
             currentUser = null;
+            syncDB();
             document.getElementById('userDashboardSidebar').classList.add('hidden');
             document.getElementById('adminAccessSection').classList.add('hidden');
-            document.getElementById('navAuthSection').innerHTML = `<button onclick="openAuthModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-5 py-2 rounded-xl shadow-sm transition">🔑 Login / Sign In</button>`;
-            alert("Session protocol purged. Safe disconnect achieved.");
+            document.getElementById('mobileAuthTag').innerHTML = '';
+            document.getElementById('navAuthSection').innerHTML = `
+                <button onclick="openAuthModal()" class="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-sm transition-all">
+                    <i class="fa-solid fa-key mr-1"></i> লগইন / রেজিস্ট্রেশন
+                </button>`;
+            alert("সফলভাবে লগআউট হয়েছেন।");
             renderAll();
         }
 
         function updateUIForSession() {
             if(!currentUser) return;
-            // Update Top Navbar Area to show logged in state
+            
+            const stateString = `<span class="text-xs font-bold bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-xl border border-indigo-100 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> ${currentUser.name} (${currentUser.role === 'admin' ? 'অ্যাডমিন' : 'ইউজার'})</span>`;
+            
             document.getElementById('navAuthSection').innerHTML = `
-                <div class="flex items-center gap-3">
-                    <span class="text-xs font-semibold bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg border">Authenticated: <b>${currentUser.name} (${currentUser.role.toUpperCase()})</b></span>
+                <div class="flex flex-col sm:flex-row items-center justify-center md:justify-end gap-2">
+                    ${stateString}
+                    <button onclick="logout()" class="text-xs text-red-500 hover:underline font-bold mt-1 sm:mt-0">লগআউট</button>
                 </div>`;
+                
+            document.getElementById('mobileAuthTag').innerHTML = stateString;
 
             if(currentUser.role === 'admin') {
                 document.getElementById('adminAccessSection').classList.remove('hidden');
@@ -360,81 +416,78 @@
             }
         }
 
-        // MASTER CONTROL RENDER LOOP INTERFACE
+        // RENDER Catalog & Control Views
         function renderAll() {
             const searchQuery = document.getElementById('globalSearchInput').value.toLowerCase();
             const categoryQuery = document.getElementById('categoryFilter').value;
 
-            // 1. Filter and Render Products Grid
+            // 1. Products Grid Processor
             const pGrid = document.getElementById('productsGrid');
             pGrid.innerHTML = '';
             
             let filteredProducts = products.filter(p => p.approved);
 
-            // Apply Search logic
             if(searchQuery) {
                 filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(searchQuery) || p.shop.toLowerCase().includes(searchQuery));
             }
-            // Apply Category Filter logic
             if(categoryQuery !== 'all') {
-                if(categoryQuery === 'Main Shop') {
-                    filteredProducts = filteredProducts.filter(p => p.shop === 'Main Shop');
-                } else {
-                    filteredProducts = filteredProducts.filter(p => p.category === categoryQuery);
-                }
+                filteredProducts = filteredProducts.filter(p => p.category === categoryQuery);
             }
 
-            document.getElementById('productCountTag').innerText = `${filteredProducts.length} Items Listed`;
+            document.getElementById('productCountTag').innerText = `${filteredProducts.length}টি প্রোডাক্ট লিস্টিং`;
 
             if(filteredProducts.length === 0) {
-                pGrid.innerHTML = `<div class="col-span-full p-8 text-center text-gray-400 text-sm">No matched product matrix found. Filter terms cleared.</div>`;
+                pGrid.innerHTML = `<div class="col-span-full p-8 text-center text-gray-400 text-sm bg-white rounded-2xl border border-dashed border-gray-200">কোনো প্রোডাক্ট পাওয়া যায়নি।</div>`;
             }
 
             filteredProducts.forEach(p => {
                 pGrid.innerHTML += `
-                    <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-200 cursor-pointer flex flex-col justify-between" onclick="openOrderModal(${p.id})">
-                        <img src="${p.img}" class="w-full h-44 object-cover">
-                        <div class="p-4 text-xs space-y-2 flex-1 flex flex-col justify-between">
+                    <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between group" onclick="openOrderModal(${p.id})">
+                        <div class="overflow-hidden bg-gray-50 relative">
+                            <img src="${p.img}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-lg shadow-sm border border-gray-100"><i class="fa-solid fa-store text-indigo-500 text-[9px] mr-0.5"></i> ${p.shop}</span>
+                        </div>
+                        <div class="p-4 space-y-2 flex-1 flex flex-col justify-between">
                             <div>
-                                <div class="flex items-center justify-between gap-2">
-                                    <span class="bg-indigo-50 text-indigo-700 font-bold px-2 py-0.5 rounded text-[10px]">${p.shop}</span>
-                                    <span class="text-gray-400 text-[10px]">${p.category || 'General'}</span>
-                                </div>
-                                <h3 class="font-bold text-gray-800 text-xs mt-1.5 line-clamp-2">${p.name}</h3>
+                                <span class="text-gray-400 text-[10px] font-semibold tracking-wider uppercase">${p.category}</span>
+                                <h3 class="font-bold text-gray-800 text-xs mt-0.5 line-clamp-2 group-hover:text-indigo-600 transition">${p.name}</h3>
                             </div>
-                            <p class="text-indigo-600 font-black text-sm">৳${p.price}</p>
+                            <div class="flex items-center justify-between pt-2 border-t border-gray-50">
+                                <p class="text-indigo-600 font-black text-sm">৳${p.price}</p>
+                                <span class="text-[10px] text-gray-400 font-medium">স্টক: ${p.stock}টি</span>
+                            </div>
                         </div>
                     </div>`;
             });
 
-            // 2. Active Featured Marketplace Stores Rendering (ADMIN VIEW CONTROL ONLY)
+            // 2. Active Featured Marketplace Stores Rendering (ADMIN VIEW)
             const shopGrid = document.getElementById('featuredShopsContainer');
             shopGrid.innerHTML = '';
-            let approvedShops = users.filter(u => u.hasShop && u.shopApproved && u.status === 'Active');
+            let approvedShops = users.filter(u => u.hasShop && u.shopApproved);
             
             if(approvedShops.length === 0) {
-                shopGrid.innerHTML = `<p class="text-xs text-slate-400 p-2 col-span-full">Zero active affiliate marketplace stores established inside records pipeline.</p>`;
+                shopGrid.innerHTML = `<p class="text-xs text-slate-400 p-2 text-center italic">কোনো সক্রিয় রেজিস্টার্ড শপ রেকর্ড নেই।</p>`;
             } else {
                 approvedShops.forEach(u => {
                     shopGrid.innerHTML += `
-                        <div class="bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-200 p-3 rounded-xl shadow-sm flex items-center justify-between">
-                            <div class="text-left">
-                                <p class="font-bold text-slate-800 text-xs">🏪 ${u.shopName}</p>
-                                <p class="text-[10px] text-gray-500">Proprietor Node: ${u.name}</p>
+                        <div class="bg-slate-700 border border-slate-600 p-2.5 rounded-xl flex items-center justify-between text-white">
+                            <div>
+                                <p class="font-bold text-xs text-amber-300">🏪 ${u.shopName}</p>
+                                <p class="text-[10px] text-slate-400">প্রোপ্রাইটর: ${u.name}</p>
                             </div>
-                            <button onclick="deleteShopDirectByAdmin(${u.id})" class="text-[10px] bg-red-100 text-red-600 px-2 py-1 rounded font-bold hover:bg-red-200">Revoke Shop</button>
+                            <button onclick="deleteShopDirectByAdmin(${u.id})" class="text-[10px] bg-red-500/20 text-red-400 px-2 py-1 rounded-lg font-bold hover:bg-red-500 hover:text-white transition">শপ রিমুভ</button>
                         </div>`;
                 });
             }
 
-            // 3. Customer Sidebar Dashboard Updates Interface
+            // 3. User Sidebar Control Builder
             if(currentUser && currentUser.role !== 'admin') {
                 document.getElementById('dashCustomerName').innerText = currentUser.name;
                 document.getElementById('dashCustomerEmail').innerText = currentUser.email;
                 document.getElementById('dashWalletBalance').innerText = currentUser.balance;
 
                 const nBox = document.getElementById('customerNotifications');
-                nBox.innerHTML = currentUser.notifications.length === 0 ? '<p class="text-gray-400 italic">Notification buffers clear.</p>' : 
+                nBox.innerHTML = currentUser.notifications.length === 0 ? '<p class="text-gray-400 italic">কোনো নোটিফিকেশন নেই।</p>' : 
                     currentUser.notifications.map(n => `<div class="p-2 bg-indigo-50 border-l-2 border-indigo-500 rounded text-gray-700">${n}</div>`).join('');
 
                 const sBox = document.getElementById('shopSetupBox');
@@ -444,157 +497,87 @@
                     vAddArea.classList.add('hidden');
                     sBox.innerHTML = `
                         <form onsubmit="registerShop(event)" class="space-y-2 text-[11px]">
-                            <input type="text" id="regShopName" placeholder="Enter Desired Shop Brand Name" class="w-full p-2 border rounded-lg" required>
-                            <button type="submit" class="w-full bg-amber-500 text-slate-950 font-bold p-2 rounded-lg hover:bg-amber-600">Submit Corporate Request</button>
+                            <input type="text" id="regShopName" placeholder="শপের নাম দিন..." class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500" required>
+                            <button type="submit" class="w-full bg-amber-500 text-slate-950 font-bold p-2 rounded-lg hover:bg-amber-600 transition">শপ খোলার আবেদন জমা দিন</button>
                         </form>`;
                 } else if(!currentUser.shopApproved) {
                     vAddArea.classList.add('hidden');
-                    sBox.innerHTML = `<p class="text-amber-600 font-semibold text-[11px] bg-amber-50 p-2 rounded-lg border border-amber-200 animate-pulse">⏳ Verification Pending Admin Review Protocols.</p>`;
+                    sBox.innerHTML = `<p class="text-amber-600 font-semibold text-[11px] bg-amber-50 p-2 rounded-lg border border-amber-200">⏳ ভেরিফিকেশন পেন্ডিং। অ্যাডমিন রিভিউ করা হচ্ছে।</p>`;
                 } else {
                     vAddArea.classList.remove('hidden');
-                    sBox.innerHTML = `<p class="text-green-600 font-bold text-[11px] bg-green-50 p-2 rounded-lg border border-green-200">✅ Store Operational Node: ${currentUser.shopName}</p>`;
+                    sBox.innerHTML = `<p class="text-green-600 font-bold text-[11px] bg-green-50 p-2 rounded-lg border border-green-200">✅ আপনার শপ লাইভ: <b>${currentUser.shopName}</b></p>`;
                 }
             }
 
-            // 4. Admin Panel Table Data Matrices Binding Interface
+            // 4. Admin Management Operations Data Matrix Binder
             if(currentUser && currentUser.role === 'admin') {
-                document.getElementById('admTotalUsers').innerText = users.filter(u=>u.role !== 'admin' && u.status === 'Active').length + " Active Profiles";
-                document.getElementById('admTotalOrders').innerText = orders.length + " Pipeline Records";
-                document.getElementById('admTotalShops').innerText = users.filter(u=>u.hasShop && u.shopApproved && u.status === 'Active').length + " Active Handles";
-                document.getElementById('admTotalViewed').innerText = products.reduce((sum, p)=>sum+p.views, 0) + " Session Hits";
+                document.getElementById('admTotalUsers').innerText = users.filter(u=>u.role !== 'admin').length + " জন ইউজার";
+                document.getElementById('admTotalOrders').innerText = orders.length + "টি ইনভয়েস";
+                document.getElementById('admTotalShops').innerText = users.filter(u=>u.hasShop && u.shopApproved).length + "টি সক্রিয় শপ";
+                document.getElementById('admTotalViewed').innerText = products.reduce((sum, p)=>sum+p.views, 0) + " বার হিট";
 
-                const nT = document.getElementById('notifTargetUser');
-                const wT = document.getElementById('walletTargetUser');
-                nT.innerHTML = '<option value="all">Global System Broadcast Node</option>';
-                wT.innerHTML = '';
-                users.filter(u=>u.role !== 'admin' && u.status === 'Active').forEach(u => {
-                    nT.innerHTML += `<option value="${u.id}">${u.name}</option>`;
-                    wT.innerHTML += `<option value="${u.id}">${u.name} (Current Wallet: ৳${u.balance})</option>`;
-                });
-
-                // Pending Signup Tables Configuration
+                // Pending Compliance Verification Queue
                 const pSignupsTable = document.getElementById('adminApprovalsTable');
                 pSignupsTable.innerHTML = '';
                 
-                let pendingUsers = users.filter(u => u.status === 'Pending');
-                let pendingShops = users.filter(u => u.hasShop && !u.shopApproved && u.status === 'Active');
+                let pendingShops = users.filter(u => u.hasShop && !u.shopApproved);
                 let pendingProducts = products.filter(p => !p.approved);
-
-                pendingUsers.forEach(u => {
-                    pSignupsTable.innerHTML += `
-                        <tr class="border-b border-slate-700 text-xs text-slate-300">
-                            <td class="p-2 font-bold text-white">Profile Validation: ${u.name} (${u.email})</td>
-                            <td class="p-2 text-right"><button onclick="approveUserRegistration(${u.id})" class="bg-emerald-600 hover:bg-emerald-500 font-bold px-2 py-1 rounded text-white text-[10px] uppercase">Grant Profile Access</button></td>
-                        </tr>`;
-                });
 
                 pendingShops.forEach(u => {
                     pSignupsTable.innerHTML += `
-                        <tr class="border-b border-slate-700 text-xs text-slate-300">
-                            <td class="p-2 font-bold text-amber-400">Charter Request: Store handle '${u.shopName}' by User (${u.name})</td>
-                            <td class="p-2 text-right"><button onclick="approveShop(${u.id})" class="bg-amber-500 text-slate-950 font-bold px-2 py-1 rounded text-[10px] uppercase">Approve Store Charter</button></td>
+                        <tr class="border-b border-slate-800 text-xs text-slate-300">
+                            <td class="p-2 text-amber-400">শপ আবেদন: '${u.shopName}' (${u.name})</td>
+                            <td class="p-2 text-right"><button onclick="approveShop(${u.id})" class="bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px]">অ্যাপ্রুভ</button></td>
                         </tr>`;
                 });
 
                 pendingProducts.forEach(p => {
                     pSignupsTable.innerHTML += `
-                        <tr class="border-b border-slate-700 text-xs text-slate-300">
-                            <td class="p-2 text-indigo-300">Catalog Entry Verification: ${p.name} (Shop Name: ${p.shop})</td>
-                            <td class="p-2 text-right"><button onclick="approveProduct(${p.id})" class="bg-indigo-600 hover:bg-indigo-500 font-bold px-2 py-1 rounded text-white text-[10px] uppercase">Verify and Publish</button></td>
+                        <tr class="border-b border-slate-800 text-xs text-slate-300">
+                            <td class="p-2 text-indigo-300">প্রোডাক্ট অনুমোদন: ${p.name} (${p.shop})</td>
+                            <td class="p-2 text-right"><button onclick="approveProduct(${p.id})" class="bg-indigo-600 font-bold px-2 py-0.5 rounded text-white text-[10px]">পাবলিশ</button></td>
                         </tr>`;
                 });
 
-                if(pendingUsers.length === 0 && pendingShops.length === 0 && pendingProducts.length === 0) {
-                    pSignupsTable.innerHTML = `<tr><td class="p-2 text-slate-500 text-center text-xs italic">Compliance processing queues empty. Zero logs active.</td></tr>`;
+                if(pendingShops.length === 0 && pendingProducts.length === 0) {
+                    pSignupsTable.innerHTML = `<tr><td class="p-2 text-slate-500 text-center text-xs italic">কোনো কাজ পেন্ডিং নেই।</td></tr>`;
                 }
 
-                // Global Order Table Binder
+                // Global Drop-Ship Logistics Pipeline Track
                 const oTable = document.getElementById('adminOrdersTable');
                 oTable.innerHTML = '';
                 orders.forEach(o => {
                     oTable.innerHTML += `
                         <tr class="border-b border-slate-800 text-slate-300">
-                            <td class="p-2 font-bold text-indigo-400">#${o.id}</td>
-                            <td class="p-2"><b>${o.customerName}</b><br><span class="text-slate-500 text-[10px]">${o.address} | Tel: ${o.phone}</span></td>
-                            <td class="p-2 text-amber-400 font-semibold">${o.shop}</td>
-                            <td class="p-2">${o.prodName}<br><span class="text-indigo-400 text-[10px]">Variant: ${o.color} / Qty: ${o.qty}</span></td>
-                            <td class="p-2 font-bold text-white">৳${o.totalBill}</td>
-                            <td class="p-2"><span class="text-amber-400 font-semibold text-[11px]">${o.status}</span></td>
-                            <td class="p-2 text-right">
-                                <select onchange="changeOrderStatus(${o.id}, this.value)" class="bg-slate-700 text-white p-1 rounded text-[10px]">
-                                    <option value="">Update Routing</option>
-                                    <option value="Approved">Approved</option>
-                                    <option value="Shipped">Shipped</option>
-                                    <option value="Delivered">Delivered</option>
-                                </select>
-                            </td>
-                        </tr>`;
-                });
-                if(orders.length === 0) oTable.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-500 italic">No drop-ship operations tracking in register logs.</td></tr>`;
-
-                // Users Management Dynamic Table
-                const uTable = document.getElementById('adminUsersManagementTable');
-                uTable.innerHTML = '';
-                users.filter(u => u.status === 'Active').forEach(u => {
-                    uTable.innerHTML += `
-                        <tr class="border-b border-slate-800 text-slate-300">
-                            <td class="p-2 text-slate-500">UID: #${u.id}</td>
-                            <td class="p-2 font-bold text-white">${u.name}</td>
-                            <td class="p-2 text-slate-400">${u.email}</td>
-                            <td class="p-2"><span class="bg-slate-900 text-slate-400 border border-slate-700 px-2 py-0.5 rounded text-[10px] uppercase font-bold">${u.role}</span></td>
-                            <td class="p-2 text-right"><button onclick="deleteUser(${u.id})" class="text-red-400 hover:underline font-bold text-[11px]">Revoke Clearances</button></td>
-                        </tr>`;
-                });
-
-                // Master Products Data Management
-                const admPTable = document.getElementById('adminProductsManagementTable');
-                admPTable.innerHTML = '';
-                products.forEach(p => {
-                    admPTable.innerHTML += `
-                        <tr class="border-b border-slate-800 text-slate-300">
-                            <td class="p-2 font-bold text-indigo-400">#${p.id}</td>
-                            <td class="p-2 truncate max-w-[120px]">${p.name}</td>
-                            <td class="p-2 text-amber-400">${p.shop}</td>
-                            <td class="p-2 text-slate-400">৳${p.price}</td>
-                            <td class="p-2 font-bold text-[10px] uppercase ${p.approved ? 'text-green-400' : 'text-amber-500'}">${p.approved ? 'Live' : 'Pending Verification'}</td>
-                            <td class="p-2 text-right"><button onclick="deleteProductDirect(${p.id})" class="text-red-400 hover:underline font-bold text-[11px]">Purge Object</button></td>
+                            <td class="p-1 font-bold text-indigo-400">#${o.id}</td>
+                            <td class="p-1">${o.customerName}<br><span class="text-slate-500 text-[9px]">${o.phone}</span></td>
+                            <td class="p-1 text-amber-400 font-medium">${o.shop}</td>
+                            <td class="p-1 text-white">৳${o.totalBill}</td>
+                            <td class="p-1 text-emerald-400 font-bold text-[10px]">${o.status}</td>
                         </tr>`;
                 });
             }
         }
 
-        // BACKEND CONTROLLERS / PIPELINE IMPLEMENTATIONS
-        function approveUserRegistration(userId) {
-            const u = users.find(user => user.id === userId);
-            if (u) { u.status = "Active"; u.notifications.push("✅ Administration Access Validation Granted: Account profile functional."); alert(`Account for ${u.name} activated.`); renderAll(); }
-        }
+        // BACKEND CONTROLLERS
         function approveShop(userId) {
             const u = users.find(user => user.id === userId);
-            if(u) { u.shopApproved = true; u.notifications.push(`✅ Your Store Registration Request for '${u.shopName}' has been approved live.`); alert("Store operational charter provision committed."); renderAll(); }
+            if(u) { u.shopApproved = true; u.notifications.push(`✅ আপনার '${u.shopName}' শপটি অনুমোদন করা হয়েছে!`); syncDB(); alert("শপ অনুমোদন করা হয়েছে।"); renderAll(); }
         }
         function approveProduct(id) {
             const p = products.find(prod => prod.id === id);
-            if(p) { p.approved = true; alert("Product layout deployment committed live."); renderAll(); }
+            if(p) { p.approved = true; syncDB(); alert("প্রোডাক্ট মার্কেটপ্লেসে লাইভ করা হয়েছে।"); renderAll(); }
         }
         function deleteShopDirectByAdmin(userId) {
             const u = users.find(user => user.id === userId);
-            if(u) { if(confirm(`Revoke store handle charter for ${u.shopName}?`)) { u.hasShop = false; u.shopApproved = false; u.shopName = ""; alert("Store charter revoked from registry."); renderAll(); } }
-        }
-        function changeOrderStatus(id, status) {
-            if(!status) return; const o = orders.find(order => order.id === id);
-            if(o) { o.status = status; const vUser = users.find(u => u.shopName === o.shop); if(vUser) vUser.notifications.push(`📦 Shipment Tracking Update: Order reference pipeline ID #${id} adjusted to status state: [${status}].`); alert("Order status updated."); renderAll(); }
-        }
-        function deleteUser(id) {
-            if(confirm("Force purge client account profile logs?")) { users = users.filter(u => u.id !== id); renderAll(); }
-        }
-        function deleteProductDirect(id) {
-            if(confirm("Purge product catalog reference mapped matrix?")) { products = products.filter(p => p.id !== id); renderAll(); }
+            if(u) { if(confirm(`নিশ্চিত তো? ${u.shopName} শপটি বাতিল করা হবে।`)) { u.hasShop = false; u.shopApproved = false; u.shopName = ""; syncDB(); alert("শপ রিমুভ করা হয়েছে।"); renderAll(); } }
         }
 
-        // USER ORDER PLACEMENT SEQUENCE
+        // PRODUCT ORDER MODAL SEQUENCE
         function openOrderModal(productId) {
             const p = products.find(prod => prod.id === productId); if(!p) return;
-            p.views++; activeProductForOrder = p;
+            p.views++;
+            activeProductForOrder = p;
             document.getElementById('modalProductName').innerText = p.name;
             document.getElementById('modalProductShop').innerText = p.shop;
             document.getElementById('modalProductPrice').innerText = p.price;
@@ -604,12 +587,14 @@
             calculateTotalBill();
         }
         function closeOrderModal() { document.getElementById('orderModal').classList.add('hidden'); }
+        
         function calculateTotalBill() {
             if(!activeProductForOrder) return;
             const qty = parseInt(document.getElementById('orderQuantity').value) || 1;
             const shippingCost = parseInt(document.getElementById('deliveryArea').value);
             document.getElementById('totalBill').innerText = (activeProductForOrder.price * qty) + shippingCost;
         }
+        
         function submitOrder(e) {
             e.preventDefault();
             let newOrderId = orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1001;
@@ -626,59 +611,56 @@
                 totalBill: parseInt(document.getElementById('totalBill').innerText),
                 status: 'Pending'
             });
-            alert(`Order Dispatched Successfully! System Tracking Node Key Reference ID Mapped: #${newOrderId}`);
+            syncDB();
+            alert(`অর্ডার সফলভাবে সাবমিট হয়েছে! আপনার ট্র্যাকিং আইডি: #${newOrderId}`);
             closeOrderModal();
             renderAll();
         }
 
-        // VENDOR CONTROL METHODS
+        // VENDOR UTILITIES
         function registerShop(e) {
             e.preventDefault(); currentUser.hasShop = true;
             currentUser.shopName = document.getElementById('regShopName').value;
-            currentUser.shopApproved = false; alert("Affiliate store charter registration payload queued for review pipelines."); renderAll();
+            currentUser.shopApproved = false; 
+            
+            // Sync current user update into main users listing reference
+            const uIndex = users.findIndex(u=>u.id === currentUser.id);
+            if(uIndex !== -1) users[uIndex] = currentUser;
+            
+            syncDB(); 
+            alert("আবেদন জমা হয়েছে। অ্যাডমিন ভেরিফিকেশনের জন্য অপেক্ষা করুন।"); 
+            renderAll();
         }
+        
         function vendorAddProduct(e) {
             e.preventDefault();
             const fileInput = document.getElementById('vProdImg');
-            
-            // Helper structure to convert images streams to mock assets string addresses inline
             const file = fileInput.files;
-            const executeUpload = (imgSrc) => {
-                let newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            
+            const processUpload = (imgData) => {
+                let newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 501;
                 products.push({
                     id: newId,
                     name: document.getElementById('vProdName').value,
                     price: parseInt(document.getElementById('vProdPrice').value),
                     category: document.getElementById('vProdCategory').value,
                     shop: currentUser.shopName, approved: false, stock: parseInt(document.getElementById('vProdStock').value), views: 0,
-                    img: imgSrc, uploadedBy: `${currentUser.name} (${currentUser.email})`
+                    img: imgData
                 });
-                alert("Inventory submission uploaded. Awaiting compliance validation from Admin Panel.");
+                syncDB();
+                alert("প্রোডাক্ট আপলোড করা হয়েছে এবং অ্যাডমিন কিউতে পাঠানো হয়েছে।");
                 e.target.reset(); renderAll();
             };
 
             if(file) {
-                const reader = new FileReader(); reader.onloadend = () => executeUpload(reader.result); reader.readAsDataURL(file);
+                const reader = new FileReader(); reader.onloadend = () => processUpload(reader.result); reader.readAsDataURL(file);
             } else {
-                executeUpload("https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=500");
+                processUpload("https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=500");
             }
         }
 
-        // ADMIN WALLET ACTIONS
-        function adminAddWalletMoney(e) {
-            e.preventDefault(); const target = document.getElementById('walletTargetUser').value;
-            const amt = parseInt(document.getElementById('walletAmount').value); const u = users.find(user => user.id == target);
-            if(u) { u.balance += amt; u.notifications.push(`💰 Balance Update: Admin credited your container wallet matrix with ৳${amt}.`); alert("Token value injection complete."); e.target.reset(); renderAll(); }
-        }
-        function sendAdminNotification(e) {
-            e.preventDefault(); const target = document.getElementById('notifTargetUser').value;
-            const msg = document.getElementById('notifAdminMessage').value;
-            if(target === 'all') { users.forEach(u => u.notifications.push(`📢 SYSTEM BROADCAST: ${msg}`)); }
-            else { const u = users.find(user => user.id == target); if(u) u.notifications.push(`✉️ ADMIN PRIVATE NOTICE: ${msg}`); }
-            alert("Broadcast packet successfully dispatched."); e.target.reset(); renderAll();
-        }
-
-        // INITIAL ENGINE COUPLING STARTUP SEQUENCE
+        // INITIAL ENGINE COUPLING RUN TIME
+        updateUIForSession();
         renderAll();
     </script>
 </body>
