@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onlinehatdropshop - Multi-Vendor Dropshipping Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', Roboto, sans-serif; }
+        .hidden-section { display: none; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800" id="siteBackground">
+
+    <!-- ==================== TOP NAVIGATION BAR ==================== -->
+    <nav class="bg-indigo-700 text-white p-4 shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wider cursor-pointer" onclick="showSection('homepage')">onlinehatdropshop</h1>
+            <div class="space-x-4 text-sm font-semibold flex items-center">
+                <button onclick="showSection('homepage')" class="hover:text-amber-300">হোমপেজ</button>
+                <button onclick="showSection('loginPage')" id="navLoginBtn" class="bg-amber-500 text-slate-900 px-3 py-1.5 rounded-lg hover:bg-amber-400">লগইন</button>
+                <button onclick="showSection('customerDashboard')" id="navCustomerBtn" class="hidden hover:text-amber-300">কাস্টমার ড্যাশবোর্ড</button>
+                <button onclick="showSection('adminPanel')" id="navAdminBtn" class="hidden bg-red-600 px-3 py-1.5 rounded-lg hover:bg-red-500">এডমিন প্যানেল</button>
+                <button onclick="logout()" id="navLogoutBtn" class="hidden text-red-300 hover:text-red-100">লগআউট</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-6">
+
+        <!-- ==================== AUTHENTICATION (LOGIN) PAGE ==================== -->
+        <section id="loginPage" class="hidden-section max-w-md mx-auto my-12 bg-white p-8 rounded-xl shadow-md">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">অ্যাকাউন্টে লগইন করুন</h2>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">ইমেইল এড্রেস</label>
+                    <input type="email" id="loginEmail" class="w-full p-2.5 border rounded-lg mt-1 focus:ring-2 focus:ring-indigo-500" placeholder="admin@gmail.com অথবা আপনার ইমেইল" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">পাসওয়ার্ড</label>
+                    <input type="password" id="loginPassword" class="w-full p-2.5 border rounded-lg mt-1 focus:ring-2 focus:ring-indigo-500" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-bold hover:bg-indigo-700 transition">লগইন করুন</button>
+            </form>
+            <p class="text-xs text-center text-gray-500 mt-4">এডমিন লগইন ডেমো: admin@gmail.com | পাসওয়ার্ড: 128109</p>
+        </section>
+
+
+        <!-- ==================== SECTION 1: HOMEPAGE ==================== -->
+        <section id="homepage">
+            <!-- Featured Approved Customer Shops Section -->
+            <div class="mb-10">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">🏪 অনুমোদিত কাস্টমার শপসমূহ (Featured Shops)</h2>
+                <div id="featuredShopsContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <!-- শপগুলো ডাইনামিকালি এখানে আসবে -->
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">🛍️ সকল পণ্যসমূহ (Main Shop & Vendor Products)</h2>
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- প্রোডাক্ট কার্ড এখানে লোড হবে -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== ORDER POPUP MODAL ==================== -->
+        <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+            <div class="bg-white p-6 rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+                <h2 class="text-sm font-bold text-center text-red-600 mb-4">আপনার অর্ডারটি কনফার্ম করতে তথ্যগুলো পূরণ করে "অর্ডার করুন" বাটন এ ক্লিক করুন</h2>
+                <form onsubmit="submitOrder(event)">
+                    <div class="bg-indigo-50 p-3 rounded-lg mb-3 text-xs border border-indigo-100">
+                        <p class="text-gray-600">নির্বাচিত পণ্য: <span id="modalProductName" class="font-bold text-gray-800"></span></p>
+                        <p class="text-gray-600">উৎস শপ: <span id="modalProductShop" class="font-bold text-amber-700"></span></p>
+                        <p class="font-bold text-indigo-600 mt-1">একক মূল্য: ৳<span id="modalProductPrice"></span></p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">রঙ সিলেক্ট করুন *</label>
+                            <select id="orderColor" class="w-full p-2 border rounded-lg bg-gray-50 text-xs" required>
+                                <option value="Black">Black</option>
+                                <option value="White">White</option>
+                                <option value="Blue">Blue</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">পরিমাণ *</label>
+                            <input type="number" id="orderQuantity" value="1" min="1" class="w-full p-2 border rounded-lg text-center font-bold text-xs" oninput="calculateTotalBill()" required>
+                        </div>
+                    </div>
+                    <div class="space-y-2 mb-3 text-xs">
+                        <div>
+                            <label class="block font-bold text-gray-700">আপনার নাম লিখুন *</label>
+                            <input type="text" id="custName" class="w-full p-2 border rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700">আপনার নাম্বার লিখুন *</label>
+                            <input type="tel" id="custPhone" class="w-full p-2 border rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700">ঠিকানা লিখুন * (জেলা,উপজেলা,থানা,পৌরসভা)</label>
+                            <textarea id="custAddress" class="w-full p-2 border rounded-lg" rows="2" required></textarea>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700">ডেলিভারি এরিয়া নিবার্চন করুন *</label>
+                            <select id="deliveryArea" class="w-full p-2 border rounded-lg bg-gray-50" onchange="calculateTotalBill()" required>
+                                <option value="70">ঢাকার ভিতরে ৭০ টাকা</option>
+                                <option value="130">ঢাকার বাইরে ১৩০ টাকা</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 bg-amber-50 p-2 rounded border border-amber-200 text-xs">
+                        <span class="font-bold text-gray-700">পেমেন্ট মেথড: Cash On Delivery</span>
+                    </div>
+                    <div class="text-right text-base font-bold text-gray-900 mb-4">সর্বমোট: ৳<span id="totalBill">0</span></div>
+                    <div class="flex gap-2 text-xs">
+                        <button type="button" onclick="closeOrderModal()" class="w-1/3 bg-gray-200 py-2 rounded-lg font-bold">বাতিল</button>
+                        <button type="submit" class="w-2/3 bg-green-600 text-white py-2 rounded-lg font-bold hover:bg-green-700">অর্ডার করুন</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ==================== SECTION 2: CUSTOMER DASHBOARD ==================== -->
+        <section id="customerDashboard" class="hidden-section space-y-6">
+            <!-- Profile Header & Wallet -->
+            <div class="bg-white p-6 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800">👤 কাস্টমার প্রোফাইল: <span id="dashCustomerName" class="text-indigo-600">কাস্টমার ইউজার</span></h2>
+                    <p class="text-xs text-gray-500" id="dashCustomerEmail"></p>
+                </div>
+                <!-- Wallet System -->
+                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl flex items-center gap-4">
+                    <div>
+                        <p class="text-xs font-bold text-emerald-800 uppercase tracking-wider">আমার ওয়ালেট ব্যালেন্স</p>
+                        <p class="text-2xl font-black text-emerald-600 mt-1">৳<span id="dashWalletBalance">0</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Dashboard Grid -->
+            <div class="bg-white p-4 rounded-xl shadow-sm">
+                <h3 class="text-sm font-bold text-red-600 mb-3 flex items-center gap-1">🔔 নোটিফিকেশন বোর্ড (এডমিন থেকে প্রেরিত)</h3>
+                <div id="customerNotifications" class="space-y-2 max-h-32 overflow-y-auto">
+                    <p class="text-xs text-gray-400">কোনো নতুন নোটিফিকেশন নেই।</p>
+                </div>
+            </div>
+
+            <!-- Your Shop Section (Multi-vendor module) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Shop Setup Form / Info Status -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 h-fit">
+                    <h3 class="font-bold text-gray-800 border-b pb-2 mb-3">🏪 Your Shop (আপনার নিজস্ব দোকান)</h3>
+                    <div id="shopSetupBox">
+                        <!-- ডাইনামিকালি লোড হবে শপ স্ট্যাটাস বা ফরম -->
+                    </div>
+                </div>
+
+                <!-- Product Inventory & Sales Report for Vendor Shop -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 md:col-span-2">
+                    <h3 class="font-bold text-gray-800 border-b pb-2 mb-3">📊 আপনার শপের স্টক ও সেলস রিপোর্ট (Stock Value Report)</h3>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="bg-amber-50 p-3 rounded-lg">
+                            <p class="text-xs font-semibold text-amber-700">স্টক অনুযায়ী মোট মালের দাম</p>
+                            <p class="text-xl font-bold text-slate-800 mt-1">৳<span id="vendorStockValue">0</span></p>
+                        </div>
+                        <div class="bg-indigo-50 p-3 rounded-lg">
+                            <p class="text-xs font-semibold text-indigo-700">আপনার শপ থেকে বিক্রি হয়েছে</p>
+                            <p class="text-xl font-bold text-slate-800 mt-1"><span id="vendorSalesCount">0</span> টি প্রোডাক্ট</p>
+                        </div>
+                    </div>
+                    <!-- Vendor Add Product Module -->
+                    <div id="vendorAddProductArea" class="hidden border-t pt-4">
+                        <h4 class="text-xs font-bold uppercase text-gray-500 mb-2">নতুন প্রোডাক্ট যোগ করুন (অনুমোদন সাপেক্ষে)</h4>
+                        <form onsubmit="vendorAddProduct(event)" class="grid grid-cols-2 gap-2 text-xs">
+                            <input type="text" id="vProdName" placeholder="প্রোডাক্টের নাম" class="p-2 border rounded" required>
+                            <input type="number" id="vProdPrice" placeholder="মূল্য (টাকা)" class="p-2 border rounded" required>
+                            <input type="number" id="vProdStock" placeholder="স্টক সংখ্যা (Quantity)" class="p-2 border rounded" required>
+                            <div>
+                                <label class="block text-[10px] text-gray-500">গ্যালারি থেকে ছবি নিন</label>
+                                <input type="file" id="vProdImg" accept="image/*" class="w-full text-[10px]">
+                            </div>
+                            <button type="submit" class="col-span-2 bg-indigo-600 text-white p-2 rounded font-bold">অনুমোদনের জন্য পাঠান</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== SECTION 3: ADMIN PANEL ==================== -->
+        <section id="adminPanel" class="hidden-section bg-slate-900 text-white p-6 rounded-xl shadow-xl space-y-6">
+            <div class="border-b border-slate-700 pb-3 flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-bold text-amber-400">👑 এডমিন প্যানেল (মাস্টার কন্ট্রোল)</h2>
+                    <p class="text-xs text-slate-400">সম্পূর্ণ ওয়েবসাইট এডিটিং এবং অনুমোদন মডিউল</p>
+                </div>
+            </div>
+
+            <!-- Total Counters Widgets Row -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-slate-900">
+                <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-600">
+                    <h3 class="text-xs font-bold text-gray-500 uppercase">টোটাল ইউজার (Total User)</h3>
+                    <p id="admTotalUsers" class="text-xl font-black mt-1">০ জন</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-600">
+                    <h3 class="text-xs font-bold text-gray-500 uppercase">টোটাল অর্ডার</h3>
+                    <p id="admTotalOrders" class="text-xl font-black mt-1">০ টি</p>
+                </div>
+                <div class="bg-amber-50 p-4 rounded-xl border-l-4 border-amber-600">
+                    <h3 class="text-xs font-bold text-gray-500 uppercase">পণ্য ভিউড (Viewed) সংখ্যা</h3>
+                    <p id="admTotalViewed" class="text-xl font-black mt-1">০ বার</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-xl border-l-4 border-purple-600">
+                    <h3 class="text-xs font-bold text-gray-500 uppercase">মোট রেজিস্টার্ড শপ</h3>
+                    <p id="admTotalShops" class="text-xl font-black mt-1">০ টি</p>
+                </div>
+            </div>
+
+            <!-- Custom Customizer (Background + Category Edit) -->
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="font-bold text-amber-400 mb-2">🎨 ওয়েবসাইট ব্যাকগ্রাউন্ড পরিবর্তন</h3>
+                    <div class="flex gap-2">
+                        <button onclick="changeBg('#f3f4f6')" class="bg-gray-200 text-slate-900 p-1 px-2 rounded">ডিফল্ট গ্রে</button>
+                        <button onclick="changeBg('#fef2f2')" class="bg-red-100 text-slate-900 p-1 px-2 rounded">হালকা লাল</button>
+                        <button onclick="changeBg('#ecfeff')" class="bg-cyan-100 text-slate-900 p-1 px-2 rounded">হালকা সায়ান</button>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-amber-400 mb-2">📁 ক্যাটাগরি ও প্রোডাক্ট ম্যানেজমেন্ট</h3>
+                    <form onsubmit="adminAddMainProduct(event)" class="grid grid-cols-3 gap-2">
+                        <input type="text" id="mProdName" placeholder="নাম" class="bg-slate-700 p-1 rounded" required>
+                        <input type="number" id="mProdPrice" placeholder="দাম" class="bg-slate-700 p-1 rounded" required>
+                        <button type="submit" class="bg-green-600 p-1 rounded font-bold">মেইন শপে এড</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Order Status & Notifications Sender Modules -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs">
+                <!-- Notification Sender Panel -->
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
+                    <h3 class="font-bold text-slate-200">📢 ইউজারকে কাস্টম নোটিফিকেশন পাঠান</h3>
+                    <form onsubmit="sendAdminNotification(event)" class="space-y-2">
+                        <select id="notifTargetUser" class="w-full p-2 bg-slate-700 rounded text-white"></select>
+                        <textarea id="notifAdminMessage" class="w-full p-2 bg-slate-700 rounded text-white" rows="2" placeholder="নোটিফিকেশন বার্তাটি লিখুন..." required></textarea>
+                        <button type="submit" class="bg-amber-500 text-slate-900 p-2 rounded font-bold w-full">নোটিফিকেশন পুশ করুন</button>
+                    </form>
+                </div>
+
+                <!-- Wallet Admin Control Panel (Money Add) -->
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
+                    <h3 class="font-bold text-slate-200">💰 ইউজারের ওয়ালেটে টাকা এড করুন</h3>
+                    <form onsubmit="adminAddWalletMoney(event)" class="space-y-2">
+                        <select id="walletTargetUser" class="w-full p-2 bg-slate-700 rounded text-white"></select>
+                        <input type="number" id="walletAmount" placeholder="টাকার পরিমাণ (৳)" class="w-full p-2 bg-slate-700 rounded text-white" required>
+                        <button type="submit" class="bg-emerald-500 text-slate-900 p-2 rounded font-bold w-full">ওয়ালেটে টাকা যোগ করুন</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Master Lists (Shop Approvals, Order Tracking per shop, Profile Editing) -->
+            <div class="space-y-4 text-xs">
+                <!-- Shop & Product Approvals -->
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                    <h3 class="font-bold text-amber-400 mb-2">⏳ শপ ও ভেন্ডর প্রোডাক্ট অনুমোদন পেন্ডিং লিস্ট</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-slate-700">
+                                    <th class="p-2">ইউজার/শপ নাম</th>
+                                    <th class="p-2">টাইপ</th>
+                                    <th class="p-2">আইটেম/তথ্য</th>
+                                    <th class="p-2 text-right">অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminApprovalsTable">
+                                <!-- ডাইনামিক ডাটা -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Main Order Tracker with Status Changer & Custom Vendor Shop Track -->
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                    <h3 class="font-bold text-slate-200 mb-2">📦 অর্ডার ট্র্যাকিং ও ডেলিভারি স্ট্যাটাস পরিবর্তন মডিউল</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-slate-700">
+                                    <th class="p-2">কাস্টমার ও ঠিকানা</th>
+                                    <th class="p-2">উৎস দোকান (Shop)</th>
+                                    <th class="p-2">পণ্য (রঙ/Q)</th>
+                                    <th class="p-2">টাকা ও চার্জ</th>
+                                    <th class="p-2">স্ট্যাটাস</th>
+                                    <th class="p-2 text-right">স্ট্যাটাস পরিবর্তন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminOrdersTable">
+                                <!-- ডাইনামিক ডাটা -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ==================== JAVASCRIPT STATE ENGINE ==================== -->
+    <script>
+        // ১. ডাটাবেজ স্টেট (সিস্টেমের মেমোরি ডাটা)
+        let users = [
+            { id: 1, name: "এডমিন প্যানেল", email: "admin@gmail.com", role: "admin", balance: 0, hasShop: false, shopName: "", shopApproved: false, notifications: [] },
+            { id: 2, name: "আরিফ খান", email: "arif@gmail.com", role: "customer", balance: 1200, hasShop: true, shopName: "খান ড্রপশপ", shopApproved: true, notifications: [] },
+            { id: 3, name: "সুমন ইসলাম", email: "sumon@gmail.com", role: "customer", balance: 0, hasShop: true, shopName: "সুমন ফ্যাশন হাট", shopApproved: false, notifications: [] },
+            { id: 4, name: "নিলয় রহমান", email: "niloy@gmail.com", role: "customer", balance: 350, hasShop: false, shopName: "", shopApproved: false, notifications: [] }
+        ];
+
+        let products = [
+            { id: 101, name: "প্রিমিয়াম তুর্কি টুপি", price: 320, shop: "Main Shop", approved: true, stock: 50, views: 0 },
+            { id: 102, name: "এক্সক্লুসিভ পাঞ্জাবি", price: 1450, shop: "খান ড্রপশপ", approved: true, stock: 15, views: 0 },
+            { id: 103, name: "কটন ক্যাজুয়াল শার্ট", price: 650, shop: "সুমন ফ্যাশন হাট", approved: false, stock: 30, views: 0 }
+        ];
+
+        let orders = [];
+        let currentUser = null;
+        let activeProductForOrder = null;
+
+        // ২. ভিউ রাউটিং কন্ট্রোল
+        function showSection(sectionId) {
+            document.getElementById('homepage').classList.add('hidden-section');
+            document.getElementById('loginPage').classList.add('hidden-section');
+            document.getElementById('customerDashboard').classList.add('hidden-section');
+            document.getElementById('adminPanel').classList.add('hidden-section');
+
+            document.getElementById(sectionId).classList.remove('hidden-section');
+            renderAll();
+        }
+
+        // ৩. লগইন ইঞ্জিন
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPassword').value;
+
+            if(email === 'admin@gmail.com' && pass === '128109') {
+                currentUser = users.find(u => u.email === 'admin@gmail.com');
+                showSection('adminPanel');
+            } else {
+                let user = users.find(u => u.email === email);
+                if(user) {
+                    currentUser = user;
+                    showSection('customerDashboard');
+                } else {
+                    alert("ইউজার পাওয়া যায়নি! ডেমো ইমেইল ব্যবহার করুন (যেমন: arif@gmail.com)।");
+                }
+            }
+            updateNav();
+        }
+
+        function logout() {
+            currentUser = null;
+            updateNav();
+            showSection('homepage');
+        }
+
+        function updateNav() {
+            if(currentUser) {
+                document.getElementById('navLoginBtn').classList.add('hidden');
+                document.getElementById('navLogoutBtn').classList.remove('hidden');
+                if(currentUser.role === 'admin') {
+                    document.getElementById('navAdminBtn').classList.remove('hidden');
+                    document.getElementById('navCustomerBtn').classList.add('hidden');
+                } else {
+                    document.getElementById('navCustomerBtn').classList.remove('hidden');
+                    document.getElementById('navAdminBtn').classList.add('hidden');
+                }
+            } else {
+                document.getElementById('navLoginBtn').classList.remove('hidden');
+                document.getElementById('navLogoutBtn').classList.add('hidden');
+                document.getElementById('navAdminBtn').classList.add('hidden');
+                document.getElementById('navCustomerBtn').classList.add('hidden');
+            }
+        }
+
+        // ৪. রেন্ডারিং ইঞ্জিন (UI জেনারেটর)
+        function renderAll() {
+            // হোমপেজ প্রোডাক্ট গ্রিড
+            const pGrid = document.getElementById('productsGrid');
+            pGrid.innerHTML = '';
+            products.filter(p => p.approved).forEach(p => {
+                pGrid.innerHTML += `
+                    <div class="bg-white border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer" onclick="openOrderModal(${p.id})">
+                        <div class="bg-gray-200 h-40 flex items-center justify-center text-gray-400 font-mono text-xs">[ গ্যালারি ইমেজ ]</div>
+                        <div class="p-4 text-xs">
+                            <span class="bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded">${p.shop}</span>
+                            <h3 class="font-bold text-gray-800 mt-2 text-sm">${p.name}</h3>
+                            <p class="text-indigo-600 font-bold text-base mt-1">৳${p.price}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // হোমপেজ এপ্রুভড কাস্টমার শপস
+            const shopGrid = document.getElementById('featuredShopsContainer');
+            shopGrid.innerHTML = '';
+            users.filter(u => u.hasShop && u.shopApproved).forEach(u => {
+                shopGrid.innerHTML += `
+                    <div class="bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-200 p-3 rounded-lg text-center shadow-sm">
+                        <p class="font-bold text-slate-800 text-xs">🏪 ${u.shopName}</p>
+                        <p class="text-[10px] text-gray-500 mt-1">মালিক: ${u.name}</p>
+                    </div>
+                `;
+            });
+
+            if(currentUser) {
+                // কাস্টমার ড্যাশবোর্ড আপডেট
+                if(currentUser.role !== 'admin') {
+                    document.getElementById('dashCustomerName').innerText = currentUser.name;
+                    document.getElementById('dashCustomerEmail').innerText = currentUser.email;
+                    document.getElementById('dashWalletBalance').innerText = currentUser.balance;
+
+                    // নোটিফিকেশন রেন্ডার
+                    const notifBox = document.getElementById('customerNotifications');
+                    if(currentUser.notifications.length > 0) {
+                        notifBox.innerHTML = currentUser.notifications.map(n => `
+                            <div class="p-2 bg-blue-50 border-l-4 border-blue-500 rounded text-[11px] text-blue-900">
+                                <p>${n}</p>
+                            </div>
+                        `).join('');
+                    }
+
+                    // শপ সেটআপ মডিউল
+                    const shopBox = document.getElementById('shopSetupBox');
+                    const vendorAddArea = document.getElementById('vendorAddProductArea');
+                    if(!currentUser.hasShop) {
+                        vendorAddArea.classList.add('hidden');
+                        shopBox.innerHTML = `
+                            <form onsubmit="registerShop(event)" class="space-y-2 text-xs">
+                                <input type="text" id="regShopName" placeholder="আপনার দোকানের নাম লিখুন" class="w-full p-2 border rounded" required>
+                                <button type="submit" class="w-full bg-amber-500 font-bold p-2 rounded">শপ খোলার আবেদন করুন</button>
+                            </form>
+                        `;
+                    } else if(currentUser.hasShop && !currentUser.shopApproved) {
+                        vendorAddArea.classList.add('hidden');
+                        shopBox.innerHTML = `<p class="text-amber-600 font-semibold text-xs animate-pulse">⏳ শপটি অনুমোদনের জন্য এডমিন পেন্ডিংয়ে আছে।</p>`;
+                    } else {
+                        vendorAddArea.classList.remove('hidden');
+                        shopBox.innerHTML = `<p class="text-green-600 font-bold text-xs">✅ আপনার শপ লাইভ আছে: <span class="underline">${currentUser.shopName}</span></p>`;
+                        
+                        // স্টক ভ্যালু ও সেলস ক্যালকুলেশন
+                        let myProducts = products.filter(p => p.shop === currentUser.shopName);
+                        let stockVal = myProducts.reduce((sum, p) => sum + (p.price * p.stock), 0);
+                        document.getElementById('vendorStockValue').innerText = stockVal;
+                        
+                        let mySales = orders.filter(o => o.shop === currentUser.shopName && o.status === 'Delivered').length;
+                        document.getElementById('vendorSalesCount').innerText = mySales;
+                    }
+                }
+
+                // এডমিন প্যানেল রেন্ডারিং মডিউলস
+                if(currentUser.role === 'admin') {
+                    document.getElementById('admTotalUsers').innerText = users.filter(u=>u.role !== 'admin').length + " জন";
+                    document.getElementById('admTotalOrders').innerText = orders.length + " টি";
+                    document.getElementById('admTotalShops').innerText = users.filter(u=>u.hasShop).length + " টি";
+                    document.getElementById('admTotalViewed').innerText = products.reduce((sum, p)=>sum+p.views, 0) + " বার";
+
+                    // ড্রপডাউন সিলেকশন লোড
+                    const nTarget = document.getElementById('notifTargetUser');
+                    const wTarget = document.getElementById('walletTargetUser');
+                    nTarget.innerHTML = '<option value="all">সকল ইউজারদের একসাথে (Broadcast)</option>';
+                    wTarget.innerHTML = '';
+                    users.filter(u=>u.role !== 'admin').forEach(u => {
+                        nTarget.innerHTML += `<option value="${u.id}">${u.name} (${u.email})</option>`;
+                        wTarget.innerHTML += `<option value="${u.id}">${u.name} (ব্যালেন্স: ৳${u.balance})</option>`;
+                    });
+
+                    // পেন্ডিং অনুমোদন লিস্ট টেবিল
+                    const appTable = document.getElementById('adminApprovalsTable');
+                    appTable.innerHTML = '';
+                    // পেন্ডিং শপ
+                    users.filter(u => u.hasShop && !u.shopApproved).forEach(u => {
+                        appTable.innerHTML += `
+                            <tr class="border-b border-slate-700">
+                                <td class="p-2">${u.name}</td>
+                                <td class="p-2 text-amber-400">নতুন শপ রিকোয়েস্ট</td>
+                                <td class="p-2">নাম: ${u.shopName}</td>
+                                <td class="p-2 text-right"><button onclick="approveShop(${u.id})" class="bg-green-600 px-2 py-0.5 rounded text-[10px]">অ্যাপ্রুভ</button></td>
+                            </tr>
+                        `;
+                    });
+                    // পেন্ডিং ভেন্ডর প্রোডাক্ট
+                    products.filter(p => !p.approved).forEach(p => {
+                        appTable.innerHTML += `
+                            <tr class="border-b border-slate-700">
+                                <td class="p-2">${p.shop}</td>
+                                <td class="p-2 text-purple-400">নতুন ভেন্ডর পণ্য</td>
+                                <td class="p-2">${p.name} (৳${p.price} | স্টক: ${p.stock})</td>
+                                <td class="p-2 text-right"><button onclick="approveProduct(${p.id})" class="bg-green-600 px-2 py-0.5 rounded text-[10px]">অ্যাপ্রুভ</button></td>
+                            </tr>
+                        `;
+                    });
+
+                    // অর্ডার ট্র্যাকিং মাস্টার লিস্ট
+                    const oTable = document.getElementById('adminOrdersTable');
+                    oTable.innerHTML = '';
+                    if(orders.length === 0) {
+                        oTable.innerHTML = `<tr><td colspan="6" class="text-center p-4 text-slate-500">কোনো অর্ডার হিস্ট্রি নেই</td></tr>`;
+                    } else {
+                        orders.forEach(o => {
+                            oTable.innerHTML += `
+                                <tr class="border-b border-slate-700">
+                                    <td class="p-2 font-bold">${o.customerName}<br><span class="text-slate-400 text-[10px]">${o.address}</span></td>
+                                    <td class="p-2 text-amber-500 font-semibold">${o.shop}</td>
+                                    <td class="p-2">${o.prodName}<br><span class="text-indigo-400 text-[10px]">${o.color} / Qty: ${o.qty}</span></td>
+                                    <td class="p-2">৳${o.totalBill}<br><span class="text-slate-400 text-[10px]">ডেলিভারি: ৳${o.delivery}</span></td>
+                                    <td class="p-2"><span class="bg-slate-700 text-amber-400 px-2 py-0.5 rounded">${o.status}</span></td>
+                                    <td class="p-2 text-right">
+                                        <select onchange="changeOrderStatus(${o.id}, this.value)" class="bg-slate-700 border text-white p-1 rounded text-[10px]">
+                                            <option value="">সিলেক্ট</option>
+                                            <option value="Approved">Approved</option>
+                                            <option value="Shipped">Shipped</option>
+                                            <option value="Delivered">Delivered</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+                    }
+                }
+            }
+        }
+
+        // ৫. অর্ডার প্রসেসিং ইঞ্জিন (Quantity + Color + Live Calculation)
+        function openOrderModal(productId) {
+            const p = products.find(prod => prod.id === productId);
+            if(!p) return;
+            
+            p.views++; // ভিউড অপশন লগে কাউন্ট বৃদ্ধি
+            activeProductForOrder = p;
+
+            document.getElementById('modalProductName').innerText = p.name;
+            document.getElementById('modalProductShop').innerText = p.shop;
+            document.getElementById('modalProductPrice').innerText = p.price;
+            document.getElementById('orderQuantity').value = 1;
+
+            document.getElementById('orderModal').classList.remove('hidden');
+            calculateTotalBill();
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.add('hidden');
+        }
+
+        function calculateTotalBill() {
+            if(!activeProductForOrder) return;
+            const qty = parseInt(document.getElementById('orderQuantity').value) || 1;
+            const deliveryCharge = parseInt(document.getElementById('deliveryArea').value);
+            const total = (activeProductForOrder.price * qty) + deliveryCharge;
+            document.getElementById('totalBill').innerText = total;
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const addr = document.getElementById('custAddress').value;
+            const qty = parseInt(document.getElementById('orderQuantity').value);
+            const color = document.getElementById('orderColor').value;
+            const delivery = parseInt(document.getElementById('deliveryArea').value);
+            const total = parseInt(document.getElementById('totalBill').innerText);
+
+            const newOrder = {
+                id: Date.now(),
+                customerName: name,
+                phone: phone,
+                address: addr,
+                prodName: activeProductForOrder.name,
+                shop: activeProductForOrder.shop,
+                qty: qty,
+                color: color,
+                delivery: delivery,
+                totalBill: total,
+                status: 'Pending'
+            };
+
+            orders.push(newOrder);
+            alert("আপনার অর্ডারটি সফলভাবে কনফার্ম করতে তথ্যগুলো পূরণ করে সাবমিট করা হয়েছে!");
+            closeOrderModal();
+            renderAll();
+        }
+
+        // ৬. মাল্টি ভেন্ডর দোকান ও প্রোডাক্ট রেজিষ্ট্রেশন
+        function registerShop(e) {
+            e.preventDefault();
+            const sName = document.getElementById('regShopName').value;
+            currentUser.hasShop = true;
+            currentUser.shopName = sName;
+            currentUser.shopApproved = false;
+            alert("দোকান নিবন্ধনের আবেদন এডমিনের কাছে পাঠানো হয়েছে!");
+            renderAll();
+        }
+
+        function vendorAddProduct(e) {
+            e.preventDefault();
+            const pName = document.getElementById('vProdName').value;
+            const pPrice = parseInt(document.getElementById('vProdPrice').value);
+            const pStock = parseInt(document.getElementById('vProdStock').value);
+
+            products.push({
+                id: Date.now(),
+                name: pName,
+                price: pPrice,
+                shop: currentUser.shopName,
+                approved: false, // এডমিন অনুমোদন লাগবে
+                stock: pStock,
+                views: 0
+            });
+
+            alert("পণ্যটি সফলভাবে আপলোড হয়েছে! এডমিন অনুমোদন দিলে মেইন শপে দেখা যাবে।");
+            document.getElementById('vProdName').value = '';
+            document.getElementById('vProdPrice').value = '';
+            document.getElementById('vProdStock').value = '';
+            renderAll();
+        }
+
+        // ৭. এডমিন প্যানেল অপারেশনস (অ্যাপ্রুভাল, টাকা অ্যাড, নোটিফিকেশন, ব্যাকগ্রাউন্ড ও অর্ডার স্ট্যাটাস)
+        function approveShop(userId) {
+            const u = users.find(user => user.id === userId);
+            if(u) {
+                u.shopApproved = true;
+                u.notifications.push(`✅ অভিনন্দন! আপনার শপ '${u.shopName}' এডমিন দ্বারা অনুমোদিত এবং লাইভ হয়েছে।`);
+                renderAll();
+            }
+        }
+
+        function approveProduct(prodId) {
+            const p = products.find(prod => prod.id === prodId);
+            if(p) {
+                p.approved = true;
+                renderAll();
+            }
+        }
+
+        function changeOrderStatus(orderId, newStatus) {
+            if(!newStatus) return;
+            const o = orders.find(order => order.id === orderId);
+            if(o) {
+                o.status = newStatus;
+                
+                // অর্ডার স্ট্যাটাস চেইঞ্জ হলে সেই ভেন্ডর শপ মালিককে অটো নোটিফিকেশন পাঠানো
+                const vendorUser = users.find(u => u.shopName === o.shop);
+                if(vendorUser) {
+                    vendorUser.notifications.push(`📦 আপনার শপের '${o.prodName}' পণ্যটির অর্ডার স্ট্যাটাস পরিবর্তিত হয়ে এখন '${newStatus}' এ আছে।`);
+                }
+                alert(`অর্ডার স্ট্যাটাস সফলভাবে '${newStatus}' এ পরিবর্তন করা হয়েছে!`);
+                renderAll();
+            }
+        }
+
+        function sendAdminNotification(e) {
+            e.preventDefault();
+            const target = document.getElementById('notifTargetUser').value;
+            const msg = document.getElementById('notifAdminMessage').value;
+
+            if(target === 'all') {
+                users.filter(u=>u.role !== 'admin').forEach(u => u.notifications.push(msg));
+            } else {
+                const u = users.find(user => user.id == target);
+                if(u) u.notifications.push(msg);
+            }
+            alert("নোটিফিকেশনটি সফলভাবে ইউজারের প্রোফাইলে পাঠানো হয়েছে!");
+            document.getElementById('notifAdminMessage').value = '';
+            renderAll();
+        }
+
+        function adminAddWalletMoney(e) {
+            e.preventDefault();
+            const target = document.getElementById('walletTargetUser').value;
+            const amount = parseInt(document.getElementById('walletAmount').value);
+
+            const u = users.find(user => user.id == target);
+            if(u) {
+                u.balance += amount;
+                u.notifications.push(`💰 এডমিন আপনার ওয়ালেটে ৳${amount} টাকা যোগ করেছেন। বর্তমান ব্যালেন্স ৳${u.balance}`);
+                alert(`সফলভাবে ৳${amount} টাকা ইউজার ওয়ালেটে যোগ করা হয়েছে!`);
+                document.getElementById('walletAmount').value = '';
+                renderAll();
+            }
+        }
+
+        function adminAddMainProduct(e) {
+            e.preventDefault();
+            const name = document.getElementById('mProdName').value;
+            const price = parseInt(document.getElementById('mProdPrice').value);
+
+            products.push({ id: Date.now(), name: name, price: price, shop: "Main Shop", approved: true, stock: 100, views: 0 });
+            alert("মেইন শপে নতুন প্রোডাক্ট/ক্যাটাগরি যুক্ত হয়েছে!");
+            document.getElementById('mProdName').value = '';
+            document.getElementById('mProdPrice').value = '';
+            renderAll();
+        }
+
+        function changeBg(colorCode) {
+            document.getElementById('siteBackground').style.backgroundColor = colorCode;
+        }
+
+        // ইনিশিয়াল লোড
+        renderAll();
+    </script>
+</body>
+</html>
