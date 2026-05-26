@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>onlinehatdropshop | Dropshipping Platform</title>
+    <title>E-HUB | Dropshipping Platform</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -54,7 +54,7 @@
         </div>
     </nav>
 
-    <header class="bg-gradient-to-tr from-indigo-50/50 via-white to-indigo-50/30 py-12 px-4 border-b border-gray-100">
+    <header class="bg-gradient-to-tr from-indigo-50/40 via-white to-indigo-50/20 py-12 px-4 border-b border-gray-100">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                 <span class="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 font-semibold px-3 py-1 rounded-full text-xs">
@@ -64,7 +64,7 @@
                     বিনা পুঁজিতে <br class="hidden sm:inline"><span class="text-indigo-600">ব্যবসা শুরু করুন</span>
                 </h1>
                 <p class="text-gray-600 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                    হাজার হাজার উদ্যোক্তা আমাদের সাথে ঘরে বসে আয় করছেন। স্টকিং, প্যাকেজিং এবং ডেলিভারি আমরাই সামলাই। আপনি শুধু বিক্রয়ে মনোযোগ দিন।
+                    হাজার হাজার উদ্যোক্তা আমাদের সাথে ঘরে বসে আয় করছেন। ইনভেন্টরি, স্টকিং, প্যাকেজিং এবং ডেলিভারির সব ঝামেলা আমাদের। আপনি শুধু সেলে মনোযোগ দিন।
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 pt-2">
                     <button onclick="openAuthModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2"><i class="fa-solid fa-rocket"></i> জয়েন করুন</button>
@@ -73,12 +73,12 @@
             </div>
             <div class="lg:col-span-5 flex justify-center">
                 <div class="relative max-w-sm w-full bg-white p-4 rounded-3xl shadow-xl border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600" alt="E-hub Workspace" class="rounded-2xl w-full h-64 object-cover">
-                    <div class="absolute -bottom-4 -left-4 bg-white border shadow-lg rounded-2xl p-3 flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600" alt="Dashboard Hub" class="rounded-2xl w-full h-64 object-cover">
+                    <div class="absolute -bottom-4 -left-4 bg-white border border-gray-100 shadow-lg rounded-2xl p-3 flex items-center gap-3">
                         <span class="p-2.5 bg-emerald-100 text-emerald-600 rounded-xl text-lg">💰</span>
                         <div>
-                            <p class="text-[10px] text-gray-400 font-medium">মোট আয়</p>
-                            <p class="text-base font-black text-gray-800">২৫,৪০০ টাকা</p>
+                            <p class="text-[10px] text-gray-400 font-medium">আজকের টপ ড্রপশিপার আয়</p>
+                            <p class="text-base font-black text-gray-800">৳২৫,৪00</p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
             </div>
 
             <div id="vendorAddProductArea" class="bg-white border border-gray-200 p-5 rounded-2xl shadow-sm space-y-3 hidden">
-                <h3 class="font-bold text-gray-800 text-xs flex items-center gap-1.5"><i class="fa-solid fa-box-open text-indigo-600"></i> নতুন প্রোডাক্ট আপলোড করুন</h3>
+                <h3 class="font-bold text-gray-800 text-xs flex items-center gap-1.5"><i class="fa-solid fa-box-open text-indigo-600"></i> নতুন প্রোডাক্ট যোগ করুন</h3>
                 <form onsubmit="vendorAddProduct(event)" class="space-y-2.5 text-xs">
                     <input type="text" id="vProdName" placeholder="প্রোডাক্টের নাম" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                     <div class="grid grid-cols-2 gap-2">
@@ -134,12 +134,13 @@
                         <option value="Solid Formal Shirt">Solid Formal Shirt</option>
                         <option value="Boot Cut Pant">Boot Cut Pant</option>
                         <option value="Gurkha Pants">Gurkha Pants</option>
+                        <option value="Polo T-shirt">Polo T-shirt</option>
                     </select>
                     <div>
-                        <label class="block text-[10px] text-gray-400 mb-1">প্রোডাক্ট ইমেজ কাভার</label>
+                        <label class="block text-[10px] text-gray-400 mb-1">প্রোডাক্ট ইমেজ ফাইল</label>
                         <input type="file" id="vProdImg" accept="image/*" class="w-full text-[11px]" required>
                     </div>
-                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold p-2.5 rounded-xl hover:bg-indigo-700 transition">ক্যাটালগে পাবলিশ করুন</button>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold p-2.5 rounded-xl hover:bg-indigo-700 transition">ক্যাটালগ কিউতে পাঠান</button>
                 </form>
             </div>
         </div>
@@ -148,33 +149,42 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 gap-2">
                 <div>
                     <h2 class="text-xl font-black text-amber-400 tracking-tight">⚙️ অ্যাডমিন কন্ট্রোল প্যানেল</h2>
-                    <p class="text-xs text-slate-400">সিস্টেম কনসোল এবং শপ এডিটর ভিউ</p>
+                    <p class="text-xs text-slate-400">মাস্টার ডাটা এনভায়রনমেন্ট ওভারভিউ</p>
                 </div>
                 <button onclick="logout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-2 rounded-xl transition">প্যানেল থেকে এক্সিট</button>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
-                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">অ্যাক্টিভ ইউজার</p><p id="admTotalUsers" class="text-base font-bold text-white">0</p></div>
+                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">একটিভ ইউজার</p><p id="admTotalUsers" class="text-base font-bold text-white">0</p></div>
                 <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">টোটাল অর্ডার</p><p id="admTotalOrders" class="text-base font-bold text-white">0</p></div>
                 <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">চলতি শপ</p><p id="admTotalShops" class="text-base font-bold text-white">0</p></div>
                 <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400 uppercase font-bold">টোটাল ভিউ</p><p id="admTotalViewed" class="text-base font-bold text-white">0</p></div>
             </div>
 
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
-                <h3 class="font-bold text-xs text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-store mr-1"></i> একটিভ অ্যাফিলিয়েট স্টোরসমূহ (Admin Edit View)</h3>
+                <h3 class="font-bold text-xs text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-store mr-1"></i> একটিভ অ্যাফিলিয়েট স্টোরসমূহ (Admin Control Panel View)</h3>
                 <div id="featuredShopsContainer" class="grid grid-cols-1 gap-2.5 text-slate-800">
                     </div>
             </div>
 
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
+                <h3 class="text-xs font-bold text-slate-300 uppercase">💰 ওয়ালেট ব্যালেন্স টোকেন ইনজেকশন</h3>
+                <form onsubmit="adminAddWalletMoney(event)" class="grid grid-cols-3 gap-2 text-xs">
+                    <select id="walletTargetUser" class="col-span-2 bg-slate-700 p-2 rounded text-white focus:outline-none"></select>
+                    <input type="number" id="walletAmount" placeholder="টাকা" class="bg-slate-700 p-2 rounded text-white focus:outline-none" required>
+                    <button type="submit" class="col-span-3 bg-amber-500 text-slate-950 font-bold p-2 rounded hover:bg-amber-600 transition">ব্যালেন্স ক্রেডিট করুন</button>
+                </form>
+            </div>
+
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
-                <h3 class="text-xs font-bold text-amber-400 uppercase">📥 অ্যাপ্রুভাল পেন্ডিং কিউ</h3>
+                <h3 class="text-xs font-bold text-amber-400 uppercase">📥 পেন্ডিং এপ্রুভাল রিকোয়েস্ট কিউ</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs"><tbody id="adminApprovalsTable"></tbody></table>
                 </div>
             </div>
 
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
-                <h3 class="text-xs font-bold text-indigo-400 uppercase">📦 অর্ডার ট্র্যাকিং ডাটা</h3>
+                <h3 class="text-xs font-bold text-indigo-400 uppercase">📦 পাইপলাইন অর্ডার ট্র্যাকিং ডাটা</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-[11px]">
                         <thead><tr class="text-slate-400 border-b border-slate-700"><th class="p-1">ID</th><th class="p-1">কাস্টমার</th><th class="p-1">শপ নোড</th><th class="p-1">বিল</th><th class="p-1">স্টেট</th></tr></thead>
@@ -212,7 +222,7 @@
         </div>
     </section>
 
-    <div id="authModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 hidden animate-fade-in">
+    <div id="authModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 hidden">
         <div class="bg-white max-w-sm w-full p-6 rounded-2xl shadow-xl space-y-4 relative">
             <button onclick="closeAuthModal()" class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 font-bold text-lg">✕</button>
             <h3 class="text-lg font-black text-gray-800">🔐 পোর্টাল লগইন</h3>
@@ -256,7 +266,7 @@
 
             <div class="space-y-3 text-xs flex flex-col justify-between">
                 <div class="space-y-2">
-                    <h4 class="font-bold text-gray-700 border-b pb-1">অর্ডার ডেলিভারি ইনফো</h4>
+                    <h4 class="font-bold text-gray-700 border-b pb-1">ডেলিভারি নেটওয়ার্ক ইনফরমেশন</h4>
                     <input type="text" id="custName" placeholder="কাস্টমারের নাম" class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                     <input type="text" id="custPhone" placeholder="কাস্টমারের মোবাইল নম্বর" class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                     <input type="text" id="custAddress" placeholder="পূর্ণ ডেলিভারি ঠিকানা" class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
@@ -264,7 +274,7 @@
                     <div class="grid grid-cols-2 gap-2">
                         <div>
                             <label class="text-[10px] text-gray-400">পরিমাণ</label>
-                            <input type="number" id="orderQuantity" min="1" value="1" oninput="calculateTotalBill()" class="w-full p-1.5 border border-gray-200 rounded-lg">
+                            <input type="number" id="orderQuantity" min="1" value="1" oninput="calculateTotalBill()" class="w-full p-1.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500">
                         </div>
                         <div>
                             <label class="text-[10px] text-gray-400">সাইজ/ভেরিয়েন্ট</label>
@@ -277,7 +287,7 @@
                     </div>
 
                     <div>
-                        <label class="text-[10px] text-gray-400">ডেলিভারি এরিয়া</label>
+                        <label class="text-[10px] text-gray-400">শিপিং জোন</label>
                         <select id="deliveryArea" onchange="calculateTotalBill()" class="w-full p-2 border border-gray-200 rounded-lg cursor-pointer">
                             <option value="60">ঢাকার ভিতরে (৳60)</option>
                             <option value="120">ঢাকার বাইরে (৳120)</option>
@@ -290,13 +300,14 @@
                     <span class="text-indigo-600 font-black text-base">৳<span id="totalBill">0</span></span>
                 </div>
                 
-                <button type="submit" class="w-full bg-emerald-600 text-white font-bold p-2.5 rounded-xl hover:bg-emerald-700 shadow transition">অর্ডার সাবমিট করুন</button>
+                <button type="submit" class="w-full bg-emerald-600 text-white font-bold p-2.5 rounded-xl hover:bg-emerald-700 shadow transition">অর্ডার প্লেস করুন</button>
             </div>
         </form>
     </div>
 
+
     <script>
-        // MOCK DATABASE INITIAL SETS
+        // MOCK MASTER CORE DATABASE ENTITIES
         let defaultUsers = [
             { id: 100, name: "System Admin", email: "admin@gmail.com", password: "123", role: "admin", status: "Active", balance: 9999, hasShop: false, shopName: "", shopApproved: false, notifications: [] },
             { id: 1, name: "Arif Khan", email: "arif@gmail.com", password: "123", role: "customer", status: "Active", balance: 1500, hasShop: true, shopName: "Apex Apparel", shopApproved: true, notifications: ["E-HUB নেটওয়ার্কে আপনাকে স্বাগতম।"], phone: "01700000000", address: "Dhaka" },
@@ -304,16 +315,16 @@
         ];
 
         let defaultProducts = [
-            { id: 501, name: "Premium Drop Shoulder T-shirt Heavyweight Cotton Blend", price: 450, category: "Drop Shoulder T-shirt", shop: "Apex Apparel", approved: true, stock: 25, views: 180, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" },
-            { id: 502, name: "Solid Formal Shirt Slim Fit Long Sleeve for Office", price: 850, category: "Solid Formal Shirt", shop: "Trend Studio", approved: true, stock: 40, views: 95, img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" },
-            { id: 503, name: "Relaxed Fit Cotton Gurkha Pants Traditional Side Buckles", price: 1200, category: "Gurkha Pants", shop: "Apex Apparel", approved: true, stock: 15, views: 240, img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500" }
+            { id: 501, name: "Premium Drop Shoulder T-shirt Heavyweight Cotton Blend", price: 450, category: "Drop Shoulder T-shirt", shop: "Apex Apparel", approved: true, stock: 25, views: 182, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" },
+            { id: 502, name: "Solid Formal Shirt Slim Fit Long Sleeve for Office", price: 850, category: "Solid Formal Shirt", shop: "Trend Studio", approved: true, stock: 40, views: 96, img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" },
+            { id: 503, name: "Relaxed Fit Cotton Gurkha Pants Traditional Side Buckles", price: 1200, category: "Gurkha Pants", shop: "Apex Apparel", approved: true, stock: 15, views: 243, img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500" }
         ];
 
         let defaultOrders = [
             { id: 1001, customerName: "Rakib Al Hasan", phone: "01911111111", address: "Mirpur, Dhaka", prodName: "Premium Drop Shoulder T-shirt", shop: "Apex Apparel", qty: 1, color: "M", delivery: 60, totalBill: 510, status: "Pending" }
         ];
 
-        // LOCAL STORAGE SYNCHRONIZER (ইউজার যেন ব্রাউজার রিফ্রেশ দিলেও লগইন অবস্থায় থাকে)
+        // LOCAL STORAGE SYNCHRONIZER Engine (একবার লগইন করলে ইউজার রিফ্রেশেও লগইন থাকবে)
         let users = JSON.parse(localStorage.getItem('ehub_users')) || defaultUsers;
         let products = JSON.parse(localStorage.getItem('ehub_products')) || defaultProducts;
         let orders = JSON.parse(localStorage.getItem('ehub_orders')) || defaultOrders;
@@ -326,7 +337,7 @@
             localStorage.setItem('ehub_session', JSON.stringify(currentUser));
         }
 
-        // AUTH MODAL LOGICS
+        // CONTROL POPUP MODAL FUNCTIONALS
         function openAuthModal() { document.getElementById('authModal').classList.remove('hidden'); }
         function closeAuthModal() { document.getElementById('authModal').classList.add('hidden'); }
         
@@ -354,7 +365,6 @@
 
             const foundUser = users.find(u => u.email === em && u.password === ps);
             if(!foundUser) { alert("ভুল ইমেইল অথবা পাসওয়ার্ড দিয়েছেন।"); return; }
-            if(foundUser.status === 'Pending') { alert("আপনার অ্যাকাউন্টটি অ্যাডমিন অ্যাপ্রুভালের জন্য অপেক্ষমাণ।"); return; }
 
             currentUser = foundUser;
             syncDB();
@@ -375,7 +385,7 @@
                 role: 'customer', status: 'Active', balance: 0, hasShop: false, shopName: "", shopApproved: false, notifications: []
             });
             syncDB();
-            alert("রেজিস্ট্রেশন সম্পন্ন হয়েছে। এখন লগইন করুন।");
+            alert("রেজিস্ট্রেশন সফল! অনুগ্রহ করে তৈরি করা একাউন্ট দিয়ে লগইন করুন।");
             e.target.reset();
             switchAuthTab('login');
         }
@@ -397,7 +407,7 @@
         function updateUIForSession() {
             if(!currentUser) return;
             
-            const stateString = `<span class="text-xs font-bold bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-xl border border-indigo-100 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> ${currentUser.name} (${currentUser.role === 'admin' ? 'অ্যাডমিন' : 'ইউজার'})</span>`;
+            const stateString = `<span class="text-xs font-bold bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-xl border border-indigo-100 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> ${currentUser.name} (${currentUser.role === 'admin' ? 'অ্যাডমিন' : 'ইউজার'})</span>`;
             
             document.getElementById('navAuthSection').innerHTML = `
                 <div class="flex flex-col sm:flex-row items-center justify-center md:justify-end gap-2">
@@ -416,12 +426,12 @@
             }
         }
 
-        // RENDER Catalog & Control Views
+        // RENDER CENTRAL ROUTING FUNCTION INTERFACES
         function renderAll() {
             const searchQuery = document.getElementById('globalSearchInput').value.toLowerCase();
             const categoryQuery = document.getElementById('categoryFilter').value;
 
-            // 1. Products Grid Processor
+            // 1. Process Marketplace Inventory Grid
             const pGrid = document.getElementById('productsGrid');
             pGrid.innerHTML = '';
             
@@ -437,7 +447,7 @@
             document.getElementById('productCountTag').innerText = `${filteredProducts.length}টি প্রোডাক্ট লিস্টিং`;
 
             if(filteredProducts.length === 0) {
-                pGrid.innerHTML = `<div class="col-span-full p-8 text-center text-gray-400 text-sm bg-white rounded-2xl border border-dashed border-gray-200">কোনো প্রোডাক্ট পাওয়া যায়নি।</div>`;
+                pGrid.innerHTML = `<div class="col-span-full p-8 text-center text-gray-400 text-sm bg-white rounded-2xl border border-dashed border-gray-200">কোনো ম্যাচিং প্রোডাক্ট পাওয়া যায়নি।</div>`;
             }
 
             filteredProducts.forEach(p => {
@@ -445,7 +455,7 @@
                     <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between group" onclick="openOrderModal(${p.id})">
                         <div class="overflow-hidden bg-gray-50 relative">
                             <img src="${p.img}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-lg shadow-sm border border-gray-100"><i class="fa-solid fa-store text-indigo-500 text-[9px] mr-0.5"></i> ${p.shop}</span>
+                            <span class="absolute top-2 left-2 bg-white/95 backdrop-blur-sm text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-lg shadow-sm border border-gray-100"><i class="fa-solid fa-store text-indigo-500 text-[9px] mr-0.5"></i> ${p.shop}</span>
                         </div>
                         <div class="p-4 space-y-2 flex-1 flex flex-col justify-between">
                             <div>
@@ -460,7 +470,7 @@
                     </div>`;
             });
 
-            // 2. Active Featured Marketplace Stores Rendering (ADMIN VIEW)
+            // 2. Render Active Affiliate Stores Registry (ONLY INSIDE ADMIN VIEW)
             const shopGrid = document.getElementById('featuredShopsContainer');
             shopGrid.innerHTML = '';
             let approvedShops = users.filter(u => u.hasShop && u.shopApproved);
@@ -480,7 +490,7 @@
                 });
             }
 
-            // 3. User Sidebar Control Builder
+            // 3. User Sidebar Dynamic Rendering Components
             if(currentUser && currentUser.role !== 'admin') {
                 document.getElementById('dashCustomerName').innerText = currentUser.name;
                 document.getElementById('dashCustomerEmail').innerText = currentUser.email;
@@ -509,14 +519,20 @@
                 }
             }
 
-            // 4. Admin Management Operations Data Matrix Binder
+            // 4. Admin Management Controls Processing Interfaces
             if(currentUser && currentUser.role === 'admin') {
                 document.getElementById('admTotalUsers').innerText = users.filter(u=>u.role !== 'admin').length + " জন ইউজার";
                 document.getElementById('admTotalOrders').innerText = orders.length + "টি ইনভয়েস";
                 document.getElementById('admTotalShops').innerText = users.filter(u=>u.hasShop && u.shopApproved).length + "টি সক্রিয় শপ";
                 document.getElementById('admTotalViewed').innerText = products.reduce((sum, p)=>sum+p.views, 0) + " বার হিট";
 
-                // Pending Compliance Verification Queue
+                const wT = document.getElementById('walletTargetUser');
+                wT.innerHTML = '';
+                users.filter(u=>u.role !== 'admin').forEach(u => {
+                    wT.innerHTML += `<option value="${u.id}">${u.name} (৳${u.balance})</option>`;
+                });
+
+                // Pending Signups & Products Approval Table Mapping
                 const pSignupsTable = document.getElementById('adminApprovalsTable');
                 pSignupsTable.innerHTML = '';
                 
@@ -543,7 +559,7 @@
                     pSignupsTable.innerHTML = `<tr><td class="p-2 text-slate-500 text-center text-xs italic">কোনো কাজ পেন্ডিং নেই।</td></tr>`;
                 }
 
-                // Global Drop-Ship Logistics Pipeline Track
+                // Global Logistics Orders Track
                 const oTable = document.getElementById('adminOrdersTable');
                 oTable.innerHTML = '';
                 orders.forEach(o => {
@@ -559,7 +575,7 @@
             }
         }
 
-        // BACKEND CONTROLLERS
+        // BACKEND EXECUTIONS & WORKFLOW ACTIONS
         function approveShop(userId) {
             const u = users.find(user => user.id === userId);
             if(u) { u.shopApproved = true; u.notifications.push(`✅ আপনার '${u.shopName}' শপটি অনুমোদন করা হয়েছে!`); syncDB(); alert("শপ অনুমোদন করা হয়েছে।"); renderAll(); }
@@ -572,8 +588,16 @@
             const u = users.find(user => user.id === userId);
             if(u) { if(confirm(`নিশ্চিত তো? ${u.shopName} শপটি বাতিল করা হবে।`)) { u.hasShop = false; u.shopApproved = false; u.shopName = ""; syncDB(); alert("শপ রিমুভ করা হয়েছে।"); renderAll(); } }
         }
+        function adminAddWalletMoney(e) {
+            e.preventDefault(); 
+            const target = document.getElementById('walletTargetUser').value;
+            const amt = parseInt(document.getElementById('walletAmount').value); 
+            const u = users.find(user => user.id == target);
+            if(u) { u.balance += amt; u.notifications.push(`💰 ব্যালেন্স আপডেট: অ্যাডমিন আপনার ওয়ালেটে ৳${amt} ক্রেডিট করেছেন।`); syncDB(); alert("ব্যালেন্স টোকেন ক্রেডিট সম্পন্ন।"); e.target.reset(); renderAll(); }
+        }
 
-        // PRODUCT ORDER MODAL SEQUENCE
+        // PRODUCT DISPATCH & INTERACTION MANAGEMENT
+        let activeProductForOrder = null;
         function openOrderModal(productId) {
             const p = products.find(prod => prod.id === productId); if(!p) return;
             p.views++;
@@ -617,13 +641,12 @@
             renderAll();
         }
 
-        // VENDOR UTILITIES
+        // VENDOR PIPELINE ENGINE ACTIONS
         function registerShop(e) {
             e.preventDefault(); currentUser.hasShop = true;
             currentUser.shopName = document.getElementById('regShopName').value;
             currentUser.shopApproved = false; 
             
-            // Sync current user update into main users listing reference
             const uIndex = users.findIndex(u=>u.id === currentUser.id);
             if(uIndex !== -1) users[uIndex] = currentUser;
             
@@ -659,7 +682,7 @@
             }
         }
 
-        // INITIAL ENGINE COUPLING RUN TIME
+        // SYSTEM STARTUP OPERATION SEQUENCING
         updateUIForSession();
         renderAll();
     </script>
