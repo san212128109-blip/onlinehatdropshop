@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>onlinehatdropshop | E-HUB Dropshipping Platform</title>
+    <title>onlinehatdropshop | Premium Dropshipping Platform</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -12,6 +12,21 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;  
             overflow: hidden;
+        }
+        /* Custom Scrollbar for modern look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
@@ -58,16 +73,17 @@
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                 <span class="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 font-semibold px-3 py-1 rounded-full text-xs">
-                    <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span> onlinehatdropshop এ আপনাকে স্বাগতম
+                    <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span> Welcome to onlinehatdropshop Ecosystem
                 </span>
                 <h1 class="text-4xl sm:text-5xl font-black text-slate-900 leading-tight">
-                    বিনা পুঁজিতে <br class="hidden sm:inline"><span class="text-indigo-600">ব্যবসা শুরু করুন</span>
+                    বিনা পুঁজিতে ই-কমার্স <br class="hidden sm:inline"><span class="text-indigo-600">ব্যবসা শুরু করুন</span>
                 </h1>
                 <p class="text-gray-600 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
                     হাজার হাজার উদ্যোক্তা আমাদের সাথে ঘরে বসে আয় করছেন। ইনভেন্টরি, স্টকিং, প্যাকেজিং এবং ডেলিভারির সব ঝামেলা আমাদের। আপনি শুধু সেলে মনোযোগ দিন।
                 </p>
-                <div class="text-xs text-gray-500 font-medium">
-                    <i class="fa-solid fa-user-tie text-indigo-600 mr-1"></i> CEO & Co-Founder: <span class="font-bold text-slate-800">Nafis</span>
+                <div class="inline-flex items-center gap-2 bg-slate-900 text-white text-xs px-4 py-2 rounded-xl shadow-sm">
+                    <i class="fa-solid fa-user-tie text-amber-400"></i> 
+                    <span>CEO & Co-Founder: <b class="text-amber-400">Nafis</b></span>
                 </div>
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 pt-2">
                     <button onclick="openAuthModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2"><i class="fa-solid fa-rocket"></i> জয়েন করুন</button>
@@ -104,11 +120,11 @@
         <div id="userDashboardSidebar" class="space-y-6 hidden">
             <div class="bg-white border border-gray-200 p-5 rounded-2xl shadow-sm space-y-4">
                 <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-                    <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5"><i class="fa-regular fa-circle-user text-indigo-600 text-base"></i> আমার অ্যাকাউন্ট</h3>
+                    <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5"><i class="fa-regular fa-circle-user text-indigo-600 text-base"></i> আমার ড্যাশবোর্ড</h3>
                     <button onclick="logout()" class="text-xs text-red-500 font-bold hover:underline transition">লগআউট</button>
                 </div>
                 <div class="text-xs space-y-2">
-                    <p class="text-gray-500">নাম: <span id="dashCustomerName" class="font-bold text-gray-800"></span></p>
+                    <p class="text-gray-500">ইউজার নাম: <span id="dashCustomerName" class="font-bold text-gray-800"></span></p>
                     <p class="text-gray-500">ইমেইল: <span id="dashCustomerEmail" class="text-gray-700 font-medium"></span></p>
                     <p class="text-gray-500">ওয়ালেট ব্যালেন্স: <span class="text-emerald-600 font-black text-sm">৳<span id="dashWalletBalance">0</span></span></p>
                 </div>
@@ -119,7 +135,7 @@
                 </div>
 
                 <div class="border-t border-gray-100 pt-4 space-y-2">
-                    <h4 class="font-bold text-xs text-gray-700">🔔 সিস্টেম নোটিফিকেশন</h4>
+                    <h4 class="font-bold text-xs text-gray-700">🔔 আপডেট ও নোটিফিকেশন</h4>
                     <div id="customerNotifications" class="text-[11px] max-h-32 overflow-y-auto space-y-1.5"></div>
                 </div>
             </div>
@@ -180,14 +196,14 @@
             </div>
 
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
-                <h3 class="text-xs font-bold text-amber-400 uppercase">📥 পেন্ডিং এপ্রuভাল রিকোয়েস্ট</h3>
+                <h3 class="text-xs font-bold text-amber-400 uppercase">📥 পেন্ডিং এপ্রুভাল রিকোয়েস্ট</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs"><tbody id="adminApprovalsTable"></tbody></table>
                 </div>
             </div>
 
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
-                <h3 class="text-xs font-bold text-indigo-400 uppercase">📦 পাইপলাইন অর্ডার ট্র্যাকিং ডাটা</h3>
+                <h3 class="text-xs font-bold text-indigo-400 uppercase">📦 পাইপライン অর্ডার ট্র্যাকিং ডাটা</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-[11px]">
                         <thead><tr class="text-slate-400 border-b border-slate-700"><th class="p-1">ID</th><th class="p-1">কাস্টমার</th><th class="p-1">শপ নোড</th><th class="p-1">বিল</th><th class="p-1">স্টেট</th></tr></thead>
@@ -209,7 +225,7 @@
                 <div class="bg-slate-50 p-6 rounded-2xl border border-gray-100 space-y-3">
                     <span class="p-3 bg-indigo-100 text-indigo-600 rounded-xl inline-block text-lg">📦</span>
                     <h3 class="font-bold text-sm text-slate-800">ইউনিক প্রোডাক্ট কালেকশন</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">আমাদের কাছে রয়েছে বাছাইকৃত ও ট্রেন্ডি ইউনিক প্রোডাক্টের সমাহার, যা আপনি অন্য কোথাও সহজে পাবেন না। গুণগত মান, আধুনিক ডিজাইন ও সাশ্রয়ী দামের সমন্বয়ে প্রতিটি প্রোডাক্ট আপনার জন্য বিশেষভাবে নির্বাচিত।</p>
+                    <p class="text-xs text-gray-500 leading-relaxed">আমাদের কাছে রয়েছে বাছাইকৃত ও ট্রেন্ডি ইউনিক প্রোডাক্টের সমাহার, যা আপনি অন্য কোথাও সহজে পাবেন না। গুণগত মান, আধুনিক ডিজাইন ও সাস্ময়ি দামের সমন্বয়ে প্রতিটি প্রোডাক্ট আপনার জন্য বিশেষভাবে নির্বাচিত।</p>
                 </div>
                 <div class="bg-slate-50 p-6 rounded-2xl border border-gray-100 space-y-3">
                     <span class="p-3 bg-blue-100 text-blue-600 rounded-xl inline-block text-lg">🚚</span>
@@ -238,7 +254,7 @@
             <form id="loginForm" onsubmit="handleLoginSubmit(event)" class="space-y-3 text-xs">
                 <div>
                     <label class="block text-gray-500 mb-1">ইমেইল এড্রেস</label>
-                    <input type="email" id="loginEmail" placeholder="nafis@gmail.com অথবা ইউজার ইমেইল" class="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" required>
+                    <input type="email" id="loginEmail" placeholder="nafis@gmail.com বা আপনার রেজিস্টার্ড মেইল" class="w-full p-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none" required>
                 </div>
                 <div>
                     <label class="block text-gray-500 mb-1">পাসওয়ার্ড</label>
@@ -310,24 +326,24 @@
 
 
     <script>
-        // MOCK MASTER CORE DATABASE ENTITIES (Nafis & onlinehatdropshop Added as Default Admin)
+        // MOCK STATE DATA DEPLOYMENT (A to Z Architecture Root Initialization)
         let defaultUsers = [
-            { id: 100, name: "Nafis (CEO)", email: "nafis@gmail.com", password: "123", role: "admin", status: "Active", balance: 50000, hasShop: true, shopName: "onlinehatdropshop", shopApproved: true, notifications: [] },
-            { id: 1, name: "Arif Khan", email: "arif@gmail.com", password: "123", role: "customer", status: "Active", balance: 1500, hasShop: true, shopName: "Apex Apparel", shopApproved: true, notifications: ["onlinehatdropshop নেটওয়ার্কে স্বাগতম।"], phone: "01700000000", address: "Dhaka" },
+            { id: 100, name: "Nafis", email: "nafis@gmail.com", password: "123", role: "admin", status: "Active", balance: 50000, hasShop: true, shopName: "onlinehatdropshop", shopApproved: true, notifications: [] },
+            { id: 1, name: "Arif Khan", email: "arif@gmail.com", password: "123", role: "customer", status: "Active", balance: 1500, hasShop: true, shopName: "Apex Apparel", shopApproved: true, notifications: ["Welcome back to database framework."], phone: "01700000000", address: "Dhaka" },
             { id: 2, name: "Sadia Rahman", email: "sadia@gmail.com", password: "123", role: "customer", status: "Active", balance: 800, hasShop: true, shopName: "Trend Studio", shopApproved: true, notifications: [], phone: "01899999999", address: "Chittagong" }
         ];
 
         let defaultProducts = [
-            { id: 501, name: "Premium Drop Shoulder T-shirt Heavyweight Cotton Blend", price: 450, category: "Drop Shoulder T-shirt", shop: "onlinehatdropshop", approved: true, stock: 150, views: 342, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" },
-            { id: 502, name: "Solid Formal Shirt Slim Fit Long Sleeve for Office", price: 850, category: "Solid Formal Shirt", shop: "onlinehatdropshop", approved: true, stock: 90, views: 196, img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" },
-            { id: 503, name: "Relaxed Fit Cotton Gurkha Pants Traditional Side Buckles", price: 1200, category: "Gurkha Pants", shop: "Trend Studio", approved: true, stock: 15, views: 243, img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500" }
+            { id: 501, name: "Premium Drop Shoulder T-shirt Heavyweight Cotton Blend", price: 450, category: "Drop Shoulder T-shirt", shop: "onlinehatdropshop", approved: true, stock: 120, views: 564, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" },
+            { id: 502, name: "Solid Formal Shirt Slim Fit Long Sleeve for Office", price: 850, category: "Solid Formal Shirt", shop: "onlinehatdropshop", approved: true, stock: 95, views: 243, img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" },
+            { id: 503, name: "Relaxed Fit Cotton Gurkha Pants Traditional Side Buckles", price: 1200, category: "Gurkha Pants", shop: "Trend Studio", approved: true, stock: 22, views: 189, img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500" }
         ];
 
         let defaultOrders = [
             { id: 1001, customerName: "Rakib Al Hasan", phone: "01911111111", address: "Mirpur, Dhaka", prodName: "Premium Drop Shoulder T-shirt", shop: "onlinehatdropshop", qty: 1, color: "M", delivery: 60, totalBill: 510, status: "Pending" }
         ];
 
-        // LOCAL STORAGE SYNCHRONIZER Engine
+        // ENGINE DATA COMPLIANCE INTEGRITY
         let users = JSON.parse(localStorage.getItem('ehub_users')) || defaultUsers;
         let products = JSON.parse(localStorage.getItem('ehub_products')) || defaultProducts;
         let orders = JSON.parse(localStorage.getItem('ehub_orders')) || defaultOrders;
@@ -340,11 +356,10 @@
             localStorage.setItem('ehub_session', JSON.stringify(currentUser));
         }
 
-        // CONTROL POPUP MODAL FUNCTIONALS
+        // AUTHENTICATION VISIBILITY UTILS
         function openAuthModal() { document.getElementById('authModal').classList.remove('hidden'); }
         function closeAuthModal() { document.getElementById('authModal').classList.add('hidden'); }
         
-        // Tab switching node logic
         function switchAuthTab(type) {
             const loginF = document.getElementById('loginForm');
             const signupF = document.getElementById('signupForm');
@@ -372,7 +387,7 @@
 
             currentUser = foundUser;
             syncDB();
-            alert(`স্বাগতম, ${currentUser.name}! সেশন চালু হয়েছে।`);
+            alert(`স্বাগতম, ${currentUser.name}! লগইন সেশন চালু হয়েছে।`);
             closeAuthModal();
             updateUIForSession();
             renderAll();
@@ -389,7 +404,7 @@
                 role: 'customer', status: 'Active', balance: 0, hasShop: false, shopName: "", shopApproved: false, notifications: []
             });
             syncDB();
-            alert("রেজিস্ট্রেশন সফল! অনুগ্রহ করে তৈরি করা একাউন্ট দিয়ে লগইন করুন।");
+            alert("রেজিস্ট্রেশন সম্পূর্ণ হয়েছে! তৈরি করা অ্যাকাউন্ট দিয়ে লগইন করুন।");
             e.target.reset();
             switchAuthTab('login');
         }
@@ -411,7 +426,7 @@
         function updateUIForSession() {
             if(!currentUser) return;
             
-            const stateString = `<span class="text-xs font-bold bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-xl border border-indigo-100 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> ${currentUser.name} (${currentUser.role === 'admin' ? 'CEO / Admin' : 'ইউজার'})</span>`;
+            const stateString = `<span class="text-xs font-bold bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-xl border border-indigo-100 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> ${currentUser.name} (${currentUser.role === 'admin' ? 'CEO / Master Admin' : 'রিসেলার'})</span>`;
             
             document.getElementById('navAuthSection').innerHTML = `
                 <div class="flex flex-col sm:flex-row items-center justify-center md:justify-end gap-2">
@@ -430,12 +445,12 @@
             }
         }
 
-        // RENDER CENTRAL ROUTING FUNCTION INTERFACES
+        // MASTER CENTRAL RENDERING DATA LAYER CONTROL
         function renderAll() {
             const searchQuery = document.getElementById('globalSearchInput').value.toLowerCase();
             const categoryQuery = document.getElementById('categoryFilter').value;
 
-            // 1. Process Marketplace Inventory Grid
+            // 1. Core Marketplace Grid Process
             const pGrid = document.getElementById('productsGrid');
             pGrid.innerHTML = '';
             
@@ -474,7 +489,7 @@
                     </div>`;
             });
 
-            // 2. Render Active Affiliate Stores Registry (ONLY INSIDE ADMIN VIEW)
+            // 2. Active Registered Shop Array Rendering (ONLY INSIDE ADMIN VIEWPANEL)
             const shopGrid = document.getElementById('featuredShopsContainer');
             shopGrid.innerHTML = '';
             let approvedShops = users.filter(u => u.hasShop && u.shopApproved);
@@ -489,12 +504,12 @@
                                 <p class="font-bold text-xs text-amber-300">🏪 ${u.shopName}</p>
                                 <p class="text-[10px] text-slate-400">প্রোপ্রাইটর: ${u.name}</p>
                             </div>
-                            <button onclick="deleteShopDirectByAdmin(${u.id})" class="text-[10px] bg-red-500/20 text-red-400 px-2 py-1 rounded-lg font-bold hover:bg-red-500 hover:text-white transition">শপ রিমuভ</button>
+                            <button onclick="deleteShopDirectByAdmin(${u.id})" class="text-[10px] bg-red-500/20 text-red-400 px-2 py-1 rounded-lg font-bold hover:bg-red-500 hover:text-white transition">শপ রিমুভ</button>
                         </div>`;
                 });
             }
 
-            // 3. User Sidebar Dynamic Rendering Components
+            // 3. Reseller Dashboard Context Setup
             if(currentUser && currentUser.role !== 'admin') {
                 document.getElementById('dashCustomerName').innerText = currentUser.name;
                 document.getElementById('dashCustomerEmail').innerText = currentUser.email;
@@ -523,7 +538,7 @@
                 }
             }
 
-            // 4. Admin Management Controls Processing Interfaces
+            // 4. Admin Management Dashboard Engine Parsing
             if(currentUser && currentUser.role === 'admin') {
                 document.getElementById('admTotalUsers').innerText = users.filter(u=>u.role !== 'admin').length + " জন ইউজার";
                 document.getElementById('admTotalOrders').innerText = orders.length + "টি ইনভয়েস";
@@ -536,7 +551,7 @@
                     wT.innerHTML += `<option value="${u.id}">${u.name} (৳${u.balance})</option>`;
                 });
 
-                // Pending Signups & Products Approval Table Mapping
+                // Approval Validation Queues Tracking Mapping
                 const pSignupsTable = document.getElementById('adminApprovalsTable');
                 pSignupsTable.innerHTML = '';
                 
@@ -546,7 +561,7 @@
                 pendingShops.forEach(u => {
                     pSignupsTable.innerHTML += `
                         <tr class="border-b border-slate-800 text-xs text-slate-300">
-                            <td class="p-2 text-amber-400">শপ আবেদন: '${u.shopName}' (${u.name})</td>
+                            <td class="p-2 text-amber-400">শপ ভেরিফিকেশন: '${u.shopName}' (${u.name})</td>
                             <td class="p-2 text-right"><button onclick="approveShop(${u.id})" class="bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px]">অ্যাপ্রুভ</button></td>
                         </tr>`;
                 });
@@ -554,7 +569,7 @@
                 pendingProducts.forEach(p => {
                     pSignupsTable.innerHTML += `
                         <tr class="border-b border-slate-800 text-xs text-slate-300">
-                            <td class="p-2 text-indigo-300">প্রোডাক্ট অনুমোদন: ${p.name} (${p.shop})</td>
+                            <td class="p-2 text-indigo-300">প্রোডাক্ট অ্যাপ্রুভাল: ${p.name} (${p.shop})</td>
                             <td class="p-2 text-right"><button onclick="approveProduct(${p.id})" class="bg-indigo-600 font-bold px-2 py-0.5 rounded text-white text-[10px]">পাবলিশ</button></td>
                         </tr>`;
                 });
@@ -563,7 +578,7 @@
                     pSignupsTable.innerHTML = `<tr><td class="p-2 text-slate-500 text-center text-xs italic">কোনো কাজ পেন্ডিং নেই।</td></tr>`;
                 }
 
-                // Global Logistics Orders Track
+                // Global Logistics Orders Data Table Map
                 const oTable = document.getElementById('adminOrdersTable');
                 oTable.innerHTML = '';
                 orders.forEach(o => {
@@ -579,7 +594,7 @@
             }
         }
 
-        // BACKEND EXECUTIONS & WORKFLOW ACTIONS
+        // BACKEND CONSOLE EXECUTIONS & STRUCTURAL UTILS
         function approveShop(userId) {
             const u = users.find(user => user.id === userId);
             if(u) { u.shopApproved = true; u.notifications.push(`✅ আপনার '${u.shopName}' শপটি অনুমোদন করা হয়েছে!`); syncDB(); alert("শপ অনুমোদন করা হয়েছে।"); renderAll(); }
@@ -600,7 +615,7 @@
             if(u) { u.balance += amt; u.notifications.push(`💰 ব্যালেন্স আপডেট: অ্যাডমিন আপনার ওয়ালেটে ৳${amt} ক্রেডিট করেছেন।`); syncDB(); alert("ব্যালেন্স ক্রেডিট সম্পন্ন।"); e.target.reset(); renderAll(); }
         }
 
-        // PRODUCT DISPATCH & INTERACTION MANAGEMENT
+        // PRODUCT PIPELINE DISPATCH LOGIC
         let activeProductForOrder = null;
         function openOrderModal(productId) {
             const p = products.find(prod => prod.id === productId); if(!p) return;
@@ -645,7 +660,7 @@
             renderAll();
         }
 
-        // VENDOR PIPELINE ENGINE ACTIONS
+        // SHOP CREATION & FILE BASE64 EXTENSION PROCESSING
         function registerShop(e) {
             e.preventDefault(); currentUser.hasShop = true;
             currentUser.shopName = document.getElementById('regShopName').value;
@@ -655,7 +670,7 @@
             if(uIndex !== -1) users[uIndex] = currentUser;
             
             syncDB(); 
-            alert("আবেদন জমা হয়েছে। অ্যাডমিন ভেরিফিকেশনের জন্য অপেক্ষা করুন।"); 
+            alert("আবেদন সফল! অ্যাডমিন ভেরিফিকেশনের জন্য অপেক্ষা করুন।"); 
             renderAll();
         }
         
@@ -675,7 +690,7 @@
                     img: imgData
                 });
                 syncDB();
-                alert("প্রোডাক্ট আপলোড করা হয়েছে এবং অ্যাডমিন কিউতে পাঠানো হয়েছে।");
+                alert("প্রোডাক্ট আপলোড সম্পন্ন হয়েছে এবং অ্যাডমিন রিভিউ কিউতে পাঠানো হয়েছে।");
                 e.target.reset(); renderAll();
             };
 
@@ -686,7 +701,7 @@
             }
         }
 
-        // SYSTEM STARTUP OPERATION SEQUENCING
+        // SYSTEM ENVIRONMENT SETUP STARTUP RUNTIME
         updateUIForSession();
         renderAll();
     </script>
