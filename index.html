@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>onlinehatdropshop - Complete Dropshipping Platform</title>
+    <title>onlinehatdropshop - Complete AI Powered Dropshipping Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Segoe UI', Roboto, sans-serif; transition: background 0.3s ease; }
@@ -51,13 +51,11 @@
 
         <!-- ==================== SECTION 1: HOMEPAGE ==================== -->
         <section id="homepage" class="space-y-8">
-            <!-- Featured Approved Customer Shops Section (Version 7) -->
             <div>
                 <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">🏪 অনুমোদিত কাস্টমার শপসমূহ (Featured Shops)</h2>
                 <div id="featuredShopsContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-4"></div>
             </div>
 
-            <!-- Products Section (Version 4: All products work, not just caps) -->
             <div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">🛍️ সকল পণ্যসমূহ (টুপিসহ সকল প্রকার প্রডাক্ট গ্যালারি ইমেজসহ)</h2>
                 <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
@@ -65,7 +63,7 @@
         </section>
 
 
-        <!-- ==================== ORDER POPUP MODAL (Version 4 & 10) ==================== -->
+        <!-- ==================== ORDER POPUP MODAL ==================== -->
         <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
             <div class="bg-white p-6 rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl">
                 <h2 class="text-sm font-bold text-center text-red-600 mb-4">আপনার অর্ডারটি কনফার্ম করতে তথ্যগুলো পূরণ করে "অর্ডার করুন" বাটন এ ক্লিক করুন</h2>
@@ -127,37 +125,32 @@
         </div>
 
 
-        <!-- ==================== SECTION 2: CUSTOMER DASHBOARD (Version 1, 2, 3, 5) ==================== -->
+        <!-- ==================== SECTION 2: CUSTOMER DASHBOARD ==================== -->
         <section id="customerDashboard" class="hidden-section space-y-6">
             <div class="bg-white p-6 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h2 class="text-xl font-bold text-gray-800">👤 কাস্টমার প্রোফাইল: <span id="dashCustomerName" class="text-indigo-600"></span></h2>
                     <p class="text-xs text-gray-500" id="dashCustomerEmail"></p>
                 </div>
-                <!-- Wallet System (Version 1) -->
                 <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
-                    <p class="text-xs font-bold text-emerald-800 uppercase tracking-wider">আমার ওয়ালেট ব্যালেন্স (এডমিন দ্বারা নিয়ন্ত্রিত)</p>
+                    <p class="text-xs font-bold text-emerald-800 uppercase tracking-wider">আমার ওয়ালেট ব্যালেন্স</p>
                     <p class="text-2xl font-black text-emerald-600 mt-1">৳<span id="dashWalletBalance">0</span></p>
                 </div>
             </div>
 
-            <!-- Notifications Notice Board (Version 9 & 10) -->
             <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-amber-500">
                 <h3 class="text-sm font-bold text-amber-700 mb-2 flex items-center gap-1">🔔 নোটিফিকেশন বোর্ড</h3>
                 <div id="customerNotifications" class="space-y-2 text-xs text-gray-600"></div>
             </div>
 
-            <!-- Multi-Vendor Store System (Version 2, 3, 5) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Shop Registration Status Box -->
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
                     <h3 class="font-bold text-gray-800 border-b pb-2 mb-3">🏪 Your Shop Option</h3>
                     <div id="shopSetupBox"></div>
                 </div>
 
-                <!-- Stock Report & Gallery Upload Module -->
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 md:col-span-2 space-y-4">
-                    <h3 class="font-bold text-gray-800 border-b pb-2">📊 শপের স্টক রিপোর্ট ও গ্যালারি আপলোড (সুদু মেইন শপ ছাড়া)</h3>
+                    <h3 class="font-bold text-gray-800 border-b pb-2">📊 শপের স্টক রিপোর্ট ও গ্যালারি আপলোড</h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-amber-50 p-3 rounded-lg">
                             <p class="text-xs font-semibold text-amber-700">স্টক অনুযায়ী কত টাকার জিনিস আছে</p>
@@ -169,18 +162,17 @@
                         </div>
                     </div>
 
-                    <!-- Add New Product Form with Real Gallery Image Selection (Version 4 & 5) -->
                     <div id="vendorAddProductArea" class="hidden border-t pt-4">
                         <h4 class="text-xs font-bold uppercase text-indigo-600 mb-2">🖼️ গ্যালারি থেকে ছবি সহ নতুন পণ্য যোগ করুন</h4>
                         <form onsubmit="vendorAddProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                            <input type="text" id="vProdName" placeholder="পণ্যের নাম (যেমন: স্টাইলিশ ক্যাপ, শার্ট)" class="p-2.5 border rounded-lg" required>
+                            <input type="text" id="vProdName" placeholder="পণ্যের নাম" class="p-2.5 border rounded-lg" required>
                             <input type="number" id="vProdPrice" placeholder="মূল্য (টাকা)" class="p-2.5 border rounded-lg" required>
-                            <input type="number" id="vProdStock" placeholder="স্টক সংখ্যা (Quantity)" class="p-2.5 border rounded-lg" required>
+                            <input type="number" id="vProdStock" placeholder="স্টক সংখ্যা" class="p-2.5 border rounded-lg" required>
                             <div>
                                 <label class="block text-[10px] text-gray-500 mb-1">গ্যালারি থেকে ছবি ফাইল সিলেক্ট করুন *</label>
                                 <input type="file" id="vProdImg" accept="image/*" class="w-full" required>
                             </div>
-                            <button type="submit" class="sm:col-span-2 bg-indigo-600 text-white p-2.5 rounded-lg font-bold hover:bg-indigo-700">এডমিনের অনুমোদনের জন্য আপলোড করুন</button>
+                            <button type="submit" class="sm:col-span-2 bg-indigo-600 text-white p-2.5 rounded-lg font-bold hover:bg-indigo-700">আপলোড করুন</button>
                         </form>
                     </div>
                 </div>
@@ -191,13 +183,31 @@
         <!-- ==================== SECTION 3: ADMIN PANEL ==================== -->
         <section id="adminPanel" class="hidden-section bg-slate-900 text-white p-6 rounded-xl shadow-xl space-y-6">
             <div class="border-b border-slate-700 pb-3 flex justify-between items-center">
-                <h2 class="text-xl font-bold text-amber-400">👑 এডমিন প্যানেল (লগইন: admin@gmail.com)</h2>
+                <h2 class="text-xl font-bold text-amber-400">👑 এডমিন প্যানেল (AI কমান্ড সেন্টার যুক্ত)</h2>
             </div>
 
-            <!-- Total Users Counters Widgets (Version 10) -->
+            <!-- 🤖 NEW: AI COMMAND ENGINE MODULE -->
+            <div class="bg-gradient-to-r from-indigo-900 to-slate-800 p-5 rounded-xl border-2 border-indigo-500/50 shadow-inner space-y-3">
+                <div class="flex items-center gap-2">
+                    <span class="flex h-3 w-3 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <h3 class="text-sm font-bold text-indigo-300 uppercase tracking-wider flex items-center gap-1">🤖 Smart AI Command Console</h3>
+                </div>
+                <p class="text-[11px] text-slate-300">এখানে আপনি সহজ বাংলায় লিখে বা টাইপ করে নতুন প্রোডাক্ট যোগ করতে বা যেকোনো প্রোডাক্ট/অর্ডার বাতিল (ডিলিট) করতে পারবেন।</p>
+                
+                <form onsubmit="processAICommand(event)" class="flex gap-2">
+                    <input type="text" id="aiInputField" placeholder="উদাহরণ: '১২০০ টাকার একটি স্টাইলিশ পাঞ্জাবি যোগ করো' অথবা '২ নম্বর প্রোডাক্ট বাতিল করো'" class="flex-1 p-3 bg-slate-950 text-white border border-indigo-500/40 rounded-xl text-xs focus:outline-none focus:border-indigo-400 font-mono">
+                    <button type="submit" class="bg-indigo-600 text-white px-5 rounded-xl text-xs font-bold hover:bg-indigo-500 border border-indigo-400 transition-all shadow-md">রান AI</button>
+                </form>
+                <div id="aiResponseBox" class="hidden text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-emerald-400 font-semibold"></div>
+            </div>
+
+            <!-- Total Users Counters Widgets -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-slate-900 font-semibold text-xs">
                 <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-600">
-                    <p class="text-gray-500 uppercase">টোটাল ইউজার (Total User)</p>
+                    <p class="text-gray-500 uppercase">টোটাল ইউজার</p>
                     <p id="admTotalUsers" class="text-xl font-black mt-1">0 জন</p>
                 </div>
                 <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-600">
@@ -205,7 +215,7 @@
                     <p id="admTotalOrders" class="text-xl font-black mt-1">0 টি</p>
                 </div>
                 <div class="bg-amber-50 p-4 rounded-xl border-l-4 border-amber-600">
-                    <p class="text-gray-500 uppercase">পণ্য ভিউড (Viewed) অপশন</p>
+                    <p class="text-gray-500 uppercase">পণ্য ভিউড অপশন</p>
                     <p id="admTotalViewed" class="text-xl font-black mt-1">0 বার</p>
                 </div>
                 <div class="bg-purple-50 p-4 rounded-xl border-l-4 border-purple-600">
@@ -214,10 +224,10 @@
                 </div>
             </div>
 
-            <!-- Customizer Modules (Background & Main Category Upload) -->
+            <!-- Customizer Modules -->
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <h3 class="font-bold text-amber-400 mb-2">🎨 ওয়েবসাইট ব্যাকগ্রাউন্ড ও থিম পরিবর্তন (Version 3)</h3>
+                    <h3 class="font-bold text-amber-400 mb-2">🎨 ওয়েবসাইট ব্যাকগ্রাউন্ড পরিবর্তন</h3>
                     <div class="flex gap-2">
                         <button onclick="changeBg('#f3f4f6')" class="bg-gray-200 text-slate-900 p-1.5 px-3 rounded font-bold">ডিফল্ট গ্রে</button>
                         <button onclick="changeBg('#fef2f2')" class="bg-red-100 text-slate-900 p-1.5 px-3 rounded font-bold">হালকা লাল</button>
@@ -225,24 +235,43 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="font-bold text-amber-400 mb-2">📁 মেইন শপে ক্যাটাগরি/প্রোডাক্ট আপলোড করুন (ছবি সহ)</h3>
+                    <h3 class="font-bold text-amber-400 mb-2">📁 মেইন শপে প্রোডাক্ট আপলোড (ম্যানুয়াল)</h3>
                     <form onsubmit="adminAddMainProduct(event)" class="space-y-2">
                         <div class="grid grid-cols-2 gap-2">
                             <input type="text" id="mProdName" placeholder="পণ্যের নাম" class="bg-slate-700 p-2 rounded" required>
                             <input type="number" id="mProdPrice" placeholder="মূল্য" class="bg-slate-700 p-2 rounded" required>
                         </div>
                         <div class="flex items-center justify-between">
-                            <input type="file" id="mProdImg" accept="image/*" class="text-[10px]" required>
+                            <input type="file" id="mProdImg" accept="image/*" class="text-[10px]">
                             <button type="submit" class="bg-green-600 px-3 py-1.5 rounded font-bold hover:bg-green-500">আপলোড</button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <!-- Custom Notification & Wallet Engine (Version 1, 10) -->
+            <!-- Products List Manager with ID For AI Action -->
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs">
+                <h3 class="font-bold text-amber-400 mb-3">📦 একটিভ প্রোডাক্টস ম্যানেজার (আইডি নম্বর এখানে দেখুন)</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-slate-300">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="p-2">প্রোডাক্ট ID</th>
+                                <th class="p-2">পণ্যের নাম</th>
+                                <th class="p-2">উৎস শপ</th>
+                                <th class="p-2">মূল্য</th>
+                                <th class="p-2 text-right">অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminProductsManagementTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Custom Notification & Wallet Engine -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs">
                 <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
-                    <h3 class="font-bold text-amber-400">📢 কাস্টমারদের কাস্টম নোটিফিকেশন পাঠান (Version 10)</h3>
+                    <h3 class="font-bold text-amber-400">📢 কাস্টমারদের কাস্টম নোটিফিকেশন পাঠান</h3>
                     <form onsubmit="sendAdminNotification(event)" class="space-y-2">
                         <select id="notifTargetUser" class="w-full p-2 bg-slate-700 rounded text-white border border-slate-600"></select>
                         <textarea id="notifAdminMessage" class="w-full p-2 bg-slate-700 rounded text-white border border-slate-600" rows="2" placeholder="মেসেজটি লিখুন..." required></textarea>
@@ -251,7 +280,7 @@
                 </div>
 
                 <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
-                    <h3 class="font-bold text-emerald-400">💰 কাস্টমার ওয়ালেটে টাকা এড করুন (Version 1)</h3>
+                    <h3 class="font-bold text-emerald-400">💰 কাস্টমার ওয়ালেটে টাকা এড করুন</h3>
                     <form onsubmit="adminAddWalletMoney(event)" class="space-y-2">
                         <select id="walletTargetUser" class="w-full p-2 bg-slate-700 rounded text-white border border-slate-600"></select>
                         <input type="number" id="walletAmount" placeholder="টাকার পরিমাণ (৳)" class="w-full p-2 bg-slate-700 rounded text-white border border-slate-600" required>
@@ -260,9 +289,9 @@
                 </div>
             </div>
 
-            <!-- User Profiles Manager (एडमिन सब प्रोफाइल एडिट कर पायेगा - Version 1) -->
+            <!-- User Profiles Manager -->
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs">
-                <h3 class="font-bold text-amber-400 mb-3">👥 মেম্বার প্রোফাইল এডিটর (Admin can edit every profile everything)</h3>
+                <h3 class="font-bold text-amber-400 mb-3">👥 মেম্বার প্রোফাইল এডিটর</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-slate-300">
                         <thead>
@@ -282,18 +311,19 @@
             <!-- Approvals & Trackers -->
             <div class="space-y-4 text-xs">
                 <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                    <h3 class="font-bold text-amber-400 mb-2">⏳ কাস্টমার শপ এবং প্রোডাক্ট অনুমোদন ম্যানেজমেন্ট (Version 2 & 5)</h3>
+                    <h3 class="font-bold text-amber-400 mb-2">⏳ কাস্টমার শপ এবং প্রোডাক্ট অনুমোদন ম্যানেজমেন্ট</h3>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left"><tbody id="adminApprovalsTable"></tbody></table>
                     </div>
                 </div>
 
                 <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                    <h3 class="font-bold text-slate-200 mb-2">📦 কাস্টমার শপভিত্তিক অর্ডার ট্র্যাকার (Version 5 & 8)</h3>
+                    <h3 class="font-bold text-slate-200 mb-2">📦 কাস্টমার শপভিত্তিক অর্ডার ট্র্যাকার (অর্ডার ID সহ)</h3>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left">
                             <thead>
                                 <tr class="text-slate-400 border-b border-slate-700">
+                                    <th class="p-2">অর্ডার ID</th>
                                     <th class="p-2">কাস্টমার</th>
                                     <th class="p-2">উৎস শপ</th>
                                     <th class="p-2">পণ্য (রঙ/Q)</th>
@@ -312,10 +342,8 @@
 
     <!-- ==================== CORE PLATFORM JAVASCRIPT ENGINE ==================== -->
     <script>
-        // ডিফল্ট ডামি গ্যালারি ইমেজ লিংকের জন্য বেস ইমেজ ভেরিয়েবল
-        const defaultProductImg = "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400"; // ডিফল্ট ক্যাপ ইমেজ
+        const defaultProductImg = "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400";
 
-        // ১. কোর মেমোরি স্টেট ডাটাবেজ
         let users = [
             { id: 1, name: "অনলাইন হাট এডমিন", email: "admin@gmail.com", role: "admin", balance: 0, hasShop: false, shopName: "", shopApproved: false, notifications: [] },
             { id: 2, name: "আরিফ খান", email: "arif@gmail.com", role: "customer", balance: 2500, hasShop: true, shopName: "খান ড্রপশপ", shopApproved: true, notifications: [] },
@@ -323,17 +351,19 @@
         ];
 
         let products = [
-            { id: 101, name: "প্রিমিয়াম কোয়ালিটি টুপি (ক্যাপ)", price: 290, shop: "Main Shop", approved: true, stock: 100, views: 0, img: defaultProductImg },
-            { id: 102, name: "স্টাইলিশ জেনস শার্ট", price: 850, shop: "খান ড্রপশপ", approved: true, stock: 20, views: 0, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400" }
+            { id: 1, name: "প্রিমিয়াম কোয়ালিটি টুপি (ক্যাপ)", price: 290, shop: "Main Shop", approved: true, stock: 100, views: 0, img: defaultProductImg },
+            { id: 2, name: "স্টাইলিশ জেনস শার্ট", price: 850, shop: "খান ড্রপশপ", approved: true, stock: 20, views: 0, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400" }
         ];
 
-        let orders = [];
+        let orders = [
+            { id: 1001, customerName: "রফিক আলী", phone: "01700000000", address: "ঢাকা", prodName: "প্রিমিয়াম কোয়ালিটি টুপি (ক্যাপ)", shop: "Main Shop", qty: 1, color: "Black", delivery: 70, totalBill: 360, status: "Pending" }
+        ];
+
         let currentUser = null;
         let activeProductForOrder = null;
 
-        // ২. লোকাল ফাইল থেকে ছবি রিড করার সিস্টেম হেল্পার (গ্যালারি আপলোড)
         function getBase64Image(fileInput, callback) {
-            if (fileInput.files && fileInput.files[0]) {
+            if (fileInput && fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) { callback(e.target.result); };
                 reader.readAsDataURL(fileInput.files[0]);
@@ -342,7 +372,6 @@
             }
         }
 
-        // ৩. রাউটিং ও সেকশন কন্ট্রোল
         function showSection(sectionId) {
             document.getElementById('homepage').classList.add('hidden-section');
             document.getElementById('loginPage').classList.add('hidden-section');
@@ -353,7 +382,6 @@
             renderAll();
         }
 
-        // ৪. লগইন এবং সিকিউরিটি লজিক
         function handleLogin(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value;
@@ -368,7 +396,6 @@
                     currentUser = user;
                     showSection('customerDashboard');
                 } else {
-                    // ডেমো মেম্বার ক্রিয়েশন
                     let newCust = { id: Date.now(), name: email.split('@')[0], email: email, role: "customer", balance: 0, hasShop: false, shopName: "", shopApproved: false, notifications: [] };
                     users.push(newCust);
                     currentUser = newCust;
@@ -392,7 +419,96 @@
             }
         }
 
-        // ৫. মাস্টার রেন্ডারিং ইঞ্জিন (UI জেনারেটর)
+        // 🤖 BRAND NEW: SMART RULE-BASED AI ENGINE FOR ADMIN COMMANDS
+        function processAICommand(e) {
+            e.preventDefault();
+            const inputField = document.getElementById('aiInputField');
+            const responseBox = document.getElementById('aiResponseBox');
+            let text = inputField.value.trim().toLowerCase();
+            
+            if(!text) return;
+
+            responseBox.classList.remove('hidden');
+            responseBox.className = "text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 ";
+
+            // ১. প্রোডাক্ট অ্যাড করার লজিক স্ক্যান (যেমন: যোগ করো, add, create, upload)
+            if (text.includes("যোগ") || text.includes("add") || text.includes("upload") || text.includes("তৈরি")) {
+                // সংখ্যা বা মূল্য খোঁজার চেষ্টা (যেমন: 500 টাকা বা 500taka)
+                let priceMatch = text.match(/\d+/); 
+                let price = priceMatch ? parseInt(priceMatch[0]) : 350; // ডিফল্ট মূল্য যদি খুঁজে না পায়
+                
+                // নাম ফিল্টার করার চেষ্টা (কমান্ড থেকে কমন শব্দগুলো বাদ দেওয়া)
+                let name = inputField.value
+                    .replace(/যোগ করো|add|upload|টাকা|taka|\d+|একটি|একটা|র|এর|পণ্য|প্রোডাক্ট/gi, "")
+                    .trim();
+                
+                if(!name) name = "AI জেনারেটেড আকর্ষণীয় পণ্য";
+
+                // প্রোডাক্ট ডাটাবেজে পুশ
+                let newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({
+                    id: newId,
+                    name: name,
+                    price: price,
+                    shop: "Main Shop",
+                    approved: true,
+                    stock: 500,
+                    views: 0,
+                    img: defaultProductImg
+                });
+
+                responseBox.classList.add('text-emerald-400');
+                responseBox.innerText = `🤖 AI সফলভাবে "Main Shop"-এ নতুন পণ্য যোগ করেছে! ID: #${newId} | নাম: ${name} | মূল্য: ৳${price}`;
+                inputField.value = '';
+                renderAll();
+                return;
+            }
+
+            // ২. বাতিল বা ডিলিট করার লজিক স্ক্যান (যেমন: বাতিল, ডিলিট, remove, delete)
+            if (text.includes("বাতিল") || text.includes("ডিলিট") || text.includes("delete") || text.includes("remove") || text.includes("বাদ")) {
+                let idMatch = text.match(/\d+/);
+                if (!idMatch) {
+                    responseBox.classList.add('text-rose-400');
+                    responseBox.innerText = "🤖 দুঃখিত! বাতিল করার জন্য কত নম্বর আইডি (ID) সেটি নির্দিষ্ট করে লিখুন।";
+                    return;
+                }
+                
+                let targetId = parseInt(idMatch[0]);
+
+                // প্রথমে চেক করি এটা কোনো অর্ডার আইডি কি না (অর্ডার আইডি জেনারেলি বড় হয় বা ১০০০ থেকে শুরু)
+                let orderIndex = orders.findIndex(o => o.id === targetId);
+                if (orderIndex !== -1) {
+                    let deletedOrderName = orders[orderIndex].prodName;
+                    orders.splice(orderIndex, 1);
+                    responseBox.classList.add('text-amber-400');
+                    responseBox.innerText = `🤖 AI সফলভাবে অর্ডার আইডি #${targetId} (${deletedOrderName}) বাতিল ও রিমুভ করেছে!`;
+                    inputField.value = '';
+                    renderAll();
+                    return;
+                }
+
+                // যদি অর্ডার না হয়, তবে প্রোডাক্ট ডিলিট করার ট্রাই করবে
+                let productIndex = products.findIndex(p => p.id === targetId);
+                if (productIndex !== -1) {
+                    let deletedProdName = products[productIndex].name;
+                    products.splice(productIndex, 1);
+                    responseBox.classList.add('text-amber-400');
+                    responseBox.innerText = `🤖 AI সফলভাবে প্রোডাক্ট আইডি #${targetId} (${deletedProdName}) সম্পূর্ণ ডিলিট করেছে!`;
+                    inputField.value = '';
+                    renderAll();
+                    return;
+                }
+
+                responseBox.classList.add('text-rose-400');
+                responseBox.innerText = `🤖 দুঃখিত এডমিন, ডাটাবেজে #${targetId} আইডির কোনো প্রোডাক্ট বা অর্ডার খুঁজে পাওয়া যায়নি।`;
+                return;
+            }
+
+            // যদি কোনো কমান্ডই না বোঝে
+            responseBox.classList.add('text-indigo-300');
+            responseBox.innerText = "🤖 কমান্ডটি বুঝতে পারিনি। প্রোডাক্ট যোগ করতে মূল্যসহ লিখুন এবং বাতিল করতে আইডি নম্বর উল্লেখ করুন।";
+        }
+
         function renderAll() {
             // হোমপেজ প্রোডাক্ট রেন্ডার
             const pGrid = document.getElementById('productsGrid');
@@ -451,21 +567,19 @@
                     vAddArea.classList.remove('hidden');
                     sBox.innerHTML = `<p class="text-green-600 font-bold text-xs">✅ শপ লাইভ: ${currentUser.shopName}</p>`;
                     
-                    // মেইন শপ বাদে ইনভেন্টরি স্টক ক্যালকুলেশন (Version 3)
                     let myProds = products.filter(p => p.shop === currentUser.shopName);
                     document.getElementById('vendorStockValue').innerText = myProds.reduce((sum, p) => sum + (p.price * p.stock), 0);
                     document.getElementById('vendorSalesCount').innerText = orders.filter(o => o.shop === currentUser.shopName && o.status === 'Delivered').length;
                 }
             }
 
-            // এডমিন ড্যাশবোর্ড এবং মেম্বার লিস্ট আপডেট
+            // এডমিন ড্যাশবোর্ড আপডেট
             if(currentUser && currentUser.role === 'admin') {
                 document.getElementById('admTotalUsers').innerText = users.filter(u=>u.role !== 'admin').length + " জন";
                 document.getElementById('admTotalOrders').innerText = orders.length + " টি";
                 document.getElementById('admTotalShops').innerText = users.filter(u=>u.hasShop && u.shopApproved).length + " টি";
                 document.getElementById('admTotalViewed').innerText = products.reduce((sum, p)=>sum+p.views, 0) + " বার";
 
-                // ড্রপডাউন লোডার
                 const nT = document.getElementById('notifTargetUser');
                 const wT = document.getElementById('walletTargetUser');
                 nT.innerHTML = '<option value="all">সবাইকে একসাথে (Broadcast)</option>';
@@ -475,7 +589,21 @@
                     wT.innerHTML += `<option value="${u.id}">${u.name} (৳${u.balance})</option>`;
                 });
 
-                // এডমিন মেম্বার প্রোফাইল এডিটর (Edit Everything - Version 1)
+                // প্রোডাক্ট ম্যানেজার লিস্ট রেন্ডার
+                const admPTable = document.getElementById('adminProductsManagementTable');
+                admPTable.innerHTML = '';
+                products.forEach(p => {
+                    admPTable.innerHTML += `
+                        <tr class="border-b border-slate-800 text-xs">
+                            <td class="p-2 font-bold text-indigo-400">#${p.id}</td>
+                            <td class="p-2">${p.name}</td>
+                            <td class="p-2 text-amber-400">${p.shop}</td>
+                            <td class="p-2">৳${p.price}</td>
+                            <td class="p-2 text-right"><button onclick="deleteProductDirect(${p.id})" class="text-red-400 hover:underline">ডিলিট</button></td>
+                        </tr>`;
+                });
+
+                // এডমিন মেম্বার প্রোফাইল এডিটর
                 const uTable = document.getElementById('adminUsersManagementTable');
                 uTable.innerHTML = '';
                 users.forEach(u => {
@@ -517,7 +645,8 @@
                 orders.forEach(o => {
                     oTable.innerHTML += `
                         <tr class="border-b border-slate-800">
-                            <td class="p-2 font-bold">${o.customerName}<br><span class="text-slate-400 text-[10px]">${o.address}</span></td>
+                            <td class="p-2 font-bold text-indigo-400">#${o.id}</td>
+                            <td class="p-2"><b>${o.customerName}</b><br><span class="text-slate-400 text-[10px]">${o.address}</span></td>
                             <td class="p-2 text-amber-500 font-semibold">${o.shop}</td>
                             <td class="p-2">${o.prodName}<br><span class="text-indigo-400 text-[10px]">${o.color} / Qty: ${o.qty}</span></td>
                             <td class="p-2">৳${o.totalBill}</td>
@@ -532,16 +661,14 @@
                             </td>
                         </tr>`;
                 });
-                if(orders.length === 0) oTable.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500">কোনো অর্ডার হিস্ট্রি নেই</td></tr>`;
+                if(orders.length === 0) oTable.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-500">কোনো অর্ডার হিস্ট্রি নেই</td></tr>`;
             }
         }
 
-        // ৬. ভিউড ট্র্যাকিং ও কাস্টমার অর্ডার লজিক
         function openOrderModal(productId) {
             const p = products.find(prod => prod.id === productId);
             if(!p) return;
-            
-            p.views++; // Viewed Option tracking
+            p.views++; 
             activeProductForOrder = p;
 
             document.getElementById('modalProductName').innerText = p.name;
@@ -565,8 +692,9 @@
 
         function submitOrder(e) {
             e.preventDefault();
+            let newOrderId = orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1001;
             orders.push({
-                id: Date.now(),
+                id: newOrderId,
                 customerName: document.getElementById('custName').value,
                 phone: document.getElementById('custPhone').value,
                 address: document.getElementById('custAddress').value,
@@ -578,12 +706,11 @@
                 totalBill: parseInt(document.getElementById('totalBill').innerText),
                 status: 'Pending'
             });
-            alert("আপনার অর্ডারটি সফলভাবে কনফার্ম করা হয়েছে!");
+            alert(`আপনার অর্ডারটি সফলভাবে কনফার্ম করা হয়েছে! অর্ডার আইডি: #${newOrderId}`);
             closeOrderModal();
             renderAll();
         }
 
-        // ৭. ভেন্ডর শপ ম্যানেজমেন্ট (ছবি ফাইল আপলোড সহ)
         function registerShop(e) {
             e.preventDefault();
             currentUser.hasShop = true;
@@ -596,10 +723,10 @@
         function vendorAddProduct(e) {
             e.preventDefault();
             const fileInput = document.getElementById('vProdImg');
-            
             getBase64Image(fileInput, function(base64Img) {
+                let newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
                 products.push({
-                    id: Date.now(),
+                    id: newId,
                     name: document.getElementById('vProdName').value,
                     price: parseInt(document.getElementById('vProdPrice').value),
                     shop: currentUser.shopName,
@@ -614,7 +741,6 @@
             });
         }
 
-        // ৮. এডমিন মাস্টার অপারেশনস
         function updateUserProfile(id, field, value) {
             const u = users.find(user => user.id === id);
             if(u) { u[field] = value; alert("প্রোফাইল তথ্য লাইভ আপডেট করা হয়েছে!"); }
@@ -625,6 +751,11 @@
                 users = users.filter(u => u.id !== id);
                 renderAll();
             }
+        }
+
+        function deleteProductDirect(id) {
+            products = products.filter(p => p.id !== id);
+            renderAll();
         }
 
         function approveShop(id) {
@@ -677,8 +808,9 @@
             e.preventDefault();
             const fileInput = document.getElementById('mProdImg');
             getBase64Image(fileInput, function(base64Img) {
+                let newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
                 products.push({
-                    id: Date.now(),
+                    id: newId,
                     name: document.getElementById('mProdName').value,
                     price: parseInt(document.getElementById('mProdPrice').value),
                     shop: "Main Shop",
