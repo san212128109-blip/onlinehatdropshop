@@ -1,350 +1,1063 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-HUB - অল-ইন-ওয়ান প্ল্যাটফর্ম ও অ্যাডমিন প্যানেল</title>
-    <!-- Tailwind CSS -->
+    <title>onlinehatdropshop - Complete AI Powered Dropshipping Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Bengali -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
+        body { font-family: 'Segoe UI', Roboto, sans-serif; transition: background 0.3s ease; }
+        .hidden-section { display: none; }
+        .dotted-bg {
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 16px 16px;
         }
-        .bg-grid-pattern {
-            background-color: #f8fafc;
-            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-            background-size: 20px 20px;
+        .blue-dotted-bg {
+            background-color: #3b5998;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 16px 16px;
         }
     </style>
 </head>
-<body class="text-slate-800 bg-[#f4f6f9]">
+<body class="bg-slate-50 min-h-screen text-gray-800" id="siteBackground">
 
-    <!-- ========================================== -->
-    <!-- ১. ল্যান্ডিং পেজ ভিউ (Landing Page View) -->
-    <!-- ========================================== -->
-    <div id="landingPage" class="block">
-        <!-- নেভিগেশন বার -->
-        <header class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-40 border-b border-slate-100">
-            <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
-                <div class="flex items-center"><span class="text-xl font-black tracking-wider text-slate-900">E-HUB</span></div>
-                <nav class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-600">
-                    <a href="#" class="text-indigo-600">হোম</a>
-                    <a href="#features" class="hover:text-indigo-600 transition">ফিচারস</a>
-                    <a href="#categories" class="hover:text-indigo-600 transition">প্রোডাক্টস</a>
-                </nav>
-                <div>
-                    <button onclick="openLoginModal()" class="bg-[#3b5998] hover:bg-indigo-700 text-white text-xs font-bold px-5 py-2.5 rounded-full shadow-md transition">
-                        লগইন/রেজিস্ট্রেশন
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- হিরো সেকশন -->
-        <section class="pt-32 pb-20 bg-grid-pattern relative overflow-hidden">
-            <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <div class="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[11px] font-bold px-3 py-1 rounded-full">
-                        <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full animate-pulse"></span> বাংলাদেশের #১ Dropshipping প্ল্যাটফর্ম
-                    </div>
-                    <h1 class="text-4xl md:text-5xl font-black text-slate-950 leading-tight">বিনা পুঁজিতে <br><span class="text-indigo-600">ব্যবসা শুরু</span> করুন</h1>
-                    <p class="text-xs text-slate-500 leading-relaxed max-w-md">হাজার হাজার উদ্যোক্তা আমাদের সাথে ঘরে বসে আয় করছেন। স্টক্লিং, প্যাকেজিং এবং ডেলিভারি আমরাই সামলাই। আপনি শুধু বিক্রয়ে মনোযোগ দিন।</p>
-                    <div class="flex flex-wrap items-center gap-4 pt-2">
-                        <button onclick="openLoginModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-6 py-3 rounded-xl shadow-lg transition">🚀 জয়েন করুন</button>
-                        <a href="#howItWorks" class="bg-white text-slate-700 text-xs font-bold px-6 py-3 rounded-xl border border-slate-200 shadow-sm">▶ কিভাবে কাজ করে</a>
-                    </div>
-                </div>
-                <div class="relative justify-self-center md:justify-self-end">
-                    <div class="bg-white p-3 rounded-2xl shadow-2xl border border-slate-100 max-w-sm">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Workspace" class="rounded-xl w-full object-cover aspect-[4/3]">
-                    </div>
-                    <div class="absolute -bottom-5 -left-5 bg-white py-2 px-4 rounded-xl shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce">
-                        <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 text-sm">💰</div>
-                        <div>
-                            <p class="text-[9px] text-slate-400 font-bold uppercase leading-none">মোট আয়</p>
-                            <p class="text-xs font-black text-slate-800 mt-0.5">২৫,৪০০ টাকা</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- কাউন্টার বার -->
-        <section class="bg-slate-50 border-y border-slate-100 py-8">
-            <div class="max-w-4xl mx-auto px-4 grid grid-cols-3 text-center">
-                <div><h3 class="text-2xl font-black text-indigo-600">99+</h3><p class="text-[11px] font-medium text-slate-500">অ্যাক্টিভ প্রোডাক্ট</p></div>
-                <div class="border-x border-slate-200"><h3 class="text-2xl font-black text-indigo-600">64</h3><p class="text-[11px] font-medium text-slate-500">জেলায় ডেলিভারি</p></div>
-                <div><h3 class="text-2xl font-black text-indigo-600">২ হাজার+</h3><p class="text-[11px] font-medium text-slate-500">অর্ডার সম্পন্ন</p></div>
-            </div>
-        </section>
-
-        <!-- সুবিধা ও ফিচারস সেকশন -->
-        <section id="features" class="py-16 bg-white">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="text-center mb-12">
-                    <p class="text-xs font-bold text-indigo-600 uppercase">কেন আমাদের বেছে নেবেন</p>
-                    <h2 class="text-2xl font-black text-slate-900 mt-1">ব্যবসা বড় করার সব সুবিধা এখানেই</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100"><div class="text-xl mb-3">🔷</div><h4 class="text-sm font-bold text-slate-900 mb-2">ইউনিক প্রোডাক্ট কালেকশন</h4><p class="text-xs text-slate-500 leading-relaxed">বাছাইকৃত ও ট্রেন্ডি ইউনিক প্রোডাক্টের সমাহার, যা আপনি অন্য কোথাও সহজে পাবেন না।</p></div>
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100"><div class="text-xl mb-3">🚚</div><h4 class="text-sm font-bold text-slate-900 mb-2">দ্রুত ও নির্ভরযোগ্য ডেলিভারি</h4><p class="text-xs text-slate-500 leading-relaxed">আমরা ৬৪টি জেলায় ক্যাশ অন ডেলিভারিতে পণ্য পাঠাই দ্রুততম সময়ের মধ্যে।</p></div>
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100"><div class="text-xl mb-3">💳</div><h4 class="text-sm font-bold text-slate-900 mb-2">২৪/৭ পেমেন্ট রিকোয়েস্ট</h4><p class="text-xs text-slate-500 leading-relaxed">আপনি যেকোনো সময়, দিন বা রাত — ২৪ ঘণ্টাই পেমেন্ট রিকোয়েস্ট পাঠাতে পারবেন।</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- প্রসেস ধাপসমূহ -->
-        <section id="howItWorks" class="py-16 bg-slate-50 border-t">
-            <div class="max-w-6xl mx-auto px-4 text-center">
-                <h2 class="text-2xl font-black text-slate-900 mb-12">কিভাবে আয় শুরু করবেন?</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <div><div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto font-bold shadow-sm text-xs mb-2">১</div><h4 class="text-xs font-bold">সাইন আপ</h4></div>
-                    <div><div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto font-bold shadow-sm text-xs mb-2">২</div><h4 class="text-xs font-bold">প্রোডাক্ট বাছাই</h4></div>
-                    <div><div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto font-bold shadow-sm text-xs mb-2">৩</div><h4 class="text-xs font-bold">অর্ডার প্লেস</h4></div>
-                    <div><div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mx-auto font-bold shadow-sm text-xs mb-2 text-amber-700">৪</div><h4 class="text-xs font-bold">প্রফিট বুঝে নিন</h4></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ক্যাটাগরি সেকশন -->
-        <section id="categories" class="py-16 bg-white">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-2xl font-black text-slate-900 mb-8">আমাদের প্রোডাক্ট ক্যাটাগরি</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white p-4 rounded-xl border text-center"><div class="text-2xl mb-2">👕</div><p class="text-xs font-bold">Drop Shoulder T-shirt</p></div>
-                    <div class="bg-white p-4 rounded-xl border text-center"><div class="text-2xl mb-2">👔</div><p class="text-xs font-bold">Solid Formal Shirt</p></div>
-                    <div class="bg-white p-4 rounded-xl border text-center"><div class="text-2xl mb-2">👖</div><p class="text-xs font-bold">Boot Cut Pant</p></div>
-                    <div class="bg-white p-4 rounded-xl border text-center"><div class="text-2xl mb-2">🧥</div><p class="text-xs font-bold">Solid Oxford Shirt</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ফুটার কল টু অ্যাকশন -->
-        <section class="py-16 bg-[#3b5998] text-white text-center">
-            <h2 class="text-2xl font-black mb-4">ব্যবসা শুরু করতে প্রস্তুত?</h2>
-            <button onclick="openLoginModal()" class="bg-white text-[#3b5998] text-xs font-black px-8 py-3 rounded-full shadow-lg">অ্যাকাউন্ট খুলুন</button>
-        </section>
-    </div>
-
-
-    <!-- ========================================== -->
-    <!-- ২. ইন্টারনাল অ্যাডমিন প্যানেল / ড্যাশবোর্ড (Admin Panel View) -->
-    <!-- ========================================== -->
-    <div id="dashboardPage" class="hidden min-h-screen flex">
-        <!-- বামদিকের সাইডবার নেভিগেশন -->
-        <aside class="w-64 bg-[#0f172a] text-slate-400 flex flex-col justify-between shrink-0 h-screen sticky top-0">
-            <div>
-                <div class="p-4 border-b border-slate-800 flex items-center gap-3">
-                    <div class="w-9 h-9 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm">👑</div>
-                    <div>
-                        <h4 class="text-white font-bold text-xs flex items-center gap-1">অ্যাডমিন প্যানেল <span class="text-[9px] bg-amber-500 text-slate-900 px-1 rounded">LIVE EDIT</span></h4>
-                        <p class="text-[10px] text-slate-500">admin@gmail.com</p>
-                    </div>
-                </div>
-
-                <!-- ব্যালেন্স এডিটর -->
-                <div class="p-4 mx-3 my-2 bg-slate-900 rounded-xl border border-slate-800">
-                    <p class="text-[9px] text-slate-500 uppercase font-bold">বর্তমান ব্যালেন্স (ক্লিক করে এডিট করুন)</p>
-                    <input type="text" id="editWalletBalance" value="৳০" class="bg-transparent text-white font-black text-base w-full focus:outline-none focus:border-b border-indigo-500 mt-1">
-                </div>
-
-                <nav class="p-2 space-y-1 text-xs font-medium">
-                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-indigo-600 text-white"><span>🏠</span> হোম (ড্যাশবোর্ড)</a>
-                    <div class="px-3 py-2 text-[10px] uppercase font-bold text-slate-600">ম্যানেজমেন্ট ফিচারস</div>
-                    <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-900 transition"><span>📦 প্রোডাক্ট আপলোড</span> <span>⚙️</span></a>
-                    <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-900 transition"><span>📋 অর্ডার ট্র্যাকিং</span> <span>⚙️</span></a>
-                    <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-900 transition"><span>👥 ইউজার লিস্ট</span> <span>⚙️</span></a>
-                </nav>
-            </div>
-
-            <div class="p-3 border-t border-slate-800">
-                <button onclick="logoutAdmin()" class="w-full text-center text-xs font-bold py-2.5 bg-rose-600/20 text-rose-400 border border-rose-500/20 rounded-xl hover:bg-rose-600 hover:text-white transition">
-                    🚪 অ্যাডমিন লগআউট
-                </button>
-            </div>
-        </aside>
-
-        <!-- ড্যাশবোর্ডের মূল উইন্ডো -->
-        <main class="flex-1 flex flex-col h-screen overflow-y-auto">
-            <!-- টপবার -->
-            <header class="bg-white border-b border-slate-200 h-16 px-6 flex justify-between items-center shrink-0">
-                <div class="flex items-center gap-4">
-                    <h2 class="text-sm font-bold text-slate-800">মাস্টার কন্ট্রোল প্যানেল</h2>
-                    <span class="text-[11px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-medium">✓ কানেক্টেড</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs text-slate-500">
-                    <span>মোড: <strong>সুপার অ্যাডমিন</strong></span>
-                </div>
-            </header>
-
-            <!-- ডাইনামিক অ্যাডমিন গ্রিড কন্টেন্ট (যা সরাসরি এডিট করা যাবে) -->
-            <div class="p-6 space-y-6">
-                <div class="p-3 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs rounded-xl font-medium">
-                    💡 <strong>অ্যাডমিন টিপস:</strong> নিচের যেকোনো সংখ্যা বা টেক্সটের ওপর ক্লিক করে আপনি সরাসরি ডেটা পরিবর্তন/এডিট করতে পারবেন।
-                </div>
-
-                <!-- মিনি স্ট্যাটাস এডিটর কার্ডস -->
-                <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
-                    <div class="bg-white p-4 rounded-xl border shadow-sm">
-                        <input type="text" value="০" class="text-xl font-bold text-slate-800 bg-transparent w-full focus:outline-none focus:bg-slate-5">
-                        <p class="text-[10px] font-medium text-slate-400 mt-1">মোট অর্ডার</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border shadow-sm">
-                        <input type="text" value="০" class="text-xl font-bold text-amber-600 bg-transparent w-full focus:outline-none focus:bg-slate-5">
-                        <p class="text-[10px] font-medium text-slate-400 mt-1">পেন্ডিং</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border shadow-sm">
-                        <input type="text" value="০" class="text-xl font-bold text-blue-600 bg-transparent w-full focus:outline-none focus:bg-slate-5">
-                        <p class="text-[10px] font-medium text-slate-400 mt-1">প্রসেসিং</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border shadow-sm">
-                        <input type="text" value="০" class="text-xl font-bold text-emerald-600 bg-transparent w-full focus:outline-none focus:bg-slate-5">
-                        <p class="text-[10px] font-medium text-slate-400 mt-1">ডেলিভারড</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border shadow-sm">
-                        <input type="text" value="০" class="text-xl font-bold text-rose-600 bg-transparent w-full focus:outline-none focus:bg-slate-5">
-                        <p class="text-[10px] font-medium text-slate-400 mt-1">রিটার্নড</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border shadow-sm">
-                        <input type="text" value="০" class="text-xl font-bold text-slate-400 bg-transparent w-full focus:outline-none focus:bg-slate-5">
-                        <p class="text-[10px] font-medium text-slate-400 mt-1">বাতিল</p>
-                    </div>
-                </div>
-
-                <!-- ৪টি বড় কালারফুল ফাইন্যান্সিয়াল কার্ডস এডিটর -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div class="bg-[#111827] text-white p-5 rounded-xl shadow-sm">
-                        <p class="text-[10px] text-slate-400 font-bold">বর্তমান ব্যালেন্স</p>
-                        <input type="text" value="৳০" class="text-2xl font-black bg-transparent w-full text-white mt-2 focus:outline-none">
-                        <p class="text-[9px] text-slate-500 mt-1">উত্তোলনযোগ্য</p>
-                    </div>
-                    <div class="bg-[#3b82f6] text-white p-5 rounded-xl shadow-sm">
-                        <p class="text-[10px] text-blue-100 font-bold">মোট প্রফিট</p>
-                        <input type="text" value="৳০" class="text-2xl font-black bg-transparent w-full text-white mt-2 focus:outline-none">
-                        <p class="text-[9px] text-blue-200 mt-1">সর্বমোট আয়</p>
-                    </div>
-                    <div class="bg-[#1e40af] text-white p-5 rounded-xl shadow-sm">
-                        <p class="text-[10px] text-blue-200 font-bold">মোট বিক্রয়</p>
-                        <input type="text" value="৳০" class="text-2xl font-black bg-transparent w-full text-white mt-2 focus:outline-none">
-                        <p class="text-[9px] text-blue-200 mt-1">লাইফটাইম</p>
-                    </div>
-                    <div class="bg-[#dc2626] text-white p-5 rounded-xl shadow-sm">
-                        <p class="text-[10px] text-red-200 font-bold">বাতিল অর্ডার ভ্যালু</p>
-                        <input type="text" value="৳০" class="text-2xl font-black bg-transparent w-full text-white mt-2 focus:outline-none">
-                        <p class="text-[9px] text-red-200 mt-1">বাতিল মোট টাকার পরিমাণ</p>
-                    </div>
-                </div>
-
-                <!-- ডাটা সেকশন (রিসেন্ট অর্ডার ও প্রোডাক্ট লিস্ট এডিটর) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-5 rounded-xl border shadow-sm min-h-[220px] flex flex-col justify-between">
-                        <div class="flex justify-between border-b pb-2">
-                            <h3 class="text-xs font-bold text-slate-800">সাম্প্রতিক অর্ডার লিস্ট</h3>
-                            <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-600">এডিটেবল প্লেসহোল্ডার</span>
-                        </div>
-                        <div class="text-center py-6 my-auto space-y-1">
-                            <input type="text" value="এখনো কোনো অর্ডার ডেটা এন্ট্রি করা নেই" class="text-xs text-center font-medium text-slate-400 bg-transparent w-full focus:outline-none">
-                            <p class="text-[10px] text-indigo-600">+ নতুন অর্ডার কলাম যোগ করুন</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-xl border shadow-sm min-h-[220px] flex flex-col justify-between">
-                        <div class="flex justify-between border-b pb-2">
-                            <h3 class="text-xs font-bold text-slate-800">সাম্প্রতিক প্রোডাক্ট ক্যাটালগ</h3>
-                            <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-600">এডিটেবল প্লেসহোল্ডার</span>
-                        </div>
-                        <div class="text-center py-6 my-auto space-y-1">
-                            <input type="text" value="কোনো কাস্টম প্রোডাক্ট লাইভ নেই" class="text-xs text-center font-medium text-slate-400 bg-transparent w-full focus:outline-none">
-                            <p class="text-[10px] text-indigo-600">+ নতুন ইনভেন্টরি যুক্ত করুন</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-
-    <!-- ========================================== -->
-    <!-- ৩. লগইন মডাল পপ-আপ (Login Modal Popup) -->
-    <!-- ========================================== -->
-    <div id="loginModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 space-y-4 border border-slate-100 relative">
-            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-sm">✕</button>
-            
-            <div class="text-center space-y-1">
-                <h3 class="text-base font-black text-slate-900">অ্যাডমিন লগইন প্যানেল</h3>
-                <p class="text-[11px] text-slate-400">অ্যাডমিন ড্যাশবোর্ডে প্রবেশ করতে লগইন করুন</p>
-            </div>
-
-            <!-- ফর্ম সাবমিট অ্যালার্ট এরর মেসেজ -->
-            <div id="loginError" class="hidden p-2.5 bg-rose-50 border border-rose-200 text-rose-600 text-[11px] rounded-lg text-center font-medium">
-                ❌ ভুল জিমেইল অথবা পাসওয়ার্ড দিয়েছেন!
-            </div>
-
-            <div class="space-y-3 pt-2">
-                <div>
-                    <label class="text-[10px] font-bold text-slate-500 uppercase block mb-1">জিমেইল অ্যাকাউন্ট</label>
-                    <input type="email" id="loginEmail" placeholder="admin@gmail.com" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-indigo-500">
-                </div>
-                <div>
-                    <label class="text-[10px] font-bold text-slate-500 uppercase block mb-1">সিক্রেট পাসওয়ার্ড</label>
-                    <input type="password" id="loginPassword" placeholder="••••••" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-indigo-500">
-                </div>
-                <button onclick="validateAdminLogin()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2.5 rounded-xl shadow-lg shadow-indigo-600/20 transition">
-                    লগইন ভেরিফাই করুন ➔
-                </button>
+    <nav class="bg-indigo-700 text-white p-4 shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wider cursor-pointer" onclick="showSection('homepage')">onlinehatdropshop</h1>
+            <div class="space-x-4 text-sm font-semibold flex items-center">
+                <button onclick="showSection('homepage')" class="hover:text-amber-300">Homepage</button>
+                <button onclick="showSection('loginPage')" id="navLoginBtn" class="bg-amber-500 text-slate-900 px-3 py-1.5 rounded-lg hover:bg-amber-400">Login / Sign-Up</button>
+                <button onclick="showSection('customerDashboard')" id="navCustomerBtn" class="hidden hover:text-amber-300">Customer Dashboard</button>
+                <button onclick="showSection('adminPanel')" id="navAdminBtn" class="hidden bg-red-600 px-3 py-1.5 rounded-lg hover:bg-red-500">Admin Panel</button>
+                <button onclick="logout()" id="navLogoutBtn" class="hidden text-red-300 hover:text-red-100">Logout</button>
             </div>
         </div>
+    </nav>
+
+    <div id="mainContentContainer">
+
+        <section id="homepage" class="space-y-16 pb-16">
+            
+            <div class="bg-white border-b py-8 shadow-sm">
+                <div class="container mx-auto grid grid-cols-3 text-center">
+                    <div>
+                        <p class="text-2xl md:text-4xl font-black text-indigo-700">99+</p>
+                        <p class="text-xs md:text-sm font-medium text-gray-500 mt-1">অ্যাক্টিভ প্রোডাক্ট</p>
+                    </div>
+                    <div class="border-x border-gray-200">
+                        <p class="text-2xl md:text-4xl font-black text-indigo-700">64</p>
+                        <p class="text-xs md:text-sm font-medium text-gray-500 mt-1">জেলায় ডেলিভারি</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl md:text-4xl font-black text-indigo-700">২ হাজার+</p>
+                        <p class="text-xs md:text-sm font-medium text-gray-500 mt-1">অর্ডার সম্পন্ন</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mx-auto px-4 text-center space-y-4">
+                <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest">কেন আমাদের বেছে নেবেন</p>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">ব্যবসা বড় করার সব সুবিধা এখানেই</h2>
+                <p class="text-sm text-gray-500 max-w-2xl mx-auto">আমরা দিচ্ছি সম্পূর্ণ ইকোসিস্টেম, আপনি শুধু সেল আনুন। কোনো গোপন চার্জ নেই, ইনভেন্টরির ঝামেলা নেই।</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 max-w-6xl mx-auto text-left">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center font-bold text-lg">🔷</div>
+                        <h3 class="font-bold text-base text-gray-800">ইউনিক প্রোডাক্ট কালেকশন</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">আমাদের কাছে রয়েছে বাছাইকৃত ও ট্রেন্ডি ইউনিক প্রোডাক্টের সমাহার, যা আপনি অন্য কোথাও সহজে পাবেন না। গুণগত মান, আধুনিক ডিজাইন ও সাশ্রয়ী দামের সমন্বয়ে প্রতিটি প্রোডাক্ট আপনার জন্য বিশেষভাবে নির্বাচিত।</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-lg">🚚</div>
+                        <h3 class="font-bold text-base text-gray-800">দ্রুত ও নির্ভরযোগ্য ডেলিভারি</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">আমরা ৬৪টি জেলায় ক্যাশ অন ডেলিভারিতে পণ্য পাঠাই। আপনার কাস্টমার, আমাদের দায়িত্ব।</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center font-bold text-lg">💰</div>
+                        <h3 class="font-bold text-base text-gray-800">২৪/৭ পেমেন্ট রিকোয়েস্ট</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">আপনি যেকোনো সময়, দিন বা রাত—২৪ ঘণ্টাই নিরাপদ ও সহজভাবে পেমেন্ট রিকোয়েস্ট পাঠাতে পারবেন। দ্রুত প্রসেসিং ও নির্ভরযোগ্য সাপোর্টের মাধ্যমে আপনার লেনদেন হবে ঝামেলামুক্ত।</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center font-bold text-lg">🏷️</div>
+                        <h3 class="font-bold text-base text-gray-800">হোয়াইট লেবেল সার্ভিস</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">আমরা আপনার ব্র্যান্ডের নামে প্রোডাক্ট ডেলিভারি করবো। কাস্টমার জানবেও না আমরা আছি।</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="w-10 h-10 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center font-bold text-lg">🎧</div>
+                        <h3 class="font-bold text-base text-gray-800">ডেডিকেটেড সাপোর্ট</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">অর্ডার সমস্যা, রিটার্ন বা ব্যবসায়িক পরামর্শের জন্য আমাদের সাপোর্ট টিম সর্বদা প্রস্তুত।</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-lg">📈</div>
+                        <h3 class="font-bold text-base text-gray-800">মার্কেটিং ম্যাটেরিয়ালস</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">আপনার পেইজে পোস্ট করার জন্য হাই-কোয়ালিটি ছবি, ভিডিও এবং ডেসক্রিপশন ডাউনলোড করুন।</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white py-16 border-y border-gray-100 dotted-bg">
+                <div class="container mx-auto px-4 text-center space-y-12">
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest">প্রক্রিয়া</p>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">কিভাবে আয় শুরু করবেন?</h2>
+                        <p class="text-sm text-gray-500">অনলাইন ব্যবসা শুরু করার ৪টি সহজ ধাপ।</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto text-center">
+                        <div class="space-y-3 relative">
+                            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full mx-auto flex items-center justify-center text-xl font-bold shadow-sm">১</div>
+                            <h4 class="font-bold text-sm text-gray-800">সাইন আপ</h4>
+                            <p class="text-[11px] text-gray-500">২ মিনিটের মধ্যে অ্যাকাউন্ট খুলুন।</p>
+                        </div>
+                        <div class="space-y-3 relative">
+                            <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-full mx-auto flex items-center justify-center text-xl font-bold shadow-sm">২</div>
+                            <h4 class="font-bold text-sm text-gray-800">প্রোডাক্ট বাছাই</h4>
+                            <p class="text-[11px] text-gray-500">আমাদের ক্যাটালগ থেকে পছন্দমত পণ্য বেছে নিন এবং আপনার ফেইসবুক/ওয়েবসাইটে শেয়ার করুন।</p>
+                        </div>
+                        <div class="space-y-3 relative">
+                            <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-full mx-auto flex items-center justify-center text-xl font-bold shadow-sm">৩</div>
+                            <h4 class="font-bold text-sm text-gray-800">অর্ডার প্লেস করুন</h4>
+                            <p class="text-[11px] text-gray-500">কাস্টমার অর্ডার করলে প্যানেলে অর্ডার প্লেস করুন। আমরা ডেলিভারি করে দেব।</p>
+                        </div>
+                        <div class="space-y-3 relative">
+                            <div class="w-16 h-16 bg-amber-50 text-amber-600 rounded-full mx-auto flex items-center justify-center text-xl font-bold shadow-sm">৪</div>
+                            <h4 class="font-bold text-sm text-gray-800">প্রফিট বুঝে নিন</h4>
+                            <p class="text-[11px] text-gray-500">ডেলিভারি শেষে আমরা পেমেন্ট কালেক্ট করে আপনার লাভের টাকা আপনাকে পাঠিয়ে দেব।</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button onclick="showSection('loginPage')" class="bg-slate-950 text-white px-6 py-3 rounded-xl font-bold text-xs hover:bg-slate-900 transition tracking-wider uppercase inline-flex items-center gap-2">ব্যবসা শুরু করুন ➔</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mx-auto px-4 space-y-6">
+                <div>
+                    <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider">ক্যাটাগরি</p>
+                    <h2 class="text-2xl font-extrabold text-slate-800 mt-1">আমাদের প্রোডাক্ট ক্যাটাগরি</h2>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9 gap-4">
+                    <div class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
+                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Drop Shoulder T-shirt</p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
+                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Solid Formal Shirt</p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
+                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Boot Cut Pant</p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
+                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Gurkha Pants</p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
+                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Polo T-shirt</p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
+                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Solid Oxford Lacoste Shirt</p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
+                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Baggy</p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
+                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Band Collar Shirt</p>
+                    </div>
+                    <div class="bg-white border rounded-xl p-3 text-center space-y-2 flex flex-col items-center justify-center hover:shadow-sm cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=150" class="w-12 h-12 object-cover rounded-lg bg-gray-100">
+                        <p class="text-[11px] font-bold text-gray-700 leading-tight">Solid Oxford Ralph Lauren Shirt</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mx-auto px-4 mt-8">
+                <h2 class="text-sm font-bold text-gray-600 mb-4 flex items-center gap-2">🏪 একটিভ রিসেলার শপসমূহ</h2>
+                <div id="featuredShopsContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-4"></div>
+            </div>
+
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl font-black text-slate-800 mb-6 border-b pb-3">🛍️ অল লাইভ প্রোডাক্টস ক্যাটালগ</h2>
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+            </div>
+
+            <div class="container mx-auto px-4 pt-8">
+                <div class="blue-dotted-bg text-white rounded-3xl p-12 text-center space-y-4 shadow-xl max-w-5xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-black tracking-wide">ব্যবসা শুরু করতে প্রস্তুত?</h2>
+                    <p class="text-sm md:text-base text-blue-100 font-medium">আজই যোগ দিন +২হাজার রিসেলারদের সাথে। আনলিমিটেড ইনকাম।</p>
+                    <div class="pt-4">
+                        <button onclick="showSection('loginPage')" class="bg-white text-indigo-700 px-8 py-3.5 rounded-full font-black text-sm hover:bg-gray-100 transition shadow-md">অ্যাকাউন্ট খুলুন</button>
+                    </div>
+                    <p class="text-[11px] text-blue-200 pt-2">কোনো ক্রেডিট কার্ড লাগবে না • সহজ রেজিস্ট্রেশন</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="loginPage" class="hidden-section container mx-auto px-4 max-w-4xl my-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-md flex flex-col justify-between border border-gray-100">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Account Login</h2>
+                    <p class="text-xs text-gray-500 mb-6">Access your active dropshipping account</p>
+                    <form onsubmit="handleLogin(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-600">Email Address</label>
+                            <input type="email" id="loginEmail" class="w-full p-2.5 border rounded-lg mt-1 text-sm" placeholder="username@example.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-600">Password</label>
+                            <input type="password" id="loginPassword" class="w-full p-2.5 border rounded-lg mt-1 text-sm" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-bold text-sm hover:bg-indigo-700 transition">Log In to System</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-indigo-600 border border-gray-100">
+                <h2 class="text-2xl font-bold text-gray-800 mb-1">Create Dropshipper Account</h2>
+                <p class="text-xs text-gray-500 mb-6">Submit onboarding request info details for admin evaluation approval</p>
+                
+                <form onsubmit="handleSignUp(event)" class="space-y-3 text-xs">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-gray-700">Full Structural Name *</label>
+                            <input type="text" id="regFullName" class="w-full p-2 border rounded mt-1" placeholder="John Doe" required>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700">Desired Shop Brand Name *</label>
+                            <input type="text" id="regShopBrandName" class="w-full p-2 border rounded mt-1" placeholder="Doe Dropship Hub" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-bold text-gray-700">Active Phone Number *</label>
+                            <input type="tel" id="regPhone" class="w-full p-2 border rounded mt-1" placeholder="+8801xxxxxxxxx" required>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700">Email Destination Address *</label>
+                            <input type="email" id="regEmail" class="w-full p-2 border rounded mt-1" placeholder="merchant@email.com" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-700">Complete Logistics Operation Address *</label>
+                        <textarea id="regAddress" rows="2" class="w-full p-2 border rounded mt-1" placeholder="District, Sub-District, Zip Code, Corporate Warehouse Block Details..." required></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-700">Secure Access Password *</label>
+                        <input type="password" id="regPassword" class="w-full p-2 border rounded mt-1" placeholder="Minimum 6+ secure characters" minlength="6" required>
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-600 text-white py-2.5 rounded font-bold hover:bg-emerald-700 transition uppercase tracking-wider mt-2">Submit Profile For Review</button>
+                </form>
+            </div>
+        </section>
+
+        <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+            <div class="bg-white p-6 rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+                <h2 class="text-sm font-bold text-center text-red-600 mb-4">Please fill up the information to place your order</h2>
+                <form onsubmit="submitOrder(event)">
+                    <div class="bg-indigo-50 p-3 rounded-lg mb-3 text-xs border border-indigo-100 flex gap-3 items-center">
+                        <img id="modalProductImg" class="w-12 h-12 object-cover rounded bg-gray-300">
+                        <div>
+                            <p class="text-gray-600">Product: <span id="modalProductName" class="font-bold text-gray-800"></span></p>
+                            <p class="text-gray-600">Shop: <span id="modalProductShop" class="font-bold text-amber-700"></span></p>
+                            <p class="font-bold text-indigo-600">Price: ৳<span id="modalProductPrice"></span></p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Select Color *</label>
+                            <select id="orderColor" class="w-full p-2 border rounded-lg bg-gray-50 text-xs" required>
+                                <option value="Black">Black</option>
+                                <option value="White">White</option>
+                                <option value="Red">Red</option>
+                                <option value="Blue">Blue</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Quantity *</label>
+                            <input type="number" id="orderQuantity" value="1" min="1" class="w-full p-2 border rounded-lg text-center font-bold text-xs" oninput="calculateTotalBill()" required>
+                        </div>
+                    </div>
+                    <div class="space-y-2 mb-3 text-xs">
+                        <div>
+                            <label class="block font-bold text-gray-700">Full Name *</label>
+                            <input type="text" id="custName" class="w-full p-2 border rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700">Phone Number *</label>
+                            <input type="tel" id="custPhone" class="w-full p-2 border rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700">Full Delivery Address *</label>
+                            <textarea id="custAddress" class="w-full p-2 border rounded-lg" rows="2" placeholder="District, Thana, Area Address..." required></textarea>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700">Select Delivery Area *</label>
+                            <select id="deliveryArea" class="w-full p-2 border rounded-lg bg-gray-50" onchange="calculateTotalBill()" required>
+                                <option value="70">Inside Dhaka (৳70)</option>
+                                <option value="130">Outside Dhaka (৳130)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 bg-amber-50 p-2 rounded border border-amber-200 text-xs font-semibold text-gray-700">
+                        Payment Method: Cash On Delivery
+                    </div>
+                    <div class="text-right text-base font-bold text-gray-900 mb-4">Total Amount: ৳<span id="totalBill">0</span></div>
+                    <div class="flex gap-2 text-xs">
+                        <button type="button" onclick="closeOrderModal()" class="w-1/3 bg-gray-200 py-2 rounded-lg font-bold">Cancel</button>
+                        <button type="submit" class="w-2/3 bg-green-600 text-white py-2 rounded-lg font-bold hover:bg-green-700">Confirm Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <section id="customerDashboard" class="hidden-section container mx-auto px-4 my-8 space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border border-gray-100">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800">👤 Customer Profile: <span id="dashCustomerName" class="text-indigo-600"></span></h2>
+                    <p class="text-xs text-gray-500" id="dashCustomerEmail"></p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
+                    <p class="text-xs font-bold text-emerald-800 uppercase tracking-wider">My Wallet Balance</p>
+                    <p class="text-2xl font-black text-emerald-600 mt-1">৳<span id="dashWalletBalance">0</span></p>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-amber-500 border border-gray-100">
+                <h3 class="text-sm font-bold text-amber-700 mb-2 flex items-center gap-1">🔔 Notification Board</h3>
+                <div id="customerNotifications" class="space-y-2 text-xs text-gray-600"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-gray-800 border-b pb-2 mb-3">🏪 Your Shop Option</h3>
+                    <div id="shopSetupBox"></div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 md:col-span-2 space-y-4">
+                    <h3 class="font-bold text-gray-800 border-b pb-2">📊 Shop Stock Report & Gallery Upload</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-amber-50 p-3 rounded-lg">
+                            <p class="text-xs font-semibold text-amber-700">Total Valuation of Current Stock</p>
+                            <p class="text-xl font-bold text-slate-800 mt-1">৳<span id="vendorStockValue">0</span></p>
+                        </div>
+                        <div class="bg-indigo-50 p-3 rounded-lg">
+                            <p class="text-xs font-semibold text-indigo-700">Successful Sales Count From Your Shop</p>
+                            <p class="text-xl font-bold text-slate-800 mt-1"><span id="vendorSalesCount">0</span> Items</p>
+                        </div>
+                    </div>
+
+                    <div id="vendorAddProductArea" class="hidden border-t pt-4">
+                        <h4 class="text-xs font-bold uppercase text-indigo-600 mb-2">🖼️ Upload New Product from Gallery</h4>
+                        <form onsubmit="vendorAddProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                            <input type="text" id="vProdName" placeholder="Product Name" class="p-2.5 border rounded-lg" required>
+                            <input type="number" id="vProdPrice" placeholder="Price (BDT)" class="p-2.5 border rounded-lg" required>
+                            <input type="number" id="vProdStock" placeholder="Stock Quantity" class="p-2.5 border rounded-lg" required>
+                            <div>
+                                <label class="block text-[10px] text-gray-500 mb-1">Select Product Image *</label>
+                                <input type="file" id="vProdImg" accept="image/*" class="w-full" required>
+                            </div>
+                            <button type="submit" class="sm:col-span-2 bg-indigo-600 text-white p-2.5 rounded-lg font-bold hover:bg-indigo-700">Upload Product</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="adminPanel" class="hidden-section container mx-auto px-4 my-8 bg-slate-900 text-white p-6 rounded-2xl shadow-xl space-y-6">
+            <div class="border-b border-slate-700 pb-3 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-amber-400">👑 Admin Dashboard Control Console</h2>
+            </div>
+
+            <div class="bg-gradient-to-r from-indigo-900 to-slate-800 p-5 rounded-xl border-2 border-indigo-500/50 shadow-inner space-y-3">
+                <div class="flex items-center gap-2">
+                    <span class="flex h-3 w-3 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <h3 class="text-sm font-bold text-indigo-300 uppercase tracking-wider flex items-center gap-1">🤖 Smart AI Command Console</h3>
+                </div>
+                <p class="text-[11px] text-slate-300">Type natural commands in English or Bangla to dynamically create new main shop products or revoke active orders/products instantly.</p>
+                
+                <form onsubmit="processAICommand(event)" class="flex gap-2">
+                    <input type="text" id="aiInputField" placeholder="e.g., 'add a luxury watch worth 1500 taka' or 'cancel order 1001' / 'delete product 2'" class="flex-1 p-3 bg-slate-950 text-white border border-indigo-500/40 rounded-xl text-xs focus:outline-none focus:border-indigo-400 font-mono">
+                    <button type="submit" class="bg-indigo-600 text-white px-5 rounded-xl text-xs font-bold hover:bg-indigo-500 border border-indigo-400 transition-all shadow-md">Run AI</button>
+                </form>
+                <div id="aiResponseBox" class="hidden text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 text-emerald-400 font-semibold"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-slate-900 font-semibold text-xs">
+                <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-600">
+                    <p class="text-gray-500 uppercase">Total Approved Users</p>
+                    <p id="admTotalUsers" class="text-xl font-black mt-1">0 Users</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-600">
+                    <p class="text-gray-500 uppercase">Incoming Orders</p>
+                    <p id="admTotalOrders" class="text-xl font-black mt-1">0 Orders</p>
+                </div>
+                <div class="bg-amber-50 p-4 rounded-xl border-l-4 border-amber-600">
+                    <p class="text-gray-500 uppercase">Total Product Views</p>
+                    <p id="admTotalViewed" class="text-xl font-black mt-1">0 Views</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-xl border-l-4 border-purple-600">
+                    <p class="text-gray-500 uppercase">Approved Active Shops</p>
+                    <p id="admTotalShops" class="text-xl font-black mt-1">0 Shops</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 p-4 rounded-xl border border-red-500/30 text-xs">
+                <h3 class="font-bold text-rose-400 mb-3 uppercase tracking-wider flex items-center gap-1">🔒 Pending User Sign-Up Approvals</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-slate-300">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="p-2">Name</th>
+                                <th class="p-2">Email</th>
+                                <th class="p-2">Phone</th>
+                                <th class="p-2">Proposed Store</th>
+                                <th class="p-2">Registered Base Address</th>
+                                <th class="p-2 text-right">Verification Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUserSignupsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="font-bold text-amber-400 mb-2">🎨 Global Website Background Modifier</h3>
+                    <div class="flex gap-2">
+                        <button onclick="changeBg('#f3f4f6')" class="bg-gray-200 text-slate-900 p-1.5 px-3 rounded font-bold">Default Gray</button>
+                        <button onclick="changeBg('#fef2f2')" class="bg-red-100 text-slate-900 p-1.5 px-3 rounded font-bold">Light Red</button>
+                        <button onclick="changeBg('#ecfeff')" class="bg-cyan-100 text-slate-900 p-1.5 px-3 rounded font-bold">Light Blue</button>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-amber-400 mb-2">📁 Manual Main Shop Product Upload</h3>
+                    <form onsubmit="adminAddMainProduct(event)" class="space-y-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="mProdName" placeholder="Product Name" class="bg-slate-700 p-2 rounded text-white" required>
+                            <input type="number" id="mProdPrice" placeholder="Price" class="bg-slate-700 p-2 rounded text-white" required>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <input type="file" id="mProdImg" accept="image/*" class="text-[10px]">
+                            <button type="submit" class="bg-green-600 px-3 py-1.5 rounded font-bold hover:bg-green-500 text-white">Upload Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs">
+                <h3 class="font-bold text-amber-400 mb-3">📦 Active Products Inventory Manager</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-slate-300">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="p-2">Product ID</th>
+                                <th class="p-2">Product Name</th>
+                                <th class="p-2">Origin Shop Label</th>
+                                <th class="p-2 text-indigo-400 font-bold">🛡️ Uploaded By (User Info)</th>
+                                <th class="p-2">Price</th>
+                                <th class="p-2 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminProductsManagementTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs">
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
+                    <h3 class="font-bold text-amber-400">📢 Broadcast or Target Customer Notifications</h3>
+                    <form onsubmit="sendAdminNotification(event)" class="space-y-2">
+                        <select id="notifTargetUser" class="w-full p-2 bg-slate-700 rounded text-white border border-slate-600"></select>
+                        <textarea id="notifAdminMessage" class="w-full p-2 bg-slate-700 rounded text-white border border-slate-600" rows="2" placeholder="Write notification payload message here..." required></textarea>
+                        <button type="submit" class="bg-amber-500 text-slate-900 p-2 rounded font-bold w-full hover:bg-amber-400">Send Notification</button>
+                    </form>
+                </div>
+
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
+                    <h3 class="font-bold text-emerald-400">💰 Inject Credits to User Wallet Balance</h3>
+                    <form onsubmit="adminAddWalletMoney(event)" class="space-y-2">
+                        <select id="walletTargetUser" class="w-full p-2 bg-slate-700 rounded text-white border border-slate-600"></select>
+                        <input type="number" id="walletAmount" placeholder="Credit Amount (৳)" class="w-full p-2 bg-slate-700 rounded text-white border border-slate-600" required>
+                        <button type="submit" class="bg-emerald-500 text-slate-900 p-2 rounded font-bold w-full hover:bg-emerald-400">Add Cash Amount</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-xs">
+                <h3 class="font-bold text-amber-400 mb-3">👥 Master Member Profile Editor (Approved Active Users)</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-slate-300">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="p-2">User ID</th>
+                                <th class="p-2">Profile Name</th>
+                                <th class="p-2">Registered Email Address</th>
+                                <th class="p-2">Assigned System Role</th>
+                                <th class="p-2 text-right">Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUsersManagementTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-xs">
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                    <h3 class="font-bold text-amber-400 mb-2">⏳ Store Registration & Product Approval Pipeline</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left"><tbody id="adminApprovalsTable"></tbody></table>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                    <h3 class="font-bold text-slate-200 mb-2">📦 Store-Wise Dropshipping Order Pipeline Status Tracker</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-slate-700">
+                                    <th class="p-2">Order ID</th>
+                                    <th class="p-2">Customer Profile</th>
+                                    <th class="p-2">Supplier Shop</th>
+                                    <th class="p-2">Item Meta (Color/Qty)</th>
+                                    <th class="p-2">Gross Invoice</th>
+                                    <th class="p-2">Status Flag</th>
+                                    <th class="p-2 text-right">Modify Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminOrdersTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-
-    <!-- ========================================== -->
-    <!-- ৪. জাভাস্ক্রিপ্ট কোডলজিক (JavaScript System) -->
-    <!-- ========================================== -->
     <script>
-        // মডাল পপআপ ওপেন করার ফাংশন
-        function openLoginModal() {
-            document.getElementById('loginModal').classList.replace('hidden', 'flex');
-            document.getElementById('loginError').classList.replace('block', 'hidden');
-        }
+        const defaultProductImg = "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400";
 
-        // মডাল পপআপ বন্ধ করার ফাংশন
-        function closeLoginModal() {
-            document.getElementById('loginModal').classList.replace('flex', 'hidden');
-        }
+        // Global Accounts Base.
+        let users = [
+            { id: 1, name: "Platform Admin", email: "admin@gmail.com", password: "128109", role: "admin", balance: 0, hasShop: false, shopName: "", shopApproved: false, status: "Active", phone: "N/A", address: "System Central Core", notifications: [] },
+            { id: 2, name: "Arif Khan", email: "arif@gmail.com", password: "password123", role: "customer", balance: 2500, hasShop: true, shopName: "Khan Dropshop", shopApproved: true, status: "Active", phone: "01711111111", address: "Dhaka, Bangladesh", notifications: [] }
+        ];
 
-        // লগইন চেক ভেরিফিকেশন (admin@gmail.com এবং 123)
-        function validateAdminLogin() {
-            const emailInput = document.getElementById('loginEmail').value.trim();
-            const passwordInput = document.getElementById('loginPassword').value.trim();
-            const errorContainer = document.getElementById('loginError');
+        let products = [
+            { id: 1, name: "Premium Quality Head Hat (Cap)", price: 290, shop: "Main Shop", approved: true, stock: 100, views: 0, img: defaultProductImg, uploadedBy: "System Admin (admin@gmail.com)" },
+            { id: 2, name: "Stylish Corporate Casual Shirt", price: 850, shop: "Khan Dropshop", approved: true, stock: 20, views: 0, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400", uploadedBy: "Arif Khan (arif@gmail.com)" }
+        ];
 
-            if (emailInput === 'admin@gmail.com' && passwordInput === '123') {
-                // সাকসেস হলে ল্যান্ডিং পেজ হাইড করে ড্যাশবোর্ড দেখাবে
-                closeLoginModal();
-                document.getElementById('landingPage').classList.replace('block', 'hidden');
-                document.getElementById('dashboardPage').classList.replace('hidden', 'flex');
-                window.scrollTo(0, 0);
+        let orders = [
+            { id: 1001, customerName: "Rafiq Ali", phone: "01700000000", address: "Dhaka", prodName: "Premium Quality Head Hat (Cap)", shop: "Main Shop", qty: 1, color: "Black", delivery: 70, totalBill: 360, status: "Pending" }
+        ];
+
+        let currentUser = null;
+        let activeProductForOrder = null;
+
+        function getBase64Image(fileInput, callback) {
+            if (fileInput && fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) { callback(e.target.result); };
+                reader.readAsDataURL(fileInput.files[0]);
             } else {
-                // ভুল হলে এরর মেসেজ শো করবে
-                errorContainer.classList.replace('hidden', 'block');
+                callback(defaultProductImg);
             }
         }
 
-        // অ্যাডমিন প্যানেল থেকে লগআউট করে ল্যান্ডিং পেজে যাওয়ার ফাংশন
-        function logoutAdmin() {
-            document.getElementById('dashboardPage').classList.replace('flex', 'hidden');
-            document.getElementById('landingPage').classList.replace('hidden', 'block');
-            
-            // ইনপুট ফিল্ডগুলো রি-সেট করা
-            document.getElementById('loginEmail').value = '';
-            document.getElementById('loginPassword').value = '';
-            window.scrollTo(0, 0);
-        }
-    </script>
+        function showSection(sectionId) {
+            document.getElementById('homepage').classList.add('hidden-section');
+            document.getElementById('loginPage').classList.add('hidden-section');
+            document.getElementById('customerDashboard').classList.add('hidden-section');
+            document.getElementById('adminPanel').classList.add('hidden-section');
 
+            document.getElementById(sectionId).classList.remove('hidden-section');
+            renderAll();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // PROCESS SIGN-UP OPERATION
+        function handleSignUp(e) {
+            e.preventDefault();
+            const email = document.getElementById('regEmail').value.trim();
+            
+            if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+                alert("Operation Aborted: This email address is already registered on our servers.");
+                return;
+            }
+
+            const newAccount = {
+                id: Date.now(),
+                name: document.getElementById('regFullName').value,
+                email: email,
+                password: document.getElementById('regPassword').value,
+                role: "customer",
+                balance: 0,
+                hasShop: true,
+                shopName: document.getElementById('regShopBrandName').value,
+                shopApproved: false, 
+                status: "Pending", 
+                phone: document.getElementById('regPhone').value,
+                address: document.getElementById('regAddress').value,
+                notifications: ["Your signup documentation profile is currently submitted for admin validation parameters."]
+            };
+
+            users.push(newAccount);
+            alert("Registration Submitted Successfully! Your profile is now locked awaiting verification and structural approval from our Administration panel.");
+            e.target.reset();
+            showSection('homepage');
+        }
+
+        // PROCESS LOGIN SELECTION
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass = document.getElementById('loginPassword').value;
+
+            let matchedUser = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === pass);
+
+            if (!matchedUser) {
+                alert("Security Error: Invalid credentials provided. Please double check account tracking token combinations.");
+                return;
+            }
+
+            if (matchedUser.status === "Pending") {
+                alert("Access Restricted: Your registration request is currently pending verification review by our administration team. Please try again after authorization approval.");
+                return;
+            }
+
+            currentUser = matchedUser;
+            if (currentUser.role === 'admin') {
+                showSection('adminPanel');
+            } else {
+                showSection('customerDashboard');
+            }
+            updateNav();
+        }
+
+        function logout() { currentUser = null; updateNav(); showSection('homepage'); }
+
+        function updateNav() {
+            document.getElementById('navLoginBtn').classList.toggle('hidden', !!currentUser);
+            document.getElementById('navLogoutBtn').classList.toggle('hidden', !currentUser);
+            if(currentUser) {
+                document.getElementById('navAdminBtn').classList.toggle('hidden', currentUser.role !== 'admin');
+                document.getElementById('navCustomerBtn').classList.toggle('hidden', currentUser.role === 'admin');
+            } else {
+                document.getElementById('navAdminBtn').classList.add('hidden');
+                document.getElementById('navCustomerBtn').classList.add('hidden');
+            }
+        }
+
+        // AI PROCESS ENGINE
+        function processAICommand(e) {
+            e.preventDefault();
+            const inputField = document.getElementById('aiInputField');
+            const responseBox = document.getElementById('aiResponseBox');
+            let text = inputField.value.trim().toLowerCase();
+            
+            if(!text) return;
+
+            responseBox.classList.remove('hidden');
+            responseBox.className = "text-xs p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 ";
+
+            if (text.includes("add") || text.includes("create") || text.includes("upload") || text.includes("jog")) {
+                let priceMatch = text.match(/\d+/); 
+                let price = priceMatch ? parseInt(priceMatch[0]) : 350;
+                let name = inputField.value.replace(/add|create|upload|jog|taka|bdt|price|worth|item|product/gi, "").trim();
+                if(!name) name = "AI Generated Automated Product Descriptor";
+
+                let newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({
+                    id: newId, name: name, price: price, shop: "Main Shop", approved: true, stock: 500, views: 0, img: defaultProductImg, uploadedBy: "Platform AI Console Engine"
+                });
+
+                responseBox.classList.add('text-emerald-400');
+                responseBox.innerText = `🤖 AI Engine execution successful: Inserted inside "Main Shop" Marketplace! ID: #${newId} | Title: ${name} | Unit Valuation: ৳${price}`;
+                inputField.value = '';
+                renderAll();
+                return;
+            }
+
+            if (text.includes("cancel") || text.includes("delete") || text.includes("remove") || text.includes("batil") || text.includes("drop")) {
+                let idMatch = text.match(/\d+/);
+                if (!idMatch) {
+                    responseBox.classList.add('text-rose-400');
+                    responseBox.innerText = "🤖 System Request Aborted: Please supply a definitive reference numerical Entity Key ID.";
+                    return;
+                }
+                let targetId = parseInt(idMatch[0]);
+
+                let orderIndex = orders.findIndex(o => o.id === targetId);
+                if (orderIndex !== -1) {
+                    let deletedOrderName = orders[orderIndex].prodName;
+                    orders.splice(orderIndex, 1);
+                    responseBox.classList.add('text-amber-400');
+                    responseBox.innerText = `🤖 AI Execution Context: Successfully purged order record instance ID #${targetId} (${deletedOrderName}) from database buffers.`;
+                    inputField.value = '';
+                    renderAll();
+                    return;
+                }
+
+                let productIndex = products.findIndex(p => p.id === targetId);
+                if (productIndex !== -1) {
+                    let deletedProdName = products[productIndex].name;
+                    products.splice(productIndex, 1);
+                    responseBox.classList.add('text-amber-400');
+                    responseBox.innerText = `🤖 AI Execution Context: Permanently scrubbed active item matrix record catalog mapping ID #${targetId} (${deletedProdName}).`;
+                    inputField.value = '';
+                    renderAll();
+                    return;
+                }
+
+                responseBox.classList.add('text-rose-400');
+                responseBox.innerText = `🤖 Search Mismatch Error: Database query returned no matching references for identifier token Entity #${targetId}.`;
+                return;
+            }
+
+            responseBox.classList.add('text-indigo-300');
+            responseBox.innerText = "🤖 Token Recognition Error: Unable to extract actionable parameters. Please format commands using tokens like 'add [item] [price]' or 'delete [id]'.";
+        }
+
+        function renderAll() {
+            // Render Products
+            const pGrid = document.getElementById('productsGrid');
+            pGrid.innerHTML = '';
+            products.filter(p => p.approved).forEach(p => {
+                pGrid.innerHTML += `
+                    <div class="bg-white border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between" onclick="openOrderModal(${p.id})">
+                        <img src="${p.img}" class="w-full h-44 object-cover">
+                        <div class="p-4 text-xs space-y-2 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="bg-indigo-50 text-indigo-700 font-bold px-2 py-0.5 rounded text-[10px]">${p.shop}</span>
+                                <h3 class="font-bold text-gray-800 text-sm mt-1.5 line-clamp-2">${p.name}</h3>
+                            </div>
+                            <p class="text-indigo-600 font-bold text-base">৳${p.price}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Featured Shops
+            const shopGrid = document.getElementById('featuredShopsContainer');
+            shopGrid.innerHTML = '';
+            let approvedShops = users.filter(u => u.hasShop && u.shopApproved && u.status === 'Active');
+            if(approvedShops.length === 0) shopGrid.innerHTML = `<p class="text-xs text-gray-400 col-span-2">No active affiliate marketplace stores established yet.</p>`;
+            approvedShops.forEach(u => {
+                shopGrid.innerHTML += `
+                    <div class="bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="font-bold text-slate-800 text-xs">🏪 ${u.shopName}</p>
+                        <p class="text-[10px] text-gray-500 mt-0.5">Proprietor: ${u.name}</p>
+                    </div>
+                `;
+            });
+
+            // Customer Dashboard Updates
+            if(currentUser && currentUser.role !== 'admin') {
+                document.getElementById('dashCustomerName').innerText = currentUser.name;
+                document.getElementById('dashCustomerEmail').innerText = currentUser.email;
+                document.getElementById('dashWalletBalance').innerText = currentUser.balance;
+
+                const nBox = document.getElementById('customerNotifications');
+                nBox.innerHTML = currentUser.notifications.length === 0 ? '<p class="text-gray-400">Notification buffer clear.</p>' : 
+                    currentUser.notifications.map(n => `<div class="p-2 bg-blue-50 border-l-2 border-blue-500 rounded">${n}</div>`).join('');
+
+                const sBox = document.getElementById('shopSetupBox');
+                const vAddArea = document.getElementById('vendorAddProductArea');
+                
+                if(!currentUser.hasShop) {
+                    vAddArea.classList.add('hidden');
+                    sBox.innerHTML = `
+                        <form onsubmit="registerShop(event)" class="space-y-2 text-xs">
+                            <input type="text" id="regShopName" placeholder="Enter Desired Shop Brand Name" class="w-full p-2 border rounded" required>
+                            <button type="submit" class="w-full bg-amber-500 font-bold p-2 rounded">Submit Incorporation Request</button>
+                        </form>`;
+                } else if(!currentUser.shopApproved) {
+                    vAddArea.classList.add('hidden');
+                    sBox.innerHTML = `<p class="text-amber-600 font-semibold text-xs animate-pulse">⏳ Verification Pending Admin Review Protocols.</p>`;
+                } else {
+                    vAddArea.classList.remove('hidden');
+                    sBox.innerHTML = `<p class="text-green-600 font-bold text-xs">✅ Store Operational: ${currentUser.shopName}</p>`;
+                    
+                    let myProds = products.filter(p => p.shop === currentUser.shopName);
+                    document.getElementById('vendorStockValue').innerText = myProds.reduce((sum, p) => sum + (p.price * p.stock), 0);
+                    document.getElementById('vendorSalesCount').innerText = orders.filter(o => o.shop === currentUser.shopName && o.status === 'Delivered').length;
+                }
+            }
+
+            // Admin Panel Updates
+            if(currentUser && currentUser.role === 'admin') {
+                document.getElementById('admTotalUsers').innerText = users.filter(u=>u.role !== 'admin' && u.status === 'Active').length + " Active";
+                document.getElementById('admTotalOrders').innerText = orders.length + " Pipeline Units";
+                document.getElementById('admTotalShops').innerText = users.filter(u=>u.hasShop && u.shopApproved && u.status === 'Active').length + " Units";
+                document.getElementById('admTotalViewed').innerText = products.reduce((sum, p)=>sum+p.views, 0) + " Sessions";
+
+                const nT = document.getElementById('notifTargetUser');
+                const wT = document.getElementById('walletTargetUser');
+                nT.innerHTML = '<option value="all">Global Audience System Broadcast</option>';
+                wT.innerHTML = '';
+                users.filter(u=>u.role !== 'admin' && u.status === 'Active').forEach(u => {
+                    nT.innerHTML += `<option value="${u.id}">${u.name}</option>`;
+                    wT.innerHTML += `<option value="${u.id}">${u.name} (Current: ৳${u.balance})</option>`;
+                });
+
+                // Pending Signups Queue Matrix
+                const pSignupsTable = document.getElementById('adminUserSignupsTable');
+                pSignupsTable.innerHTML = '';
+                let pendingUsers = users.filter(u => u.status === 'Pending');
+                pendingUsers.forEach(u => {
+                    pSignupsTable.innerHTML += `
+                        <tr class="border-b border-slate-700 text-xs">
+                            <td class="p-2 font-bold text-white">${u.name}</td>
+                            <td class="p-2 text-indigo-300">${u.email}</td>
+                            <td class="p-2 text-slate-300">${u.phone || 'None'}</td>
+                            <td class="p-2 text-amber-400 font-semibold">${u.shopName || 'None'}</td>
+                            <td class="p-2 text-slate-400">${u.address || 'None'}</td>
+                            <td class="p-2 text-right">
+                                <button onclick="approveUserRegistration(${u.id})" class="bg-emerald-600 hover:bg-emerald-500 font-bold px-2.5 py-1 rounded text-white text-[10px] uppercase">Approve User Access</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                if(pendingUsers.length === 0) pSignupsTable.innerHTML = `<tr><td colspan="6" class="p-3 text-slate-500 text-center">Zero user registration signup profiles await approval validation.</td></tr>`;
+
+                // Active Products Matrix table
+                const admPTable = document.getElementById('adminProductsManagementTable');
+                admPTable.innerHTML = '';
+                products.forEach(p => {
+                    admPTable.innerHTML += `
+                        <tr class="border-b border-slate-800 text-xs">
+                            <td class="p-2 font-bold text-indigo-400">#${p.id}</td>
+                            <td class="p-2">${p.name}</td>
+                            <td class="p-2 text-amber-400">${p.shop}</td>
+                            <td class="p-2 font-bold text-indigo-300 bg-slate-900/40">${p.uploadedBy || "Unknown Submitter"}</td>
+                            <td class="p-2">৳${p.price}</td>
+                            <td class="p-2 text-right"><button onclick="deleteProductDirect(${p.id})" class="text-red-400 hover:underline font-bold">Purge</button></td>
+                        </tr>`;
+                });
+
+                // Users Directory Table
+                const uTable = document.getElementById('adminUsersManagementTable');
+                uTable.innerHTML = '';
+                users.filter(u => u.status === 'Active').forEach(u => {
+                    uTable.innerHTML += `
+                        <tr class="border-b border-slate-800 text-xs">
+                            <td class="p-2 text-slate-500">#${u.id}</td>
+                            <td class="p-2"><input type="text" value="${u.name}" onchange="updateUserProfile(${u.id}, 'name', this.value)" class="bg-slate-800 p-1 rounded text-white w-24"></td>
+                            <td class="p-2"><input type="email" value="${u.email}" onchange="updateUserProfile(${u.id}, 'email', this.value)" class="bg-slate-800 p-1 rounded text-white w-40"></td>
+                            <td class="p-2">
+                                <select onchange="updateUserProfile(${u.id}, 'role', this.value)" class="bg-slate-800 p-1 rounded text-white">
+                                    <option value="customer" ${u.role==='customer'?'selected':''}>Customer / Vendor</option>
+                                    <option value="admin" ${u.role==='admin'?'selected':''}>System Admin</option>
+                                </select>
+                            </td>
+                            <td class="p-2 text-right"><button onclick="deleteUser(${u.id})" class="text-red-400 hover:underline">Revoke Access</button></td>
+                        </tr>`;
+                });
+
+                // Request Pipelines
+                const appTable = document.getElementById('adminApprovalsTable');
+                appTable.innerHTML = '';
+                users.filter(u => u.hasShop && !u.shopApproved && u.status === 'Active').forEach(u => {
+                    appTable.innerHTML += `<tr class="border-b border-slate-800">
+                        <td class="p-2 font-bold text-amber-400">Shop Registration: ${u.shopName} (Submitted By: ${u.name})</td>
+                        <td class="p-2 text-right"><button onclick="approveShop(${u.id})" class="bg-green-600 text-white px-2 py-0.5 rounded text-[10px]">Grant Charter</button></td>
+                    </tr>`;
+                });
+                products.filter(p => !p.approved).forEach(p => {
+                    appTable.innerHTML += `<tr class="border-b border-slate-800">
+                        <td class="p-2 text-purple-400">Inventory Verification: ${p.name} (Shop context: ${p.shop} | Owner: ${p.uploadedBy})</td>
+                        <td class="p-2 text-right"><button onclick="approveProduct(${p.id})" class="bg-green-600 text-white px-2 py-0.5 rounded text-[10px]">Approve Live Publication</button></td>
+                    </tr>`;
+                });
+                if(appTable.innerHTML === '') appTable.innerHTML = `<tr><td class="p-2 text-slate-500 text-center">Pipeline requests buffer clear. Zero operations required.</td></tr>`;
+
+                // Order Tracking List
+                const oTable = document.getElementById('adminOrdersTable');
+                oTable.innerHTML = '';
+                orders.forEach(o => {
+                    oTable.innerHTML += `
+                        <tr class="border-b border-slate-800">
+                            <td class="p-2 font-bold text-indigo-400">#${o.id}</td>
+                            <td class="p-2"><b>${o.customerName}</b><br><span class="text-slate-400 text-[10px]">${o.address}</span></td>
+                            <td class="p-2 text-amber-500 font-semibold">${o.shop}</td>
+                            <td class="p-2">${o.prodName}<br><span class="text-indigo-400 text-[10px]">${o.color} / Qty: ${o.qty}</span></td>
+                            <td class="p-2">৳${o.totalBill}</td>
+                            <td class="p-2"><span class="text-amber-400 font-semibold">${o.status}</span></td>
+                            <td class="p-2 text-right">
+                                <select onchange="changeOrderStatus(${o.id}, this.value)" class="bg-slate-700 text-white p-1 rounded text-[10px]">
+                                    <option value="">Update Routing</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Shipped">Shipped</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select>
+                            </td>
+                        </tr>`;
+                });
+                if(orders.length === 0) oTable.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-500">Pipeline empty. No drop-shipping routing active.</td></tr>`;
+            }
+        }
+
+        // EXECUTE REGISTRATION PROFILE VERIFICATION
+        function approveUserRegistration(userId) {
+            const u = users.find(user => user.id === userId);
+            if (u) {
+                u.status = "Active";
+                u.shopApproved = true; 
+                u.notifications.push("✅ Administration Access Validation Granted: Account is now live and fully operational.");
+                alert(`Account tracking for ${u.name} successfully deployed. They can now log into the interface.`);
+                renderAll();
+            }
+        }
+
+        function openOrderModal(productId) {
+            const p = products.find(prod => prod.id === productId);
+            if(!p) return;
+            p.views++; 
+            activeProductForOrder = p;
+
+            document.getElementById('modalProductName').innerText = p.name;
+            document.getElementById('modalProductShop').innerText = p.shop;
+            document.getElementById('modalProductPrice').innerText = p.price;
+            document.getElementById('modalProductImg').src = p.img;
+            document.getElementById('orderQuantity').value = 1;
+
+            document.getElementById('orderModal').classList.remove('hidden');
+            calculateTotalBill();
+        }
+
+        function closeOrderModal() { document.getElementById('orderModal').classList.add('hidden'); }
+
+        function calculateTotalBill() {
+            if(!activeProductForOrder) return;
+            const qty = parseInt(document.getElementById('orderQuantity').value) || 1;
+            const deliveryCharge = parseInt(document.getElementById('deliveryArea').value);
+            document.getElementById('totalBill').innerText = (activeProductForOrder.price * qty) + deliveryCharge;
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            let newOrderId = orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1001;
+            orders.push({
+                id: newOrderId, customerName: document.getElementById('custName').value, phone: document.getElementById('custPhone').value, address: document.getElementById('custAddress').value, prodName: activeProductForOrder.name, shop: activeProductForOrder.shop, qty: parseInt(document.getElementById('orderQuantity').value), color: document.getElementById('orderColor').value, delivery: parseInt(document.getElementById('deliveryArea').value), totalBill: parseInt(document.getElementById('totalBill').innerText), status: 'Pending'
+            });
+            alert(`Order Dispatched Successfully! System Reference ID Mapping: #${newOrderId}`);
+            closeOrderModal();
+            renderAll();
+        }
+
+        function registerShop(e) {
+            e.preventDefault();
+            currentUser.hasShop = true;
+            currentUser.shopName = document.getElementById('regShopName').value;
+            currentUser.shopApproved = false;
+            alert("Affiliate shop configuration request queued for system review.");
+            renderAll();
+        }
+
+        function vendorAddProduct(e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('vProdImg');
+            getBase64Image(fileInput, function(base64Img) {
+                let newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({
+                    id: newId, name: document.getElementById('vProdName').value, price: parseInt(document.getElementById('vProdPrice').value), shop: currentUser.shopName, approved: false, stock: parseInt(document.getElementById('vProdStock').value), views: 0, img: base64Img, uploadedBy: `${currentUser.name} (${currentUser.email})`
+                });
+                alert("Payload uploaded successfully. Awaiting compliance validation from Admin Panel.");
+                e.target.reset();
+                renderAll();
+            });
+        }
+
+        function updateUserProfile(id, field, value) {
+            const u = users.find(user => user.id === id);
+            if(u) { u[field] = value; alert("Profile entity mapping structural adjustments synchronized."); }
+        }
+
+        function deleteUser(id) {
+            if(confirm("Confirm action? This will forcefully purge user credentials and access authorization mappings.")) {
+                users = users.filter(u => u.id !== id);
+                renderAll();
+            }
+        }
+
+        function deleteProductDirect(id) {
+            products = products.filter(p => p.id !== id);
+            renderAll();
+        }
+
+        function approveShop(id) {
+            const u = users.find(user => user.id === id);
+            if(u) { u.shopApproved = true; u.notifications.push(`✅ Your Affiliate Store Registration Request for '${u.shopName}' has been validated and deployed.`); renderAll(); }
+        }
+
+        function approveProduct(id) {
+            const p = products.find(prod => prod.id === id);
+            if(p) { p.approved = true; renderAll(); }
+        }
+
+        function changeOrderStatus(id, status) {
+            if(!status) return;
+            const o = orders.find(order => order.id === id);
+            if(o) {
+                o.status = status;
+                const vUser = users.find(u => u.shopName === o.shop);
+                if(vUser) vUser.notifications.push(`📦 Shipment Tracking Update: Your dropshipped item batch routing index changed to status state: [${status}].`);
+                alert("Order pipeline status flag committed.");
+                renderAll();
+            }
+        }
+
+        function sendAdminNotification(e) {
+            e.preventDefault();
+            const target = document.getElementById('notifTargetUser').value;
+            const msg = document.getElementById('notifAdminMessage').value;
+            if(target === 'all') users.forEach(u => u.notifications.push(msg));
+            else { const u = users.find(user => user.id == target); if(u) u.notifications.push(msg); }
+            alert("Notification payload dispatched.");
+            document.getElementById('notifAdminMessage').value = '';
+            renderAll();
+        }
+
+        function adminAddWalletMoney(e) {
+            e.preventDefault();
+            const target = document.getElementById('walletTargetUser').value;
+            const amt = parseInt(document.getElementById('walletAmount').value);
+            const u = users.find(user => user.id == target);
+            if(u) {
+                u.balance += amt;
+                u.notifications.push(`💰 Balance adjustments complete: Admin credited ৳${amt} tokens directly inside your balance container.`);
+                document.getElementById('walletAmount').value = '';
+                renderAll();
+            }
+        }
+
+        function adminAddMainProduct(e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('mProdImg');
+            getBase64Image(fileInput, function(base64Img) {
+                let newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({
+                    id: newId, name: document.getElementById('mProdName').value, price: parseInt(document.getElementById('mProdPrice').value), shop: "Main Shop", approved: true, stock: 999, views: 0, img: base64Img, uploadedBy: "System Admin (admin@gmail.com)"
+                });
+                alert("Global Marketplace catalog entry initialized.");
+                document.getElementById('mProdName').value = '';
+                document.getElementById('mProdPrice').value = '';
+                renderAll();
+            });
+        }
+
+        function changeBg(color) { document.getElementById('siteBackground').style.backgroundColor = color; }
+
+        renderAll();
+    </script>
 </body>
 </html>
