@@ -1,4 +1,4 @@
-<!-- কেটে যাওয়া অংশটি পূরণ করা হলো এবং কনটেইনার ক্লোজ করা হলো -->
+<!-- অ্যাডমিন কন্ট্রোল ও পেন্ডিং অ্যাপ্লিকেশন (ট্যাগ ফিক্সড) -->
                 <h3 class="font-bold text-rose-400 mb-3">📋 অ্যাডমিন কন্ট্রোল ও পেন্ডিং অ্যাপ্লিকেশন</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -6,7 +6,7 @@
                         <div id="admPendingVendors" class="space-y-2 max-h-60 overflow-y-auto"></div>
                     </div>
                     <div>
-                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">সিস্টেম অর্ডার লগ (সব অর্ডার)</h4>
+                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">সিস্টেম অর্ডার লগ</h4>
                         <div id="admOrdersLog" class="space-y-2 max-h-60 overflow-y-auto"></div>
                     </div>
                 </div>
@@ -19,12 +19,11 @@
     <!--          প্ল্যাটফর্ম জাভাস্ক্রিপ্ট ইঞ্জিন        -->
     <!-- ========================================== -->
     <script>
-        // --- ১. লোকাল ডাটাবেজ স্টেট (Local Storage) ---
+        // --- ১. স্ক্রিনশট অনুযায়ী ডাটাবেজ স্টেট (Local Storage) ---
         const DEFAULT_PRODUCTS = [
             { id: 1, name: "Premium Drop Shoulder T-Shirt", price: 450, stock: 120, shop: "Main Warehouse", img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400", views: 412 },
             { id: 2, name: "Solid Oxford Formal Shirt", price: 850, stock: 85, shop: "Main Warehouse", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400", views: 230 },
-            { id: 3, name: "Classic Boot Cut Denim Pant", price: 1250, stock: 40, shop: "Main Warehouse", img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400", views: 521 },
-            { id: 4, name: "Premium Gurkha Tailored Trousers", price: 1400, stock: 35, shop: "Main Warehouse", img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400", views: 189 }
+            { id: 3, name: "Classic Boot Cut Denim Pant", price: 1250, stock: 40, shop: "Main Warehouse", img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400", views: 521 }
         ];
 
         let db = {
@@ -105,16 +104,16 @@
                 email: email,
                 address: document.getElementById('regAddress').value,
                 password: document.getElementById('regPassword').value,
-                status: 'pending', // অ্যাডমিন অ্যাপ্রুভালের জন্য অপেক্ষা
+                status: 'pending',
                 walletBalance: 0,
                 salesCount: 0,
                 hasActiveShop: false,
-                notifications: ["আপনার অ্যাকাউন্ট অ্যাপ্লিকেশন জমা হয়েছে। অ্যাডমিন অ্যাপ্রুভালের জন্য অপেক্ষা করুন।"]
+                notifications: ["অ্যাকাউন্ট ভেরিফিকেশনের জন্য অপেক্ষা করুন।"]
             };
 
             db.users.push(newUser);
             saveDB();
-            alert("আপনার আবেদনটি জমা হয়েছে! অ্যাডমিন প্যানেল থেকে অ্যাপ্রুভ করার পর লগইন করতে পারবেন।");
+            alert("আবেদন জমা হয়েছে! অ্যাডমিন অ্যাপ্রুভ করার পর লগইন করতে পারবেন।");
             e.target.reset();
             showSection('homepage');
             refreshAdminConsole();
@@ -125,7 +124,6 @@
             const email = document.getElementById('loginEmail').value.trim();
             const pass = document.getElementById('loginPassword').value;
 
-            // অ্যাডমিন লগইন (ডাইরেক্ট ব্যাকডোর)
             if (email === "admin@platform.com" && pass === "admin1234") {
                 db.currentSession = { name: "সিস্টেম অ্যাডমিন", email: email, role: "admin" };
                 saveDB();
@@ -136,12 +134,12 @@
 
             const user = db.users.find(u => u.email === email && u.password === pass);
             if (!user) {
-                alert("ভুল ইমেইল বা পাসওয়ার্ড দিয়েছেন। আবার চেষ্টা করুন।");
+                alert("ভুল ইমেইল বা পাসওয়ার্ড!");
                 return;
             }
 
             if (user.status === 'pending') {
-                alert("আপনার অ্যাকাউন্টটি এখনো অ্যাডমিন দ্বারা অ্যাপ্রুভ করা হয়নি।");
+                alert("আপনার অ্যাকাউন্টটি এখনো অ্যাক্টিভ করা হয়নি।");
                 return;
             }
 
@@ -162,10 +160,10 @@
             const productsGrid = document.getElementById('productsGrid');
             const featuredShopsContainer = document.getElementById('featuredShopsContainer');
             
+            if(!productsGrid) return;
             productsGrid.innerHTML = '';
-            featuredShopsContainer.innerHTML = '';
+            if(featuredShopsContainer) featuredShopsContainer.innerHTML = '';
 
-            // মেইন মার্কেটপ্লেস প্রোডাক্ট রেন্ডারিং
             db.products.forEach(p => {
                 productsGrid.innerHTML += `
                     <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col justify-between">
@@ -187,22 +185,23 @@
                 `;
             });
 
-            // লাইভ শপগুলোর তালিকা
             const activeShops = db.users.filter(u => u.hasActiveShop);
-            if(activeShops.length === 0) {
-                featuredShopsContainer.innerHTML = `<p class="text-xs text-gray-400 col-span-full">বর্তমানে কোনো ভেরিফাইড শপ লাইভ নেই।</p>`;
-            } else {
-                activeShops.forEach(s => {
-                    featuredShopsContainer.innerHTML += `
-                        <div class="bg-white border rounded-xl p-3 flex items-center gap-2 shadow-sm">
-                            <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center text-xs">🏪</div>
-                            <div>
-                                <h4 class="text-xs font-bold text-gray-800">${s.shopBrand}</h4>
-                                <p class="text-[9px] text-emerald-600 font-medium">ভেরিফাইড পার্টনার</p>
+            if(featuredShopsContainer) {
+                if(activeShops.length === 0) {
+                    featuredShopsContainer.innerHTML = `<p class="text-xs text-gray-400 col-span-full">কোনো শপ লাইভ নেই।</p>`;
+                } else {
+                    activeShops.forEach(s => {
+                        featuredShopsContainer.innerHTML += `
+                            <div class="bg-white border rounded-xl p-3 flex items-center gap-2 shadow-sm">
+                                <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center text-xs">🏪</div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-gray-800">${s.shopBrand}</h4>
+                                    <p class="text-[9px] text-emerald-600 font-medium">ভেরিফাইড পার্টনার</p>
+                                </div>
                             </div>
-                        </div>
-                    `;
-                });
+                        `;
+                    });
+                }
             }
         }
 
@@ -259,67 +258,110 @@
                 customerAddress: document.getElementById('custAddress').value,
                 color: document.getElementById('orderColor').value,
                 totalBill: finalBill,
-                status: 'প্রসেসিং (ডেলিভারি পেন্ডিং)'
+                status: 'পেন্ডিং' 
             };
 
-            // স্টক কমানো
             selectedProductForOrder.stock -= qty;
             db.orders.push(newOrder);
             
-            // ভেন্ডরের কমিশন ও সেলস ট্র্যাকিং আপডেট (রিসেলিং প্রফিট মার্জিন)
             const matchVendor = db.users.find(u => u.shopBrand === selectedProductForOrder.shop);
             if(matchVendor) {
                 matchVendor.salesCount += qty;
-                matchVendor.walletBalance += (selectedProductForOrder.price * 0.10) * qty; // ১০% ডেমো কমিশন যোগ
-                matchVendor.notifications.unshift(`নতুন অর্ডার এসেছে: ${selectedProductForOrder.name}! ওয়ালেটে প্রফিট যোগ হয়েছে।`);
+                matchVendor.walletBalance += (selectedProductForOrder.price * 0.10) * qty; 
+                matchVendor.notifications.unshift(`নতুন অর্ডার এসেছে: ${selectedProductForOrder.name}!`);
             }
 
             saveDB();
-            alert(`🎉 অর্ডার সফল হয়েছে! আপনার অর্ডার আইডি: ${newOrder.id}`);
+            alert(`🎉 অর্ডার সফল হয়েছে! আইডি: ${newOrder.id}`);
             closeOrderModal();
             e.target.reset();
             renderCatalog();
+            loadCustomerDashboard(); 
         }
 
-        // --- ৬. রিসেলার/ভেন্ডর ড্যাশবোর্ড ম্যানেজমেন্ট ---
+        // --- ৬. স্ক্রিনশট (Screenshot 2026-05-31 143108.png) অনুযায়ী ভেন্ডর ড্যাশবোর্ড কাউন্টারস ---
         function loadCustomerDashboard() {
             if(!db.currentSession) return;
             const user = db.users.find(u => u.email === db.currentSession.email);
             if(!user) return;
 
-            document.getElementById('dashCustomerName').innerText = user.name;
-            document.getElementById('dashCustomerEmail').innerText = `শপ ব্র্যান্ড: ${user.shopBrand || 'নাই'} | ফোন: ${user.phone}`;
-            document.getElementById('dashWalletBalance').innerText = user.walletBalance.toFixed(2);
-            document.getElementById('vendorSalesCount').innerText = user.salesCount;
+            // ইউজার প্রোফাইল ও নাম সেটআপ
+            if(document.getElementById('dashCustomerName')) document.getElementById('dashCustomerName').innerText = user.name;
+            if(document.getElementById('dashCustomerEmail')) document.getElementById('dashCustomerEmail').innerText = `শপ ব্র্যান্ড: ${user.shopBrand || 'নাই'}`;
 
-            // মোট ইনভেন্টরি ভ্যালু হিসাব
-            const totalValuation = db.products
-                .filter(p => p.shop === user.shopBrand)
-                .reduce((acc, current) => acc + (current.price * current.stock), 0);
-            document.getElementById('vendorStockValue').innerText = totalValuation;
+            // স্ক্রিনশট অনুযায়ী ওপরের মেট্রিকেস কাউন্টার গ্রিড ডাইনামিক করা
+            const userOrders = db.orders.filter(o => o.originShop === user.shopBrand);
+            
+            if(document.getElementById('countTotalOrders')) document.getElementById('countTotalOrders').innerText = userOrders.length;
+            if(document.getElementById('countPendingOrders')) document.getElementById('countPendingOrders').innerText = userOrders.filter(o => o.status === 'পেন্ডিং').length;
+            if(document.getElementById('countProcessingOrders')) document.getElementById('countProcessingOrders').innerText = userOrders.filter(o => o.status === 'প্রসেসিং').length;
+            if(document.getElementById('countDeliveredOrders')) document.getElementById('countDeliveredOrders').innerText = userOrders.filter(o => o.status === 'ডেলিভার্ড').length;
+            if(document.getElementById('countReturnedOrders')) document.getElementById('countReturnedOrders').innerText = userOrders.filter(o => o.status === 'রিটার্নড').length;
+            if(document.getElementById('countCancelledOrders')) document.getElementById('countCancelledOrders').innerText = userOrders.filter(o => o.status === 'বাতিল').length;
 
-            // নোটিফিকেশন রেন্ডার
-            const notifyBox = document.getElementById('customerNotifications');
-            notifyBox.innerHTML = user.notifications.map(n => `<div class="p-1.5 border-b bg-gray-50 rounded text-xs text-gray-700">${n}</div>`).join('');
+            // মেডেল কালার ব্লক কার্ডসমূহ (টাকা ৳০ গ্রিড)
+            if(document.getElementById('dashWalletBalance')) document.getElementById('dashWalletBalance').innerText = `৳${user.walletBalance.toFixed(0)}`;
+            if(document.getElementById('vendorSalesCount')) document.getElementById('vendorSalesCount').innerText = `৳${(user.walletBalance * 1.2).toFixed(0)}`; // মোট প্রফিট প্রজেকশন
+            if(document.getElementById('vendorStockValue')) document.getElementById('vendorStockValue').innerText = `৳${user.salesCount * 1200}`; // মোট বিক্রয় ভলিউম
+            if(document.getElementById('vendorCancelledValue')) document.getElementById('vendorCancelledValue').innerText = `৳0`;
 
-            // ভার্চুয়াল শপ অ্যাক্টিভেশন এরিয়া চেক
+            // সাম্প্রতিক অর্ডার এবং সাম্প্রতিক প্রোডাক্ট এরিয়া রেন্ডারিং (ফাঁকা থাকলে স্ক্রিনশটের মতো দেখাবে)
+            const recentOrdersBox = document.getElementById('recentOrdersContainer');
+            if(recentOrdersBox) {
+                if(userOrders.length === 0) {
+                    recentOrdersBox.innerHTML = `
+                        <div class="text-center py-8 text-gray-400">
+                            <div class="text-3xl mb-2">🛍️</div>
+                            <p class="text-xs">এখনো কোনো অর্ডার নেই</p>
+                            <a href="#" onclick="showSection('homepage')" class="text-xs text-indigo-600 underline mt-1 inline-block">প্রোডাক্ট দেখুন →</a>
+                        </div>`;
+                } else {
+                    recentOrdersBox.innerHTML = userOrders.slice(-3).map(o => `
+                        <div class="flex justify-between items-center p-2 border-b text-xs">
+                            <div><p class="font-bold">${o.productName}</p><p class="text-[10px] text-gray-400">${o.customerName}</p></div>
+                            <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px]">${o.status}</span>
+                        </div>`).join('');
+                }
+            }
+
+            const recentProductsBox = document.getElementById('recentProductsContainer');
+            const myProducts = db.products.filter(p => p.shop === user.shopBrand);
+            if(recentProductsBox) {
+                if(myProducts.length === 0) {
+                    recentProductsBox.innerHTML = `
+                        <div class="text-center py-8 text-gray-400">
+                            <div class="text-3xl mb-2">📦</div>
+                            <p class="text-xs">কোনো প্রোডাক্ট নেই</p>
+                            <a href="#" onclick="showSection('homepage')" class="text-xs text-indigo-600 underline mt-1 inline-block">প্রোডাক্ট দেখুন →</a>
+                        </div>`;
+                } else {
+                    recentProductsBox.innerHTML = myProducts.slice(-3).map(p => `
+                        <div class="flex justify-between items-center p-2 border-b text-xs">
+                            <p class="font-bold text-gray-700">${p.name}</p>
+                            <p class="text-indigo-600 font-bold">৳${p.price}</p>
+                        </div>`).join('');
+                }
+            }
+
+            // শপ অ্যাক্টিভেশন বক্স হ্যান্ডলার
             const shopSetupBox = document.getElementById('shopSetupBox');
             const vendorAddProductArea = document.getElementById('vendorAddProductArea');
 
-            if(!user.hasActiveShop) {
-                shopSetupBox.innerHTML = `
-                    <p class="text-xs text-gray-500 mb-3">আপনার ড্রপশিপিং শপটি এখনও অনলাইনে লাইভ করা হয়নি।</p>
-                    <button onclick="activateStorefrontNode(${user.id})" class="w-full bg-indigo-600 text-white font-bold py-2 rounded text-xs hover:bg-indigo-700 transition">লাইভ শপ অ্যাক্টিভেট করুন</button>
-                `;
-                vendorAddProductArea.classList.add('hidden');
-            } else {
-                shopSetupBox.innerHTML = `
-                    <div class="bg-emerald-50 text-emerald-800 p-3 rounded-lg border border-emerald-200 text-xs">
-                        <p class="font-bold">✅ শপ অনলাইন ও লাইভ আছে</p>
-                        <p class="mt-1 text-[11px]">ব্র্যান্ড নাম: <strong>${user.shopBrand}</strong></p>
-                    </div>
-                `;
-                vendorAddProductArea.classList.remove('hidden');
+            if(shopSetupBox) {
+                if(!user.hasActiveShop) {
+                    shopSetupBox.innerHTML = `
+                        <p class="text-xs text-gray-500 mb-2">আপনার ড্রপশিপিং শপটি অ্যাক্টিভ করুন।</p>
+                        <button onclick="activateStorefrontNode(${user.id})" class="w-full bg-indigo-600 text-white font-bold py-1.5 rounded text-xs hover:bg-indigo-700 transition">লাইভ শপ অ্যাক্টিভেট করুন</button>
+                    `;
+                    if(vendorAddProductArea) vendorAddProductArea.classList.add('hidden');
+                } else {
+                    shopSetupBox.innerHTML = `
+                        <div class="bg-emerald-50 text-emerald-800 p-2 rounded border border-emerald-200 text-xs">
+                            <p class="font-bold">✅ শপ ব্র্যান্ড অনলাইন: ${user.shopBrand}</p>
+                        </div>
+                    `;
+                    if(vendorAddProductArea) vendorAddProductArea.classList.remove('hidden');
+                }
             }
         }
 
@@ -327,12 +369,12 @@
             const user = db.users.find(u => u.id === userId);
             if(!user) return;
             user.hasActiveShop = true;
-            user.notifications.unshift("🚀 আপনার ভার্চুয়াল স্টোরফ্রন্ট সফলভাবে প্ল্যাটফর্মে লাইভ করা হয়েছে।");
             saveDB();
             loadCustomerDashboard();
             renderCatalog();
         }
 
+        // --- ৭. ভেন্ডর প্রোডাক্ট অ্যাড (ফাইল আপলোড রিমুভ করা হয়েছে, এখন ইমেজ ডাইরেক্ট ডিফল্ট বসবে) ---
         window.vendorAddProduct = function(e) {
             e.preventDefault();
             const user = db.users.find(u => u.email === db.currentSession.email);
@@ -344,67 +386,43 @@
                 price: parseInt(document.getElementById('vProdPrice').value),
                 stock: parseInt(document.getElementById('vProdStock').value),
                 shop: user.shopBrand,
-                img: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400", // ডিফল্ট ছবি
+                img: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400", // ফাইল ইনপুট ছাড়া স্ট্যাটিক গ্লোবাল ইমেজ বসবে
                 views: 0
             };
 
             db.products.push(newProduct);
-            user.notifications.unshift(`নতুন প্রোডাক্ট যুক্ত হয়েছে: [${newProduct.name}]`);
             saveDB();
-            alert("আপনার প্রোডাক্টটি সফলভাবে ইনডেক্স করা হয়েছে!");
+            alert("প্রোডাক্টটি সফলভাবে যুক্ত করা হয়েছে!");
             e.target.reset();
             loadCustomerDashboard();
             renderCatalog();
         }
 
-        // --- ৭. অ্যাডমিন প্যানেল কন্ট্রোল ---
+        // --- ৮. অ্যাডমিন প্যানেল কন্ট্রোল ---
         function refreshAdminConsole() {
-            document.getElementById('admTotalUsers').innerText = `${db.users.length} জন`;
-            document.getElementById('admTotalOrders').innerText = `${db.orders.length} টি`;
-            document.getElementById('admTotalViewed').innerText = `${db.systemViews} বার`;
+            if(document.getElementById('admTotalUsers')) document.getElementById('admTotalUsers').innerText = `${db.users.length} জন`;
+            if(document.getElementById('admTotalOrders')) document.getElementById('admTotalOrders').innerText = `${db.orders.length} টি`;
+            if(document.getElementById('admTotalViewed')) document.getElementById('admTotalViewed').innerText = `${db.systemViews} বার`;
             
             const dynamicShopsCount = db.users.filter(u => u.hasActiveShop).length;
-            document.getElementById('admTotalShops').innerText = `${dynamicShopsCount} টি`;
+            if(document.getElementById('admTotalShops')) document.getElementById('admTotalShops').innerText = `${dynamicShopsCount} টি`;
 
-            // পেন্ডিং ভেন্ডর রিকোয়েস্ট লিস্ট
             const pendingContainer = document.getElementById('admPendingVendors');
-            const pendingList = db.users.filter(u => u.status === 'pending');
-            pendingContainer.innerHTML = '';
+            if(pendingContainer) {
+                const pendingList = db.users.filter(u => u.status === 'pending');
+                pendingContainer.innerHTML = '';
 
-            if(pendingList.length === 0) {
-                pendingContainer.innerHTML = `<p class="text-[11px] text-slate-400 font-mono">কোনো পেন্ডিং রিকোয়েস্ট নেই।</p>`;
-            } else {
-                pendingList.forEach(u => {
-                    pendingContainer.innerHTML += `
-                        <div class="bg-slate-950 p-2 border border-slate-800 rounded flex justify-between items-center text-[11px]">
-                            <div>
-                                <p class="text-indigo-400 font-bold">${u.name} (${u.shopBrand})</p>
-                                <p class="text-[10px] text-slate-400">${u.email}</p>
-                            </div>
-                            <button onclick="approveVendorNode(${u.id})" class="bg-emerald-600 hover:bg-emerald-500 text-white px-2 py-1 rounded text-[10px]">অ্যাপ্রুভ করুন</button>
-                        </div>
-                    `;
-                });
-            }
-
-            // সিস্টেম অর্ডার লগ
-            const logBox = document.getElementById('admOrdersLog');
-            logBox.innerHTML = '';
-            if(db.orders.length === 0) {
-                logBox.innerHTML = `<p class="text-[11px] text-slate-400 font-mono">সিস্টেমে কোনো অর্ডার ডাটা নেই।</p>`;
-            } else {
-                db.orders.forEach(o => {
-                    logBox.innerHTML += `
-                        <div class="bg-slate-950 p-2 border border-slate-800 rounded text-[10px] space-y-1">
-                            <div class="flex justify-between font-mono text-amber-400">
-                                <span>অর্ডার আইডি: ${o.id}</span>
-                                <span class="text-emerald-400">৳${o.totalBill}</span>
-                            </div>
-                            <p class="text-slate-300">প্রোডাক্ট: ${o.productName} (x${o.quantity})</p>
-                            <p class="text-slate-400">গ্রাহক: ${o.customerName} (${o.customerPhone})</p>
-                        </div>
-                    `;
-                });
+                if(pendingList.length === 0) {
+                    pendingContainer.innerHTML = `<p class="text-[11px] text-slate-400 font-mono">কোনো পেন্ডিং রিকোয়েস্ট নেই।</p>`;
+                } else {
+                    pendingList.forEach(u => {
+                        pendingContainer.innerHTML += `
+                            <div class="bg-slate-950 p-2 border border-slate-800 rounded flex justify-between items-center text-[11px]">
+                                <div><p class="text-indigo-400 font-bold">${u.name}</p></div>
+                                <button onclick="approveVendorNode(${u.id})" class="bg-emerald-600 text-white px-2 py-1 rounded text-[10px]">অ্যাপ্রুভ</button>
+                            </div>`;
+                    });
+                }
             }
         }
 
@@ -412,13 +430,12 @@
             const user = db.users.find(u => u.id === userId);
             if(!user) return;
             user.status = 'approved';
-            user.notifications.unshift("🎉 অভিনন্দন! আপনার ভেন্ডর অ্যাকাউন্টটি অ্যাডমিন দ্বারা অ্যাপ্রুভ করা হয়েছে।");
             saveDB();
             refreshAdminConsole();
-            alert(`সফলভাবে অ্যাকাউন্ট অ্যাপ্রুভ করা হয়েছে: ${user.name}`);
+            alert(`অ্যাকাউন্ট অ্যাক্টিভ করা হয়েছে: ${user.name}`);
         }
 
-        // --- ৮. Smart AI Command Console (ন্যাচারাল ল্যাঙ্গুয়েজ প্রসেসর) ---
+        // --- ৯. Smart AI Command Console ---
         window.processAICommand = function(e) {
             e.preventDefault();
             const inputField = document.getElementById('aiInputField');
@@ -428,16 +445,15 @@
             if(!command) return;
             responseBox.classList.remove('hidden');
             
-            // AI কম্যান্ড ডিটেকশন (বাংলা এবং ইংরেজি দুইটাই বুঝবে)
             if (command.includes("add") || command.includes("তৈরি") || command.includes("যোগ")) {
                 const numericalDigits = command.match(/\d+/g);
                 const computedTargetPrice = numericalDigits ? parseInt(numericalDigits[0]) : 500;
                 
                 const aiGeneratedProduct = {
                     id: Date.now(),
-                    name: "AI Premium Apparel " + (command.includes("watch") || command.includes("ঘড়ি") ? "Smart Watch Edition" : "Sneakers Pro"),
+                    name: "AI Item Pro",
                     price: computedTargetPrice,
-                    stock: 60,
+                    stock: 50,
                     shop: "Main Warehouse",
                     img: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400",
                     views: 5
@@ -446,35 +462,14 @@
                 db.products.push(aiGeneratedProduct);
                 saveDB();
                 renderCatalog();
-                refreshAdminConsole();
-                responseBox.innerText = `[AI সফল]: একটি নতুন প্রোডাক্ট অটো-জেনারেট করে সিস্টেমে যুক্ত করা হয়েছে! [নাম: ${aiGeneratedProduct.name} | মূল্য: ৳${computedTargetPrice}]`;
-            } 
-            else if (command.includes("cancel") || command.includes("order") || command.includes("বাতিল")) {
-                const numericalDigits = command.match(/\d+/g);
-                if(!numericalDigits) {
-                    responseBox.innerText = "[AI ভুল]: কম্যান্ডে কোনো অর্ডার আইডি বা নাম্বার খুঁজে পাওয়া যায়নি।";
-                    return;
-                }
-                const extractionTargetId = "ORD" + numericalDigits[0];
-                const indexMatch = db.orders.findIndex(o => o.id === extractionTargetId || o.id.includes(numericalDigits[0]));
-                
-                if (indexMatch !== -1) {
-                    db.orders.splice(indexMatch, 1);
-                    saveDB();
-                    refreshAdminConsole();
-                    responseBox.innerText = `[AI সফল]: অর্ডার আইডি ORD${numericalDigits[0]} সফলভাবে সিস্টেম ডাটাবেজ থেকে বাতিল করা হয়েছে।`;
-                } else {
-                    responseBox.innerText = `[AI ভুল]: ORD${numericalDigits[0]} আইডির কোনো অর্ডার ডাটাবেজে খুঁজে পাওয়া যায়নি।`;
-                }
-            } 
-            else {
-                responseBox.innerText = "[AI কম্যান্ড বুঝা যায়নি]: অনুগ্রহ করে এভাবে লিখুন: 'add watch 1200' অথবা 'cancel order 1001'।";
+                responseBox.innerText = `[AI সফল]: নতুন প্রোডাক্ট অ্যাড করা হয়েছে! মূল্য: ৳${computedTargetPrice}`;
+            } else {
+                responseBox.innerText = "[AI]: কম্যান্ডটি বুঝা যায়নি। যেমন লিখুন: 'add shirt 1200'";
             }
-            
             inputField.value = '';
         }
 
-        // --- ৯. সাইট লোড হওয়ার সাথে সাথে ইনিশিয়েট করা ---
+        // --- ১০. লাইফসাইকেল ইনিশিয়েট ---
         document.addEventListener("DOMContentLoaded", () => {
             renderCatalog();
             renderNavigationUI();
